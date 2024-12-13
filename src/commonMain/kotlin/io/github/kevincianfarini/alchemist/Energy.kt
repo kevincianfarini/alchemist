@@ -1,5 +1,6 @@
 package io.github.kevincianfarini.alchemist
 
+import io.github.kevincianfarini.alchemist.OverflowLong.Companion.noOverflow
 import kotlin.jvm.JvmInline
 import kotlin.time.Duration
 
@@ -8,7 +9,7 @@ import kotlin.time.Duration
  * precision.
  */
 @JvmInline
-public value class Energy(private val rawMillijoules: Long) {
+public value class Energy internal constructor(private val rawMillijoules: OverflowLong) {
 
     /**
      * Returns the constant [Force] applied over the specified [distance] required to expend this amount of energy.
@@ -31,7 +32,7 @@ public value class Energy(private val rawMillijoules: Long) {
      * Returns an energy whose value is this energy value divided by the specified [scale].
      */
     public operator fun div(scale: Int): Energy {
-        return Energy(rawMillijoules / scale)
+        return div(scale.toLong())
     }
 
     /**
@@ -59,7 +60,7 @@ public value class Energy(private val rawMillijoules: Long) {
      * Returns an energy whose value is multiplied by the specified [scale].
      */
     public operator fun times(scale: Int): Energy {
-        return Energy(rawMillijoules * scale)
+        return div(scale.toLong())
     }
 
     /**
@@ -96,7 +97,15 @@ public value class Energy(private val rawMillijoules: Long) {
         val kiloRemainder = megaRemainder % EnergyUnit.International.Kilojoule.millijouleScale
         val joule = kiloRemainder / EnergyUnit.International.Joule.millijouleScale
         val milliJoule = kiloRemainder % EnergyUnit.International.Joule.millijouleScale
-        return action(peta, tetra, giga, mega, kilo, joule, milliJoule)
+        return action(
+            peta.rawValue,
+            tetra.rawValue,
+            giga.rawValue,
+            mega.rawValue,
+            kilo.rawValue,
+            joule.rawValue,
+            milliJoule.rawValue,
+        )
     }
 
     public fun <T> toElectricityComponents(
@@ -120,17 +129,24 @@ public value class Energy(private val rawMillijoules: Long) {
         val wattHour = kiloRemainder / EnergyUnit.Electricity.WattHour.millijouleScale
         val wattRemainder = kiloRemainder % EnergyUnit.Electricity.WattHour.millijouleScale
         val milliwattHour = wattRemainder / EnergyUnit.Electricity.MilliwattHour.millijouleScale
-        return action(tera, giga, mega, kilo, wattHour, milliwattHour)
+        return action(
+            tera.rawValue,
+            giga.rawValue,
+            mega.rawValue,
+            kilo.rawValue,
+            wattHour.rawValue,
+            milliwattHour.rawValue,
+        )
     }
 
-    public fun toString(unit: EnergyUnit): String {
-        toDouble(unit).toString()
-        return "${toDouble(unit)}${unit.symbol}"
+    public fun toString(unit: EnergyUnit): String = when (rawMillijoules.isInfinite()) {
+        true -> rawMillijoules.toString()
+        false -> "${toDouble(unit)}${unit.symbol}"
     }
 
     public override fun toString(): String {
         val largestUnit = EnergyUnit.International.entries.asReversed().first { unit ->
-            rawMillijoules / unit.millijouleScale > 0
+            rawMillijoules.absoluteValue / unit.millijouleScale > 0
         }
         return toString(largestUnit)
     }
@@ -194,7 +210,7 @@ public fun Int.toEnergy(unit: EnergyUnit): Energy {
 }
 
 public fun Long.toEnergy(unit: EnergyUnit): Energy {
-    return Energy(this * unit.millijouleScale)
+    return Energy(this.noOverflow * unit.millijouleScale)
 }
 
 private val EnergyUnit.millijouleScale: Long get() = when (this) {
