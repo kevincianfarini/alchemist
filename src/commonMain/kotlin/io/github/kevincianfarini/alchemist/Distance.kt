@@ -1,5 +1,6 @@
 package io.github.kevincianfarini.alchemist
 
+import io.github.kevincianfarini.alchemist.OverflowLong.Companion.noOverflow
 import kotlin.jvm.JvmInline
 import kotlin.time.Duration
 
@@ -7,7 +8,7 @@ import kotlin.time.Duration
  * Represents a measure of distance and is capable of storing ±9.2 million kilometers at nanometer precision.
  */
 @JvmInline
-public value class Distance internal constructor(private val rawNanometers: Long) {
+public value class Distance internal constructor(private val rawNanometers: OverflowLong) {
 
     /**
      * Returns the constant [Velocity] required to travel this distance in the specified [duration].
@@ -25,7 +26,7 @@ public value class Distance internal constructor(private val rawNanometers: Long
      * Returns a distance whose value is this distance value divided by the specified [scale].
      */
     public operator fun div(scale: Int): Distance {
-        return Distance(rawNanometers / scale)
+        return div(scale.toLong())
     }
 
     /**
@@ -58,7 +59,7 @@ public value class Distance internal constructor(private val rawNanometers: Long
      * Returns a distance whose value is multiplied by the specified [scale].
      */
     public operator fun times(scale: Int): Distance {
-        return Distance(rawNanometers * scale)
+        return times(scale.toLong())
     }
 
     /**
@@ -98,7 +99,16 @@ public value class Distance internal constructor(private val rawNanometers: Long
         val milliRemainder = centiRemainder % DistanceUnit.International.Millimeter.nanometerScale
         val micro = milliRemainder / DistanceUnit.International.Micrometer.nanometerScale
         val nano = milliRemainder % DistanceUnit.International.Micrometer.nanometerScale
-        return action(giga, mega, kilo, meters, centi, milli, micro, nano)
+        return action(
+            giga.rawValue,
+            mega.rawValue,
+            kilo.rawValue,
+            meters.rawValue,
+            centi.rawValue,
+            milli.rawValue,
+            micro.rawValue,
+            nano.rawValue,
+        )
     }
 
     public fun <T> toUnitedStatesCustomaryComponents(
@@ -110,15 +120,16 @@ public value class Distance internal constructor(private val rawNanometers: Long
         val yardRemainder = milesRemainder % DistanceUnit.UnitedStatesCustomary.Yard.nanometerScale
         val feet = yardRemainder / DistanceUnit.UnitedStatesCustomary.Foot.nanometerScale
         val feetRemainder = yardRemainder % DistanceUnit.UnitedStatesCustomary.Foot.nanometerScale
-        val inches = feetRemainder.nanometers.toDouble(DistanceUnit.UnitedStatesCustomary.Inch)
-        return action(miles, yards, feet, inches)
+        val inches = feetRemainder.rawValue.nanometers.toDouble(DistanceUnit.UnitedStatesCustomary.Inch)
+        return action(miles.rawValue, yards.rawValue, feet.rawValue, inches)
     }
 
     /**
      * Returns a fractional string representation of this distance expressed in the specified [unit].
      */
-    public fun toString(unit: DistanceUnit): String {
-        return "${toDouble(unit)}${unit.symbol}"
+    public fun toString(unit: DistanceUnit): String = when (rawNanometers.isInfinite()) {
+        true -> rawNanometers.toString()
+        false -> "${toDouble(unit)}${unit.symbol}"
     }
 
     /**
@@ -126,7 +137,7 @@ public value class Distance internal constructor(private val rawNanometers: Long
      */
     public override fun toString(): String {
         val largestUnit = DistanceUnit.International.entries.asReversed().first { unit ->
-            rawNanometers / unit.nanometerScale > 0
+            rawNanometers.absoluteValue / unit.nanometerScale > 0
         }
         return toString(largestUnit)
     }
@@ -252,6 +263,16 @@ public value class Distance internal constructor(private val rawNanometers: Long
          * Returns a [Distance] equal to [Long] number of miles.
          */
         public inline val Long.miles: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Mile)
+
+        /**
+         * A positive infinite distance.
+         */
+        public val POSITIVE_INFINITY: Distance = Distance(OverflowLong.POSITIVE_INFINITY)
+
+        /**
+         * A negative infinite distance.
+         */
+        public val NEGATIVE_INFINITY: Distance = Distance(OverflowLong.NEGATIVE_INFINITY)
     }
 }
 
@@ -260,7 +281,7 @@ public fun Int.toDistance(unit: DistanceUnit): Distance {
 }
 
 public fun Long.toDistance(unit: DistanceUnit): Distance {
-    return Distance(this * unit.nanometerScale)
+    return Distance(this.noOverflow * unit.nanometerScale)
 }
 
 

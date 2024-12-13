@@ -1,10 +1,13 @@
 package io.github.kevincianfarini.alchemist
 
+import io.github.kevincianfarini.alchemist.OverflowLong.Companion.NEGATIVE_INFINITY
+import io.github.kevincianfarini.alchemist.OverflowLong.Companion.POSITIVE_INFINITY
 import io.github.kevincianfarini.alchemist.OverflowLong.Companion.noOverflow
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
+import kotlin.time.Duration
 
 class OverflowLongTest {
 
@@ -21,26 +24,26 @@ class OverflowLongTest {
 
     @Test
     fun unary_minus_infinite_values() {
-        assertEquals(OverflowLong.POSITIVE_INFINITY, -OverflowLong.NEGATIVE_INFINITY)
-        assertEquals(OverflowLong.NEGATIVE_INFINITY, -OverflowLong.POSITIVE_INFINITY)
+        assertEquals(POSITIVE_INFINITY, -NEGATIVE_INFINITY)
+        assertEquals(NEGATIVE_INFINITY, -POSITIVE_INFINITY)
     }
 
     @Test
     fun infinite_plus_infinite_equals_infinite() {
         assertEquals(
-            expected =OverflowLong.POSITIVE_INFINITY,
-            actual = OverflowLong.POSITIVE_INFINITY + OverflowLong.POSITIVE_INFINITY,
+            expected = POSITIVE_INFINITY,
+            actual = POSITIVE_INFINITY + POSITIVE_INFINITY,
         )
         assertEquals(
-            expected = OverflowLong.NEGATIVE_INFINITY,
-            actual = OverflowLong.NEGATIVE_INFINITY+ OverflowLong.NEGATIVE_INFINITY,
+            expected = NEGATIVE_INFINITY,
+            actual = NEGATIVE_INFINITY+ NEGATIVE_INFINITY,
         )
     }
 
     @Test
     fun mixed_signed_infinite_addition_error() {
         val e = assertFailsWith<IllegalArgumentException> {
-            OverflowLong.POSITIVE_INFINITY + OverflowLong.NEGATIVE_INFINITY
+            POSITIVE_INFINITY + NEGATIVE_INFINITY
         }
         assertEquals(
             actual = e.message,
@@ -52,38 +55,38 @@ class OverflowLongTest {
     fun addition_positive_overflow_returns_positive_infinite() {
         val a = (Long.MAX_VALUE - 1L).noOverflow
         val b = 2L.noOverflow
-        assertEquals(OverflowLong.POSITIVE_INFINITY, a + b)
+        assertEquals(POSITIVE_INFINITY, a + b)
     }
 
     @Test
     fun addition_negative_overflow_returns_negative_infinite() {
         val a = (Long.MIN_VALUE + 1L).noOverflow
         val b = (-2L).noOverflow
-        assertEquals(OverflowLong.NEGATIVE_INFINITY, a + b)
+        assertEquals(NEGATIVE_INFINITY, a + b)
     }
 
     @Test
     fun subtraction_negative_overflow_returns_negative_infinite() {
         val a = (Long.MIN_VALUE + 1L).noOverflow
         val b = 2L.noOverflow
-        assertEquals(OverflowLong.NEGATIVE_INFINITY, a - b)
+        assertEquals(NEGATIVE_INFINITY, a - b)
     }
 
     @Test
     fun subtraction_positive_overflow_returns_positive_infinite() {
         val a = -((Long.MAX_VALUE - 1L).noOverflow)
         val b = 2L.noOverflow
-        assertEquals(OverflowLong.POSITIVE_INFINITY, b - a)
+        assertEquals(POSITIVE_INFINITY, b - a)
     }
 
     @Test
     fun adding_to_infinity_produces_infinity() {
-        assertEquals(OverflowLong.POSITIVE_INFINITY, OverflowLong.POSITIVE_INFINITY + 50_000L.noOverflow)
+        assertEquals(POSITIVE_INFINITY, POSITIVE_INFINITY + 50_000L.noOverflow)
     }
 
     @Test
     fun subtracting_from_negative_infinity_produces_negative_infinity() {
-        assertEquals(OverflowLong.NEGATIVE_INFINITY, OverflowLong.NEGATIVE_INFINITY - 50_000L.noOverflow)
+        assertEquals(NEGATIVE_INFINITY, NEGATIVE_INFINITY - 50_000L.noOverflow)
     }
 
     @Test
@@ -94,37 +97,37 @@ class OverflowLongTest {
     @Test
     fun dividing_two_infinite_values_errors() {
         assertFailsWith<IllegalArgumentException> {
-            OverflowLong.POSITIVE_INFINITY / OverflowLong.POSITIVE_INFINITY
+            POSITIVE_INFINITY / POSITIVE_INFINITY
         }
         assertFailsWith<IllegalArgumentException> {
-            OverflowLong.POSITIVE_INFINITY / OverflowLong.NEGATIVE_INFINITY
+            POSITIVE_INFINITY / NEGATIVE_INFINITY
         }
         assertFailsWith<IllegalArgumentException> {
-            OverflowLong.NEGATIVE_INFINITY / OverflowLong.POSITIVE_INFINITY
+            NEGATIVE_INFINITY / POSITIVE_INFINITY
         }
         assertFailsWith<IllegalArgumentException> {
-            OverflowLong.NEGATIVE_INFINITY / OverflowLong.NEGATIVE_INFINITY
+            NEGATIVE_INFINITY / NEGATIVE_INFINITY
         }
     }
 
     @Test
     fun dividing_by_positive_infinity_produces_zero() {
-        assertEquals(0L.noOverflow, (Long.MAX_VALUE - 1L).noOverflow / OverflowLong.POSITIVE_INFINITY)
+        assertEquals(0L.noOverflow, (Long.MAX_VALUE - 1L).noOverflow / POSITIVE_INFINITY)
     }
 
     @Test
     fun dividing_by_negative_infinity_produces_zero() {
-        assertEquals(0L.noOverflow, (Long.MAX_VALUE - 1L).noOverflow / OverflowLong.NEGATIVE_INFINITY)
+        assertEquals(0L.noOverflow, (Long.MAX_VALUE - 1L).noOverflow / NEGATIVE_INFINITY)
     }
 
     @Test
     fun dividing_positive_infinity_by_a_value_produces_positive_infinity() {
-        assertEquals(OverflowLong.POSITIVE_INFINITY, OverflowLong.POSITIVE_INFINITY / 2L)
+        assertEquals(POSITIVE_INFINITY, POSITIVE_INFINITY / 2L)
     }
 
     @Test
     fun dividing_negative_infinity_by_a_value_produces_negative_infinity() {
-        assertEquals(OverflowLong.NEGATIVE_INFINITY, OverflowLong.NEGATIVE_INFINITY/ 2L)
+        assertEquals(NEGATIVE_INFINITY, NEGATIVE_INFINITY / 2L)
     }
 
     @Test
@@ -134,38 +137,50 @@ class OverflowLongTest {
 
     @Test
     fun multiplfying_two_positive_infinite_values_produces_positive_infinity() {
-        assertEquals(OverflowLong.POSITIVE_INFINITY, OverflowLong.POSITIVE_INFINITY * OverflowLong.POSITIVE_INFINITY)
+        assertEquals(POSITIVE_INFINITY, POSITIVE_INFINITY * POSITIVE_INFINITY)
     }
 
     @Test
     fun multiplying_two_negative_infinite_values_produces_positive_infinity() {
-        assertEquals(OverflowLong.POSITIVE_INFINITY, OverflowLong.NEGATIVE_INFINITY * OverflowLong.NEGATIVE_INFINITY)
+        assertEquals(POSITIVE_INFINITY, NEGATIVE_INFINITY * NEGATIVE_INFINITY)
     }
 
     @Test
     fun multiplying_mixed_sign_infinite_values_produces_negative_infinity() {
-        assertEquals(OverflowLong.NEGATIVE_INFINITY, OverflowLong.POSITIVE_INFINITY * OverflowLong.NEGATIVE_INFINITY)
-        assertEquals(OverflowLong.NEGATIVE_INFINITY, OverflowLong.NEGATIVE_INFINITY * OverflowLong.POSITIVE_INFINITY)
+        assertEquals(NEGATIVE_INFINITY, POSITIVE_INFINITY * NEGATIVE_INFINITY)
+        assertEquals(NEGATIVE_INFINITY, NEGATIVE_INFINITY * POSITIVE_INFINITY)
     }
 
     @Test
     fun two_large_overflowing_positive_numbers_produces_positive_infinity() {
         val a = (Long.MAX_VALUE / 3).noOverflow
         val b = (Long.MAX_VALUE / 4).noOverflow
-        assertEquals(OverflowLong.POSITIVE_INFINITY, a * b)
+        assertEquals(POSITIVE_INFINITY, a * b)
     }
 
     @Test
     fun two_large_overflowing_negative_numbers_produces_positive_infinity() {
         val a = (Long.MIN_VALUE / 3).noOverflow
         val b = (Long.MIN_VALUE / 4).noOverflow
-        assertEquals(OverflowLong.POSITIVE_INFINITY, a * b)
+        assertEquals(POSITIVE_INFINITY, a * b)
     }
 
     @Test
     fun two_large_overflowing_mixed_sign_numbers_produces_negative_infinity() {
         val a = (Long.MAX_VALUE / 3).noOverflow
         val b = (Long.MIN_VALUE / 4).noOverflow
-        assertEquals(OverflowLong.NEGATIVE_INFINITY, a * b)
+        assertEquals(NEGATIVE_INFINITY, a * b)
+    }
+
+    @Test
+    fun aboslute_value_infinity_produces_infinity() {
+        assertEquals(POSITIVE_INFINITY, POSITIVE_INFINITY.absoluteValue)
+        assertEquals(POSITIVE_INFINITY, NEGATIVE_INFINITY.absoluteValue)
+    }
+
+    @Test
+    fun absolute_value_works() {
+        assertEquals(10L.noOverflow, (-10L).noOverflow.absoluteValue)
+        assertEquals(10L.noOverflow, 10L.noOverflow.absoluteValue)
     }
 }
