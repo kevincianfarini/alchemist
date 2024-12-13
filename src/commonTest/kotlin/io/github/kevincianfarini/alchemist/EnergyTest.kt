@@ -15,6 +15,8 @@ import io.github.kevincianfarini.alchemist.Energy.Companion.tetrajoules
 import io.github.kevincianfarini.alchemist.Energy.Companion.wattHours
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 class EnergyTest {
 
