@@ -18,8 +18,45 @@ public value class Energy internal constructor(private val rawMillijoules: Overf
 
     /**
      * Returns the constant [Power] applied over the specified [duration] to generate this amount of energy.
+     *
+     * @throws IllegalArgumentException if both this energy and [duration] are infinite.
      */
-    public operator fun div(duration: Duration): Power = TODO()
+    public operator fun div(duration: Duration): Power = when {
+        rawMillijoules.isInfinite() && duration.isInfinite() -> {
+            throw IllegalArgumentException("Dividing two infinite values yields an undefined result.")
+        }
+        rawMillijoules.isInfinite() -> Power(rawMillijoules)
+        duration.isInfinite() -> Power(0L.noOverflow)
+        duration.inWholeMicroseconds != Long.MAX_VALUE && duration.inWholeMicroseconds != Long.MIN_VALUE -> {
+            // Try to convert to smaller joule subdivisions to retain precision.
+            // 1 picojoule per 1 microsecond is 1 microwatt.
+            // 1 nanojoule per 1 microsecond is 1,000 microwatts.
+            // 1 microjoule per 1 microsecond is 1,000,000 microwatts.
+            // 1 millijoule per 1 microsecond is 1,000,000,000 microwatts.
+            val microjoules = rawMillijoules * 1_000
+            val nanojoules = microjoules * 1_000
+            val picojoules = nanojoules * 1_000
+            when  {
+                picojoules.isFinite() -> Power(picojoules / duration.inWholeMicroseconds)
+                nanojoules.isFinite() -> Power((nanojoules / duration.inWholeMicroseconds) * 1_000)
+                microjoules.isFinite() -> Power((microjoules / duration.inWholeMicroseconds) * 1_000_000)
+                else -> Power((rawMillijoules / duration.inWholeMicroseconds) * 1_000_000_000)
+            }
+        }
+        else -> {
+            // Try to convert to smaller joule subdivisions to retain precision.
+            // 1 nanojoule per 1 millisecond is 1 microwatts.
+            // 1 microjoule per 1 millisecond is 1,000 microwatts.
+            // 1 millijoule per 1 millisecond is 1,000,000 microwatts.
+            val microjoules = rawMillijoules * 1_000
+            val nanojoules = microjoules * 1_000
+            when  {
+                nanojoules.isFinite() -> Power((nanojoules / duration.inWholeMilliseconds))
+                microjoules.isFinite() -> Power((microjoules / duration.inWholeMilliseconds) * 1_000)
+                else -> Power((rawMillijoules / duration.inWholeMilliseconds) * 1_000_000)
+            }
+        }
+    }
 
     /**
      * Returns the number that is the ratio of this and the [other] energy value.
@@ -180,6 +217,9 @@ public value class Energy internal constructor(private val rawMillijoules: Overf
         public inline val Long.gigawattHours: Energy get() = toEnergy(EnergyUnit.Electricity.GigawattHour)
         public inline val Int.terawattHours: Energy get() = toEnergy(EnergyUnit.Electricity.TerawattHour)
         public inline val Long.terawattHours: Energy get() = toEnergy(EnergyUnit.Electricity.TerawattHour)
+
+        public val POSITIVE_INFINITY: Energy = Energy(OverflowLong.POSITIVE_INFINITY)
+        public val NEGATIVE_INFINITY: Energy = Energy(OverflowLong.NEGATIVE_INFINITY)
     }
 }
 

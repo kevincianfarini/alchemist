@@ -104,6 +104,8 @@ internal value class OverflowLong private constructor(internal val rawValue: Lon
         return this == POSITIVE_INFINITY || this == NEGATIVE_INFINITY
     }
 
+    fun isFinite(): Boolean = !isInfinite()
+
     private fun isPositive(): Boolean = rawValue > 0
 
     private fun isNegative(): Boolean = rawValue < 0
