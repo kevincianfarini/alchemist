@@ -39,16 +39,49 @@ class EnergyTest {
     }
 
     @Test
+    fun infinite_to_international_components() {
+        Energy.POSITIVE_INFINITY.toInternationalComponents { petajoules, tetrajoules, gigajoules, megajoules, kilojoules, joules, millijoules ->
+            assertEquals(Long.MAX_VALUE, petajoules)
+            assertEquals(Long.MAX_VALUE, tetrajoules)
+            assertEquals(Long.MAX_VALUE, gigajoules)
+            assertEquals(Long.MAX_VALUE, megajoules)
+            assertEquals(Long.MAX_VALUE, kilojoules)
+            assertEquals(Long.MAX_VALUE, joules)
+            assertEquals(Long.MAX_VALUE, millijoules)
+        }
+    }
+
+    @Test
     fun to_electricity_components_works() {
-        val energy = 1.terawattHours + 1.gigawattHours + 1.megawattHours + 1.kilowattHours + 1.wattHours + 1.milliwattHours
-        energy.toElectricityComponents { terawattHours, gigawattHours, megawattHours, kilowattHours, wattHours, milliwattHours ->
+        val energy = 1.terawattHours + 1.gigawattHours + 1.megawattHours + 1.kilowattHours + 1.wattHours + 1.milliwattHours + 3.millijoules
+        energy.toElectricityComponents { terawattHours, gigawattHours, megawattHours, kilowattHours, wattHours, milliwattHours, microwattHours ->
             assertEquals(1L, terawattHours)
             assertEquals(1L, gigawattHours)
             assertEquals(1L, megawattHours)
             assertEquals(1L, kilowattHours)
             assertEquals(1L, wattHours)
             assertEquals(1L, milliwattHours)
+            assertEquals(0.8333333333, microwattHours, absoluteTolerance = 0.000001)
         }
+    }
+
+    @Test
+    fun infinite_to_electricity_components() {
+        Energy.POSITIVE_INFINITY.toElectricityComponents { terawattHours, gigawattHours, megawattHours, kilowattHours, wattHours, milliwattHours, microwattHours ->
+            assertEquals(Long.MAX_VALUE, terawattHours)
+            assertEquals(Long.MAX_VALUE, gigawattHours)
+            assertEquals(Long.MAX_VALUE, megawattHours)
+            assertEquals(Long.MAX_VALUE, kilowattHours)
+            assertEquals(Long.MAX_VALUE, wattHours)
+            assertEquals(Long.MAX_VALUE, milliwattHours)
+            assertEquals(Double.POSITIVE_INFINITY, microwattHours)
+        }
+    }
+
+    @Test
+    fun to_double_works() {
+        val energy = 12_345.wattHours
+        assertEquals(12.345, energy.toDouble(EnergyUnit.Electricity.KilowattHour))
     }
 
     @Test

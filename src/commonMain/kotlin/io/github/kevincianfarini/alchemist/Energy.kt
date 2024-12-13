@@ -119,7 +119,7 @@ public value class Energy internal constructor(private val rawMillijoules: Overf
             megajoules: Long,
             kilojoules: Long,
             joules: Long,
-            millijoules: Long
+            millijoules: Long,
         ) -> T
     ): T {
         val peta = rawMillijoules / EnergyUnit.International.Petajoule.millijouleScale
@@ -153,6 +153,7 @@ public value class Energy internal constructor(private val rawMillijoules: Overf
             kilowattHours: Long,
             wattHours: Long,
             milliwattHours: Long,
+            microwattHours: Double,
         ) -> T
     ): T {
         val tera = rawMillijoules / EnergyUnit.Electricity.TerawattHour.millijouleScale
@@ -166,6 +167,8 @@ public value class Energy internal constructor(private val rawMillijoules: Overf
         val wattHour = kiloRemainder / EnergyUnit.Electricity.WattHour.millijouleScale
         val wattRemainder = kiloRemainder % EnergyUnit.Electricity.WattHour.millijouleScale
         val milliwattHour = wattRemainder / EnergyUnit.Electricity.MilliwattHour.millijouleScale
+        val milliwattRemainder = wattRemainder % EnergyUnit.Electricity.MilliwattHour.millijouleScale
+        val microwattHours = milliwattRemainder.toDouble() / 3.6 // 3.6 millijoules per microwatt-hour.
         return action(
             tera.rawValue,
             giga.rawValue,
@@ -173,6 +176,7 @@ public value class Energy internal constructor(private val rawMillijoules: Overf
             kilo.rawValue,
             wattHour.rawValue,
             milliwattHour.rawValue,
+            microwattHours,
         )
     }
 
