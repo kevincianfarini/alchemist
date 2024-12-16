@@ -1,8 +1,14 @@
 package io.github.kevincianfarini.alchemist
 
 import io.github.kevincianfarini.alchemist.OverflowLong.Companion.noOverflow
+import io.github.kevincianfarini.alchemist.Power.Companion.kilowatts
+import io.github.kevincianfarini.alchemist.Power.Companion.megawatts
+import io.github.kevincianfarini.alchemist.Power.Companion.microwatts
+import io.github.kevincianfarini.alchemist.Power.Companion.milliwatts
+import io.github.kevincianfarini.alchemist.Power.Companion.watts
 import kotlin.jvm.JvmInline
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.nanoseconds
 
 /**
  * Represents an amount of energy and is capable of storing ±9.2 petajoules or ±2.56 terawatt-hours at millijoule
@@ -19,41 +25,94 @@ public value class Energy internal constructor(private val rawMillijoules: Overf
     /**
      * Returns the constant [Power] applied over the specified [duration] to generate this amount of energy.
      *
+     * This operation attempts to retain precision, but for sufficiently large values of either this energy or the
+     * other [duration], some precision may be lost.
+     *
      * @throws IllegalArgumentException if both this energy and [duration] are infinite.
      */
-    public operator fun div(duration: Duration): Power = when {
-        rawMillijoules.isInfinite() && duration.isInfinite() -> {
-            throw IllegalArgumentException("Dividing two infinite values yields an undefined result.")
-        }
-        rawMillijoules.isInfinite() -> Power(rawMillijoules)
-        duration.isInfinite() -> Power(0L.noOverflow)
-        duration.inWholeMicroseconds != Long.MAX_VALUE && duration.inWholeMicroseconds != Long.MIN_VALUE -> {
-            // Try to convert to smaller joule subdivisions to retain precision.
-            // 1 picojoule per 1 microsecond is 1 microwatt.
-            // 1 nanojoule per 1 microsecond is 1,000 microwatts.
-            // 1 microjoule per 1 microsecond is 1,000,000 microwatts.
-            // 1 millijoule per 1 microsecond is 1,000,000,000 microwatts.
-            val microjoules = rawMillijoules * 1_000
-            val nanojoules = microjoules * 1_000
-            val picojoules = nanojoules * 1_000
-            when  {
-                picojoules.isFinite() -> Power(picojoules / duration.inWholeMicroseconds)
-                nanojoules.isFinite() -> Power((nanojoules / duration.inWholeMicroseconds) * 1_000)
-                microjoules.isFinite() -> Power((microjoules / duration.inWholeMicroseconds) * 1_000_000)
-                else -> Power((rawMillijoules / duration.inWholeMicroseconds) * 1_000_000_000)
+    public operator fun div(duration: Duration): Power {
+        // Try to find the right level which we can perform this operation at without losing precision.
+        //  -------------------------------------------------------------------------------------------
+        // 1 femtojoule per 1 nanosecond is 1 microwatt.
+        // 1 picojoule per 1 nanosecond is 1 milliwatt.
+        // 1 nanojoule per 1 nanosecond is 1 watt.
+        // 1 microjoule per 1 nanosecond is 1 kilowatt.
+        // 1 millijoule per 1 nanosecond is 1 megawatt.
+        // --------------------------------------------------------------------------------------------
+        // 1 nanojoule per 1 millisecond is 1 microwatt.
+        // 1 microjoule per 1 millisecond is 1 milliwatt.
+        // 1 millijoule per 1 millisecond is 1 watt.
+        // --------------------------------------------------------------------------------------------
+        val microjoules = rawMillijoules * 1_000
+        val nanojoules = microjoules * 1_000
+        val picojoules = nanojoules * 1_000
+        val femtojoules = picojoules * 1_000
+        val durationPreciseToNanosecond = duration == duration.inWholeNanoseconds.nanoseconds
+        return when {
+            rawMillijoules.isInfinite() && duration.isInfinite() -> {
+                throw IllegalArgumentException("Dividing two infinite values yields an undefined result.")
             }
-        }
-        else -> {
-            // Try to convert to smaller joule subdivisions to retain precision.
-            // 1 nanojoule per 1 millisecond is 1 microwatts.
-            // 1 microjoule per 1 millisecond is 1,000 microwatts.
-            // 1 millijoule per 1 millisecond is 1,000,000 microwatts.
-            val microjoules = rawMillijoules * 1_000
-            val nanojoules = microjoules * 1_000
-            when  {
-                nanojoules.isFinite() -> Power((nanojoules / duration.inWholeMilliseconds))
-                microjoules.isFinite() -> Power((microjoules / duration.inWholeMilliseconds) * 1_000)
-                else -> Power((rawMillijoules / duration.inWholeMilliseconds) * 1_000_000)
+            rawMillijoules.isInfinite() -> Power(rawMillijoules)
+            duration.isInfinite() -> Power(0L.noOverflow)
+            durationPreciseToNanosecond && femtojoules.isFinite() -> {
+                (femtojoules / duration.inWholeNanoseconds).microwatts
+            }
+            durationPreciseToNanosecond && picojoules.isFinite() -> {
+                val ns = duration.inWholeNanoseconds
+                val us = duration.inWholeMicroseconds
+                val milliwatts = (picojoules / ns).milliwatts
+                val microwatts = ((picojoules % ns) / us).microwatts
+                milliwatts + microwatts
+            }
+            durationPreciseToNanosecond && nanojoules.isFinite() -> {
+                val ns = duration.inWholeNanoseconds
+                val us = duration.inWholeMicroseconds
+                val ms = duration.inWholeMilliseconds
+                val watts = (nanojoules / ns).watts
+                val milliwatts = ((nanojoules % ns) / us).milliwatts
+                val microwatts = ((nanojoules % us) / ms).microwatts
+                watts + milliwatts + microwatts
+            }
+            durationPreciseToNanosecond && microjoules.isFinite() -> {
+                val ns = duration.inWholeNanoseconds
+                val us = duration.inWholeMicroseconds
+                val ms = duration.inWholeMilliseconds
+                val s = duration.inWholeSeconds
+                val kilowatts = (microjoules / ns).kilowatts
+                val watts = ((microjoules % ns) / us).watts
+                val milliwatts = ((microjoules % us) / ms).milliwatts
+                val microwatts = ((microjoules % ms) / s).microwatts
+                kilowatts + watts + milliwatts + microwatts
+            }
+            durationPreciseToNanosecond -> {
+                val ns = duration.inWholeNanoseconds
+                val us = duration.inWholeMicroseconds
+                val ms = duration.inWholeMilliseconds
+                val s = duration.inWholeSeconds
+                val megawatts = (rawMillijoules / ns).megawatts
+                val kilowatts = ((rawMillijoules % ns) / us).kilowatts
+                val watts = ((rawMillijoules % us) / ms).watts
+                val milliwatts = ((rawMillijoules % ms) / s).milliwatts
+                val microwatts = ((rawMillijoules % s) / (s / 1_000)).microwatts
+                megawatts + kilowatts + watts + milliwatts + microwatts
+            }
+            nanojoules.isFinite() -> {
+                (nanojoules / duration.inWholeMilliseconds).microwatts
+            }
+            microjoules.isFinite() -> {
+                val ms = duration.inWholeMilliseconds
+                val s = duration.inWholeSeconds
+                val milliwatts = (microjoules / ms).milliwatts
+                val microwatts = ((microjoules % ms) / s).microwatts
+                milliwatts + microwatts
+            }
+            else -> {
+                val ms = duration.inWholeMilliseconds
+                val s = duration.inWholeSeconds
+                val watts = (rawMillijoules / ms).watts
+                val milliwatts = ((rawMillijoules % ms) / s).milliwatts
+                val microwatts = ((rawMillijoules % s) / (s / 1_000)).microwatts
+                watts + milliwatts + microwatts
             }
         }
     }

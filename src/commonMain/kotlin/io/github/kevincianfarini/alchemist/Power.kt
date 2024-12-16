@@ -32,7 +32,7 @@ public value class Power internal constructor(private val rawMicrowatts: Overflo
     /**
      * Returns a power whose value is the sum between this and the [other] power value.
      */
-    public operator fun plus(other: Power): Power = TODO()
+    public operator fun plus(other: Power): Power = Power(rawMicrowatts + other.rawMicrowatts)
 
     /**
      * Returns the resulting [Energy] from applying this power over the specified [duration].
@@ -66,11 +66,32 @@ public value class Power internal constructor(private val rawMicrowatts: Overflo
     }
 
     public companion object {
+        public inline val Int.terawatts: Power get() = toPower(PowerUnit.Terawatt)
+        public inline val Long.terawatts: Power get() = toPower(PowerUnit.Terawatt)
+
+        public inline val Int.gigawatts: Power get() = toPower(PowerUnit.Gigawatt)
+        public inline val Long.gigawatts: Power get() = toPower(PowerUnit.Gigawatt)
+
+        public inline val Int.megawatts: Power get() = toPower(PowerUnit.Megawatt)
+        public inline val Long.megawatts: Power get() = toPower(PowerUnit.Megawatt)
+
+        public inline val Int.kilowatts: Power get() = toPower(PowerUnit.Kilowatt)
+        public inline val Long.kilowatts: Power get() = toPower(PowerUnit.Kilowatt)
+
         public inline val Int.watts: Power get() = toPower(PowerUnit.Watt)
         public inline val Long.watts: Power get() = toPower(PowerUnit.Watt)
 
+        public inline val Int.milliwatts: Power get() = toPower(PowerUnit.Milliwatt)
+        public inline val Long.milliwatts: Power get() = toPower(PowerUnit.Milliwatt)
+
         public inline val Int.microwatts: Power get() = toPower(PowerUnit.Microwatt)
         public inline val Long.microwatts: Power get() = toPower(PowerUnit.Microwatt)
+
+        internal inline val OverflowLong.megawatts get() = rawValue.toPower(PowerUnit.Megawatt)
+        internal inline val OverflowLong.kilowatts get() = rawValue.toPower(PowerUnit.Kilowatt)
+        internal inline val OverflowLong.watts get() = rawValue.toPower(PowerUnit.Watt)
+        internal inline val OverflowLong.milliwatts get() = rawValue.toPower(PowerUnit.Milliwatt)
+        internal inline val OverflowLong.microwatts get() = rawValue.toPower(PowerUnit.Microwatt)
 
         public val POSITIVE_INFINITY: Power = Power(OverflowLong.POSITIVE_INFINITY)
         public val NEGATIVE_INFINITY: Power = Power(OverflowLong.NEGATIVE_INFINITY)

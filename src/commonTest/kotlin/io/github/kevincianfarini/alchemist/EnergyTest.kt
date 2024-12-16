@@ -20,6 +20,9 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.microseconds
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.Duration.Companion.seconds
 
 class EnergyTest {
@@ -101,6 +104,9 @@ class EnergyTest {
         assertFailsWith<IllegalArgumentException> {
             Energy.POSITIVE_INFINITY / Duration.INFINITE
         }
+        assertFailsWith<IllegalArgumentException> {
+            Energy.NEGATIVE_INFINITY / Duration.INFINITE
+        }
     }
 
     @Test
@@ -130,11 +136,6 @@ class EnergyTest {
     }
 
     @Test
-    fun milli_granular_energy_div_micro_granular_time_power_works() {
-        assertEquals(1_000_000_000_000_000.watts, 1.petajoules / 1.seconds)
-    }
-
-    @Test
     fun one_microwatt_with_micro_granular_time() {
         assertEquals(1.microwatts, 1.millijoules / 1_000.seconds)
     }
@@ -142,5 +143,76 @@ class EnergyTest {
     @Test
     fun one_microwatt_with_milli_granular_time() {
         assertEquals(1.microwatts, 1_000_000_000_000.millijoules / 1_000_000_000_000_000.seconds)
+    }
+
+    @Test
+    fun energy_div_time_precision_femtojoule_nanosecond() {
+        assertEquals(
+            expected = 1_234.microwatts,
+            actual = 1_234.millijoules / 1_000.seconds,
+        )
+    }
+
+    @Test
+    fun energy_div_time_precision_picojoule_nanosecond() {
+        // 124,999,998,860.937500014 microwatts, but we lose precision.
+        assertEquals(
+            expected = 124_999_998_860.microwatts,
+            actual = 123_456_789.millijoules / 987_654_321.nanoseconds,
+        )
+    }
+
+    @Test
+    fun energy_div_time_precision_nanojoule_nanosecond() {
+        // 124,999,998,860.937500014 microwatts, but we lose precision.
+        assertEquals(
+            expected = 124_999_998_860.microwatts,
+            actual = 123_456_789.joules / 987_654_321.microseconds,
+        )
+    }
+
+    @Test
+    fun energy_div_time_precision_microjoule_nanosecond() {
+        // 124,999,998,860.937500014 microwatts, but we lose precision.
+        assertEquals(
+            expected = 124_999_998_860.microwatts,
+            actual = 123_456_789.kilojoules / 987_654_321.milliseconds,
+        )
+    }
+
+    @Test
+    fun energy_div_time_precision_millijoule_nanosecond() {
+        // 124,999,998,860.937500014 microwatts, but we lose precision.
+        assertEquals(
+            expected = 124_999_998_860.microwatts,
+            actual = 123_456_789.megajoules / 987_654_321.seconds,
+        )
+    }
+
+    @Test
+    fun energy_div_time_precision_nanojoule_millisecond() {
+        // 124.999998861 microwatts, but we lose precision.
+        assertEquals(
+            expected = 124.microwatts,
+            actual = 123_456_789.joules / 987_654_321_000.seconds,
+        )
+    }
+
+    @Test
+    fun energy_div_time_precision_microjoule_millisecond() {
+        // 124,999.998860938 microwatts, but we lose precision.
+        assertEquals(
+            expected = 124_999.microwatts,
+            actual = 123_456_789.kilojoules / 987_654_321_000.seconds,
+        )
+    }
+
+    @Test
+    fun energy_div_time_precision_millijoule_millisecond() {
+        // 124,999,998.860938 microwatts, but we lose precision.
+        assertEquals(
+            expected = 124_999_998.microwatts,
+            actual = 123_456_789.megajoules / 987_654_321_000.seconds,
+        )
     }
 }
