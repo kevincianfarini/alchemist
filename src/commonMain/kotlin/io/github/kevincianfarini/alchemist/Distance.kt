@@ -8,7 +8,7 @@ import kotlin.time.Duration
  * Represents a measure of distance and is capable of storing ±9.2 million kilometers at nanometer precision.
  */
 @JvmInline
-public value class Distance internal constructor(private val rawNanometers: OverflowLong) {
+public value class Distance internal constructor(private val rawNanometers: OverflowLong) : Comparable<Distance> {
 
     /**
      * Returns the constant [Velocity] required to travel this distance in the specified [duration].
@@ -140,6 +140,10 @@ public value class Distance internal constructor(private val rawNanometers: Over
             rawNanometers.absoluteValue / unit.nanometerScale > 0
         }
         return toString(largestUnit)
+    }
+
+    public override fun compareTo(other: Distance): Int {
+        return rawNanometers.compareTo(other.rawNanometers)
     }
 
     public companion object {

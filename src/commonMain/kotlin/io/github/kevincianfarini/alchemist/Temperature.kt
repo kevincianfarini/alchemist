@@ -9,7 +9,7 @@ import kotlin.text.Typography.nbsp
  * nanokelvin precision.
  */
 @JvmInline
-public value class Temperature internal constructor(private val rawNanokelvin: OverflowLong) {
+public value class Temperature internal constructor(private val rawNanokelvin: OverflowLong) : Comparable<Temperature> {
 
     /**
      * Returns the number that is the ratio of this and the [other] temperature value.
@@ -54,6 +54,10 @@ public value class Temperature internal constructor(private val rawNanokelvin: O
 
     public override fun toString(): String {
         return toString(toStringUnit())
+    }
+
+    public override fun compareTo(other: Temperature): Int {
+        return rawNanokelvin.compareTo(other.rawNanokelvin)
     }
 
     private fun toStringUnit(): TemperatureUnit {

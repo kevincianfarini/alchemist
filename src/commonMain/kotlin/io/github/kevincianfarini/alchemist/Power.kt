@@ -11,7 +11,7 @@ import kotlin.time.Duration.Companion.seconds
  * Represents an amount of power and is capable of storing ±9.22 terawatts at microwatt precision.
  */
 @JvmInline
-public value class Power internal constructor(private val rawMicrowatts: OverflowLong) {
+public value class Power internal constructor(private val rawMicrowatts: OverflowLong) : Comparable<Power> {
 
     /**
      * Returns the number that is the ratio of this and the [other] power value.
@@ -111,6 +111,10 @@ public value class Power internal constructor(private val rawMicrowatts: Overflo
             rawMicrowatts.absoluteValue / unit.microwattScale > 0
         }
         return toString(largestUnit)
+    }
+
+    public override fun compareTo(other: Power): Int {
+        return rawMicrowatts.compareTo(other.rawMicrowatts)
     }
 
     public companion object {

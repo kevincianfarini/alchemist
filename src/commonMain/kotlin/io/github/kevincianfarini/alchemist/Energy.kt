@@ -15,7 +15,7 @@ import kotlin.time.Duration.Companion.nanoseconds
  * precision.
  */
 @JvmInline
-public value class Energy internal constructor(private val rawMillijoules: OverflowLong) {
+public value class Energy internal constructor(private val rawMillijoules: OverflowLong) : Comparable<Energy> {
 
     /**
      * Returns the constant [Force] applied over the specified [distance] required to expend this amount of energy.
@@ -249,6 +249,10 @@ public value class Energy internal constructor(private val rawMillijoules: Overf
             rawMillijoules.absoluteValue / unit.millijouleScale > 0
         }
         return toString(largestUnit)
+    }
+
+    public override fun compareTo(other: Energy): Int {
+        return rawMillijoules.compareTo(other.rawMillijoules)
     }
 
     public companion object {
