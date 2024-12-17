@@ -1,14 +1,14 @@
 package io.github.kevincianfarini.alchemist
 
-import io.github.kevincianfarini.alchemist.OverflowLong.Companion.NEGATIVE_INFINITY
-import io.github.kevincianfarini.alchemist.OverflowLong.Companion.POSITIVE_INFINITY
-import io.github.kevincianfarini.alchemist.OverflowLong.Companion.noOverflow
+import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.NEGATIVE_INFINITY
+import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.POSITIVE_INFINITY
+import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.noOverflow
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
-class OverflowLongTest {
+class SaturatingLongTest {
 
     @Test
     fun long_max_and_min_value_is_infinite() {

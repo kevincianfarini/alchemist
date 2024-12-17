@@ -5,15 +5,18 @@ import kotlin.math.absoluteValue
 import kotlin.math.sign
 
 /**
- * An [OverflowLong] is a 64-bit signed integer that protects against overflow during multiplication, addition, and
+ * A [SaturatingLong] is a 64-bit signed integer that protects against overflow during multiplication, addition, and
  * subtraction. When one of those operations overflows, either [POSITIVE_INFINITY] or [NEGATIVE_INFINITY] is returned.
  * Performing operations with an infinite value will either return another infinite value if it's a valid operation,
  * or will error if it's an invalid operation.
+ *
+ * See [Saturation Arithmetic Intrinsics](https://llvm.org/docs/LangRef.html#saturation-arithmetic-intrinsics) from
+ * LLVM for more details.
  */
 @JvmInline
-public value class OverflowLong private constructor(internal val rawValue: Long) : Comparable<OverflowLong> {
+public value class SaturatingLong private constructor(internal val rawValue: Long) : Comparable<SaturatingLong> {
 
-    internal operator fun plus(other: OverflowLong): OverflowLong = when {
+    internal operator fun plus(other: SaturatingLong): SaturatingLong = when {
         isInfinite() && isPositive() && other.isInfinite() && other.isPositive() -> POSITIVE_INFINITY
         isInfinite() && isNegative() && other.isInfinite() && other.isNegative() -> NEGATIVE_INFINITY
         isInfinite() && other.isInfinite() -> {
@@ -27,28 +30,28 @@ public value class OverflowLong private constructor(internal val rawValue: Long)
             when {
                 didOverflow && result > 0 -> NEGATIVE_INFINITY
                 didOverflow && result < 0 -> POSITIVE_INFINITY
-                else -> OverflowLong(result)
+                else -> SaturatingLong(result)
             }
         }
     }
 
-    public operator fun plus(other: Long): OverflowLong {
-        return this + OverflowLong(other)
+    public operator fun plus(other: Long): SaturatingLong {
+        return this + SaturatingLong(other)
     }
 
-    internal operator fun minus(other: OverflowLong): OverflowLong = this + (-other)
+    internal operator fun minus(other: SaturatingLong): SaturatingLong = this + (-other)
 
-    public operator fun minus(other: Long): OverflowLong {
-        return this - OverflowLong(other)
+    public operator fun minus(other: Long): SaturatingLong {
+        return this - SaturatingLong(other)
     }
 
-    public operator fun unaryMinus(): OverflowLong = when {
+    public operator fun unaryMinus(): SaturatingLong = when {
         isInfinite() && isPositive() -> NEGATIVE_INFINITY
         isInfinite() && isNegative() -> POSITIVE_INFINITY
-        else -> OverflowLong(-rawValue)
+        else -> SaturatingLong(-rawValue)
     }
 
-    internal operator fun times(other: OverflowLong): OverflowLong = when {
+    internal operator fun times(other: SaturatingLong): SaturatingLong = when {
         isInfinite() || other.isInfinite() -> when (rawValue.sign * other.rawValue.sign) {
             1 -> POSITIVE_INFINITY
             -1 -> NEGATIVE_INFINITY
@@ -62,57 +65,57 @@ public value class OverflowLong private constructor(internal val rawValue: Long)
             when {
                 doesOverflow && a.sign == b.sign -> POSITIVE_INFINITY
                 doesOverflow -> NEGATIVE_INFINITY
-                else -> OverflowLong(a * b)
+                else -> SaturatingLong(a * b)
             }
         }
     }
 
-    public operator fun times(other: Long): OverflowLong {
-        return this * OverflowLong(other)
+    public operator fun times(other: Long): SaturatingLong {
+        return this * SaturatingLong(other)
     }
 
-    public operator fun times(other: Int): OverflowLong {
+    public operator fun times(other: Int): SaturatingLong {
         return times(other.toLong())
     }
 
-    internal operator fun div(other: OverflowLong): OverflowLong = when {
+    internal operator fun div(other: SaturatingLong): SaturatingLong = when {
         isInfinite() && other.isInfinite() -> {
             throw IllegalArgumentException("Dividing two infinite values yields an undefined result.")
         }
         isInfinite() -> this
-        else -> OverflowLong(rawValue / other.rawValue)
+        else -> SaturatingLong(rawValue / other.rawValue)
     }
 
-    public operator fun div(other: Long): OverflowLong {
-        return this / OverflowLong(other)
+    public operator fun div(other: Long): SaturatingLong {
+        return this / SaturatingLong(other)
     }
 
-    public operator fun div(other: Int): OverflowLong {
+    public operator fun div(other: Int): SaturatingLong {
         return div(other.toLong())
     }
 
-    internal operator fun rem(other: OverflowLong): OverflowLong = when {
+    internal operator fun rem(other: SaturatingLong): SaturatingLong = when {
         isInfinite() && other.isInfinite() -> {
             throw IllegalArgumentException("Dividing two infinite values yields an undefined result.")
         }
         isInfinite() -> this
-        else -> OverflowLong(rawValue % other.rawValue)
+        else -> SaturatingLong(rawValue % other.rawValue)
     }
 
-    public operator fun rem(other: Long): OverflowLong {
-        return this % OverflowLong(other)
+    public operator fun rem(other: Long): SaturatingLong {
+        return this % SaturatingLong(other)
     }
 
-    public override fun compareTo(other: OverflowLong): Int {
+    public override fun compareTo(other: SaturatingLong): Int {
         return rawValue.compareTo(other.rawValue)
     }
 
     public operator fun compareTo(other: Long): Int {
-        return compareTo(OverflowLong(other))
+        return compareTo(SaturatingLong(other))
     }
 
     public operator fun compareTo(other: Int): Int {
-        return compareTo(OverflowLong(other.toLong()))
+        return compareTo(SaturatingLong(other.toLong()))
     }
 
     public override fun toString(): String = when {
@@ -131,9 +134,9 @@ public value class OverflowLong private constructor(internal val rawValue: Long)
 
     private fun isNegative(): Boolean = rawValue < 0
 
-    internal val absoluteValue: OverflowLong get() = when {
+    internal val absoluteValue: SaturatingLong get() = when {
         isInfinite() -> POSITIVE_INFINITY
-        else -> OverflowLong(rawValue.absoluteValue)
+        else -> SaturatingLong(rawValue.absoluteValue)
     }
 
     public fun toDouble(): Double = when (this) {
@@ -143,8 +146,8 @@ public value class OverflowLong private constructor(internal val rawValue: Long)
     }
 
     internal companion object {
-        inline val Long.noOverflow get() = OverflowLong(this)
-        val POSITIVE_INFINITY = OverflowLong(Long.MAX_VALUE)
-        val NEGATIVE_INFINITY = OverflowLong(Long.MIN_VALUE)
+        inline val Long.noOverflow get() = SaturatingLong(this)
+        val POSITIVE_INFINITY = SaturatingLong(Long.MAX_VALUE)
+        val NEGATIVE_INFINITY = SaturatingLong(Long.MIN_VALUE)
     }
 }

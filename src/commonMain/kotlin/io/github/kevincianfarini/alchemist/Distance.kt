@@ -1,6 +1,6 @@
 package io.github.kevincianfarini.alchemist
 
-import io.github.kevincianfarini.alchemist.OverflowLong.Companion.noOverflow
+import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.noOverflow
 import kotlin.jvm.JvmInline
 import kotlin.time.Duration
 
@@ -8,7 +8,7 @@ import kotlin.time.Duration
  * Represents a measure of distance and is capable of storing ±9.2 million kilometers at nanometer precision.
  */
 @JvmInline
-public value class Distance internal constructor(private val rawNanometers: OverflowLong) : Comparable<Distance> {
+public value class Distance internal constructor(private val rawNanometers: SaturatingLong) : Comparable<Distance> {
 
     /**
      * Returns the constant [Velocity] required to travel this distance in the specified [duration].
@@ -271,12 +271,12 @@ public value class Distance internal constructor(private val rawNanometers: Over
         /**
          * A positive infinite distance.
          */
-        public val POSITIVE_INFINITY: Distance = Distance(OverflowLong.POSITIVE_INFINITY)
+        public val POSITIVE_INFINITY: Distance = Distance(SaturatingLong.POSITIVE_INFINITY)
 
         /**
          * A negative infinite distance.
          */
-        public val NEGATIVE_INFINITY: Distance = Distance(OverflowLong.NEGATIVE_INFINITY)
+        public val NEGATIVE_INFINITY: Distance = Distance(SaturatingLong.NEGATIVE_INFINITY)
     }
 }
 

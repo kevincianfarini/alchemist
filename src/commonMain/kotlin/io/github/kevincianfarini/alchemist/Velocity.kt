@@ -4,7 +4,7 @@ import kotlin.jvm.JvmInline
 import kotlin.time.Duration
 
 @JvmInline
-public value class Velocity internal constructor(private val rawNanometerPerNanosecond: Long) {
+public value class Velocity internal constructor(private val rawNanometersPerSecond: Long) {
 
     /**
      * Returns the [Acceleration] necessary to achieve this velocity when applied over the specified [duration].

@@ -1,6 +1,6 @@
 package io.github.kevincianfarini.alchemist
 
-import io.github.kevincianfarini.alchemist.OverflowLong.Companion.noOverflow
+import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.noOverflow
 import io.github.kevincianfarini.alchemist.Power.Companion.kilowatts
 import io.github.kevincianfarini.alchemist.Power.Companion.megawatts
 import io.github.kevincianfarini.alchemist.Power.Companion.microwatts
@@ -15,7 +15,7 @@ import kotlin.time.Duration.Companion.nanoseconds
  * precision.
  */
 @JvmInline
-public value class Energy internal constructor(private val rawMillijoules: OverflowLong) : Comparable<Energy> {
+public value class Energy internal constructor(private val rawMillijoules: SaturatingLong) : Comparable<Energy> {
 
     /**
      * Returns the constant [Force] applied over the specified [distance] required to expend this amount of energy.
@@ -285,10 +285,10 @@ public value class Energy internal constructor(private val rawMillijoules: Overf
         public inline val Int.terawattHours: Energy get() = toEnergy(EnergyUnit.Electricity.TerawattHour)
         public inline val Long.terawattHours: Energy get() = toEnergy(EnergyUnit.Electricity.TerawattHour)
 
-        internal inline val OverflowLong.millijoules get() = rawValue.toEnergy(EnergyUnit.International.Millijoule)
+        internal inline val SaturatingLong.millijoules get() = rawValue.toEnergy(EnergyUnit.International.Millijoule)
 
-        public val POSITIVE_INFINITY: Energy = Energy(OverflowLong.POSITIVE_INFINITY)
-        public val NEGATIVE_INFINITY: Energy = Energy(OverflowLong.NEGATIVE_INFINITY)
+        public val POSITIVE_INFINITY: Energy = Energy(SaturatingLong.POSITIVE_INFINITY)
+        public val NEGATIVE_INFINITY: Energy = Energy(SaturatingLong.NEGATIVE_INFINITY)
     }
 }
 

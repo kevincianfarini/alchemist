@@ -1,6 +1,6 @@
 package io.github.kevincianfarini.alchemist
 
-import io.github.kevincianfarini.alchemist.OverflowLong.Companion.noOverflow
+import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.noOverflow
 import kotlin.jvm.JvmInline
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.microseconds
@@ -11,7 +11,7 @@ import kotlin.time.Duration.Companion.seconds
  * Represents an amount of power and is capable of storing ±9.22 terawatts at microwatt precision.
  */
 @JvmInline
-public value class Power internal constructor(private val rawMicrowatts: OverflowLong) : Comparable<Power> {
+public value class Power internal constructor(private val rawMicrowatts: SaturatingLong) : Comparable<Power> {
 
     /**
      * Returns the number that is the ratio of this and the [other] power value.
@@ -52,7 +52,7 @@ public value class Power internal constructor(private val rawMicrowatts: Overflo
     public operator fun times(duration: Duration): Energy {
         return when {
             duration.isInfinite() || rawMicrowatts.isInfinite() -> {
-               Energy(OverflowLong.POSITIVE_INFINITY * duration.sign * rawMicrowatts)
+               Energy(SaturatingLong.POSITIVE_INFINITY * duration.sign * rawMicrowatts)
             }
             else -> duration.toEnergyComponents { thousandSeconds, secondsRemainder, millis, micros, nanos ->
                 // Try to find the right level which we can perform this operation at without losing precision.
@@ -139,14 +139,14 @@ public value class Power internal constructor(private val rawMicrowatts: Overflo
         public inline val Int.microwatts: Power get() = toPower(PowerUnit.International.Microwatt)
         public inline val Long.microwatts: Power get() = toPower(PowerUnit.International.Microwatt)
 
-        internal inline val OverflowLong.megawatts get() = rawValue.toPower(PowerUnit.International.Megawatt)
-        internal inline val OverflowLong.kilowatts get() = rawValue.toPower(PowerUnit.International.Kilowatt)
-        internal inline val OverflowLong.watts get() = rawValue.toPower(PowerUnit.International.Watt)
-        internal inline val OverflowLong.milliwatts get() = rawValue.toPower(PowerUnit.International.Milliwatt)
-        internal inline val OverflowLong.microwatts get() = rawValue.toPower(PowerUnit.International.Microwatt)
+        internal inline val SaturatingLong.megawatts get() = rawValue.toPower(PowerUnit.International.Megawatt)
+        internal inline val SaturatingLong.kilowatts get() = rawValue.toPower(PowerUnit.International.Kilowatt)
+        internal inline val SaturatingLong.watts get() = rawValue.toPower(PowerUnit.International.Watt)
+        internal inline val SaturatingLong.milliwatts get() = rawValue.toPower(PowerUnit.International.Milliwatt)
+        internal inline val SaturatingLong.microwatts get() = rawValue.toPower(PowerUnit.International.Microwatt)
 
-        public val POSITIVE_INFINITY: Power = Power(OverflowLong.POSITIVE_INFINITY)
-        public val NEGATIVE_INFINITY: Power = Power(OverflowLong.NEGATIVE_INFINITY)
+        public val POSITIVE_INFINITY: Power = Power(SaturatingLong.POSITIVE_INFINITY)
+        public val NEGATIVE_INFINITY: Power = Power(SaturatingLong.NEGATIVE_INFINITY)
     }
 }
 
