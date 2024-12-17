@@ -107,39 +107,39 @@ public value class Power internal constructor(private val rawMicrowatts: Overflo
     }
 
     override fun toString(): String {
-        val largestUnit = PowerUnit.entries.asReversed().first { unit ->
+        val largestUnit = PowerUnit.International.entries.asReversed().first { unit ->
             rawMicrowatts.absoluteValue / unit.microwattScale > 0
         }
         return toString(largestUnit)
     }
 
     public companion object {
-        public inline val Int.terawatts: Power get() = toPower(PowerUnit.Terawatt)
-        public inline val Long.terawatts: Power get() = toPower(PowerUnit.Terawatt)
+        public inline val Int.terawatts: Power get() = toPower(PowerUnit.International.Terawatt)
+        public inline val Long.terawatts: Power get() = toPower(PowerUnit.International.Terawatt)
 
-        public inline val Int.gigawatts: Power get() = toPower(PowerUnit.Gigawatt)
-        public inline val Long.gigawatts: Power get() = toPower(PowerUnit.Gigawatt)
+        public inline val Int.gigawatts: Power get() = toPower(PowerUnit.International.Gigawatt)
+        public inline val Long.gigawatts: Power get() = toPower(PowerUnit.International.Gigawatt)
 
-        public inline val Int.megawatts: Power get() = toPower(PowerUnit.Megawatt)
-        public inline val Long.megawatts: Power get() = toPower(PowerUnit.Megawatt)
+        public inline val Int.megawatts: Power get() = toPower(PowerUnit.International.Megawatt)
+        public inline val Long.megawatts: Power get() = toPower(PowerUnit.International.Megawatt)
 
-        public inline val Int.kilowatts: Power get() = toPower(PowerUnit.Kilowatt)
-        public inline val Long.kilowatts: Power get() = toPower(PowerUnit.Kilowatt)
+        public inline val Int.kilowatts: Power get() = toPower(PowerUnit.International.Kilowatt)
+        public inline val Long.kilowatts: Power get() = toPower(PowerUnit.International.Kilowatt)
 
-        public inline val Int.watts: Power get() = toPower(PowerUnit.Watt)
-        public inline val Long.watts: Power get() = toPower(PowerUnit.Watt)
+        public inline val Int.watts: Power get() = toPower(PowerUnit.International.Watt)
+        public inline val Long.watts: Power get() = toPower(PowerUnit.International.Watt)
 
-        public inline val Int.milliwatts: Power get() = toPower(PowerUnit.Milliwatt)
-        public inline val Long.milliwatts: Power get() = toPower(PowerUnit.Milliwatt)
+        public inline val Int.milliwatts: Power get() = toPower(PowerUnit.International.Milliwatt)
+        public inline val Long.milliwatts: Power get() = toPower(PowerUnit.International.Milliwatt)
 
-        public inline val Int.microwatts: Power get() = toPower(PowerUnit.Microwatt)
-        public inline val Long.microwatts: Power get() = toPower(PowerUnit.Microwatt)
+        public inline val Int.microwatts: Power get() = toPower(PowerUnit.International.Microwatt)
+        public inline val Long.microwatts: Power get() = toPower(PowerUnit.International.Microwatt)
 
-        internal inline val OverflowLong.megawatts get() = rawValue.toPower(PowerUnit.Megawatt)
-        internal inline val OverflowLong.kilowatts get() = rawValue.toPower(PowerUnit.Kilowatt)
-        internal inline val OverflowLong.watts get() = rawValue.toPower(PowerUnit.Watt)
-        internal inline val OverflowLong.milliwatts get() = rawValue.toPower(PowerUnit.Milliwatt)
-        internal inline val OverflowLong.microwatts get() = rawValue.toPower(PowerUnit.Microwatt)
+        internal inline val OverflowLong.megawatts get() = rawValue.toPower(PowerUnit.International.Megawatt)
+        internal inline val OverflowLong.kilowatts get() = rawValue.toPower(PowerUnit.International.Kilowatt)
+        internal inline val OverflowLong.watts get() = rawValue.toPower(PowerUnit.International.Watt)
+        internal inline val OverflowLong.milliwatts get() = rawValue.toPower(PowerUnit.International.Milliwatt)
+        internal inline val OverflowLong.microwatts get() = rawValue.toPower(PowerUnit.International.Microwatt)
 
         public val POSITIVE_INFINITY: Power = Power(OverflowLong.POSITIVE_INFINITY)
         public val NEGATIVE_INFINITY: Power = Power(OverflowLong.NEGATIVE_INFINITY)
@@ -154,14 +154,34 @@ public fun Long.toPower(unit: PowerUnit): Power {
     return Power(this.noOverflow * unit.microwattScale)
 }
 
-public enum class PowerUnit(internal val microwattScale: Long, internal val symbol: String) {
-    Microwatt(1, "μW"),
-    Milliwatt(1_000, "mW"),
-    Watt(1_000_000, "W"),
-    Kilowatt(1_000_000_000, "kW"),
-    Megawatt(1_000_000_000_000, "MW"),
-    Gigawatt(1_000_000_000_000_000, "GW"),
-    Terawatt(1_000_000_000_000_000_000, "TW"),
+/**
+ * A unit of distance precise to the microwatt.
+ */
+public interface PowerUnit {
+
+    /**
+     * The amount of microwatts in this unit. Implementations of [PowerUnit] should be perfectly divisible by a
+     * quantity of microwatts.
+     */
+    public val microwattScale: Long
+
+    /**
+     * The symbol of this unit.
+     */
+    public val symbol: String
+
+    public enum class International(
+        override val microwattScale: Long,
+        override val symbol: String,
+    ) : PowerUnit {
+        Microwatt(1, "μW"),
+        Milliwatt(1_000, "mW"),
+        Watt(1_000_000, "W"),
+        Kilowatt(1_000_000_000, "kW"),
+        Megawatt(1_000_000_000_000, "MW"),
+        Gigawatt(1_000_000_000_000_000, "GW"),
+        Terawatt(1_000_000_000_000_000_000, "TW"),
+    }
 }
 
 private fun Duration.toEnergyComponents(

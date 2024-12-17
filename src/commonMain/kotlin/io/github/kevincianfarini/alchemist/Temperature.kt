@@ -40,9 +40,3 @@ public value class Temperature(private val foo: Long) {
      */
     public operator fun times(scale: Long): Temperature = TODO()
 }
-
-public enum class TemperatureUnit {
-    Kelvin,
-    Celsius,
-    Fahrenheit
-}

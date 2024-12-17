@@ -288,9 +288,26 @@ public value class Energy internal constructor(private val rawMillijoules: Overf
     }
 }
 
-public sealed interface EnergyUnit {
+/**
+ * A unit of energy precise to the millijoule.
+ */
+public interface EnergyUnit {
 
-    public enum class International(internal val millijouleScale: Long, internal val symbol: String) : EnergyUnit {
+    /**
+     * The amount of millijoules in this unit. Implementations of [EnergyUnit] should be perfectly divisible by a
+     * quantity of millijoules.
+     */
+    public val millijouleScale: Long
+
+    /**
+     * The symbol of this unit.
+     */
+    public val symbol: String
+
+    public enum class International(
+        override val millijouleScale: Long,
+        override val symbol: String,
+    ) : EnergyUnit {
         Millijoule(1, "mJ"),
         Joule(1_000, "J"),
         Kilojoule(1_000_000, "kJ"),
@@ -300,7 +317,10 @@ public sealed interface EnergyUnit {
         Petajoule(1_000_000_000_000_000_000, "PJ"),
     }
 
-    public enum class Electricity(internal val millijouleScale: Long, internal val symbol: String) : EnergyUnit {
+    public enum class Electricity(
+        override val millijouleScale: Long,
+        override val symbol: String,
+    ) : EnergyUnit {
         MilliwattHour(3_600, "mWh"),
         WattHour(3_600_000, "Wh"),
         KilowattHour(3_600_000_000, "kWh"),
@@ -316,14 +336,4 @@ public fun Int.toEnergy(unit: EnergyUnit): Energy {
 
 public fun Long.toEnergy(unit: EnergyUnit): Energy {
     return Energy(this.noOverflow * unit.millijouleScale)
-}
-
-private val EnergyUnit.millijouleScale: Long get() = when (this) {
-    is EnergyUnit.Electricity -> millijouleScale
-    is EnergyUnit.International -> millijouleScale
-}
-
-private val EnergyUnit.symbol: String get() = when (this) {
-    is EnergyUnit.Electricity -> symbol
-    is EnergyUnit.International -> symbol
 }

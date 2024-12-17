@@ -284,10 +284,26 @@ public fun Long.toDistance(unit: DistanceUnit): Distance {
     return Distance(this.noOverflow * unit.nanometerScale)
 }
 
+/**
+ * A unit of distance precise to the nanometer.
+ */
+public interface DistanceUnit {
 
-public sealed interface DistanceUnit {
+    /**
+     * The amount of nanometers in this unit. Implementations of [DistanceUnit] should be perfectly divisible by a
+     * quantity of nanometers.
+     */
+    public val nanometerScale: Long
 
-    public enum class International(internal val nanometerScale: Long, internal val symbol: String) : DistanceUnit {
+    /**
+     * The symbol of this unit.
+     */
+    public val symbol: String
+
+    public enum class International(
+        override val nanometerScale: Long,
+        override val symbol: String,
+    ) : DistanceUnit {
         Nanometer(1, "nm"),
         Micrometer(1_000, "μm"),
         Millimeter(1_000_000, "mm"),
@@ -298,20 +314,13 @@ public sealed interface DistanceUnit {
         Gigameter(1_000_000_000_000_000_000, "Gm"),
     }
 
-    public enum class UnitedStatesCustomary(internal val nanometerScale: Long, internal val symbol: String) : DistanceUnit {
+    public enum class UnitedStatesCustomary(
+        override val nanometerScale: Long,
+        override val symbol: String,
+    ) : DistanceUnit {
         Inch(25_400_000, "in"),
         Foot(304_800_000, "ft"),
         Yard(914_400_000, "yd"),
         Mile(1_609_344_000_000, "mi"),
     }
-}
-
-private val DistanceUnit.nanometerScale: Long get() = when (this) {
-    is DistanceUnit.UnitedStatesCustomary -> nanometerScale
-    is DistanceUnit.International -> nanometerScale
-}
-
-private val DistanceUnit.symbol: String get() = when (this) {
-    is DistanceUnit.UnitedStatesCustomary -> symbol
-    is DistanceUnit.International -> symbol
 }

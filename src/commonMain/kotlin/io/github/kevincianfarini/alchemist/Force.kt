@@ -54,7 +54,3 @@ public value class Force(private val foo: Long) {
 
     }
 }
-
-public enum class ForceUnit {
-
-}

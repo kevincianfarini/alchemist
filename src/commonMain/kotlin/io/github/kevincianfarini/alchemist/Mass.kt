@@ -49,7 +49,3 @@ public value class Mass(private val foo: Long) {
 
     }
 }
-
-public enum class MassUnit {
-
-}
