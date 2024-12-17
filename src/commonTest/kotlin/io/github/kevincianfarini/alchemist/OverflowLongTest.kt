@@ -7,7 +7,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
-import kotlin.time.Duration
 
 class OverflowLongTest {
 
@@ -182,5 +181,23 @@ class OverflowLongTest {
     fun absolute_value_works() {
         assertEquals(10L.noOverflow, (-10L).noOverflow.absoluteValue)
         assertEquals(10L.noOverflow, 10L.noOverflow.absoluteValue)
+    }
+
+    @Test
+    fun infinity_times_infinity_preserves_sign() {
+        assertEquals(POSITIVE_INFINITY, POSITIVE_INFINITY * POSITIVE_INFINITY)
+        assertEquals(NEGATIVE_INFINITY, NEGATIVE_INFINITY * POSITIVE_INFINITY)
+        assertEquals(NEGATIVE_INFINITY, POSITIVE_INFINITY * NEGATIVE_INFINITY)
+        assertEquals(POSITIVE_INFINITY, NEGATIVE_INFINITY * NEGATIVE_INFINITY)
+    }
+
+    @Test
+    fun infinity_times_zero_throws() {
+        assertFailsWith<IllegalArgumentException> {
+            POSITIVE_INFINITY * 0
+        }
+        assertFailsWith<IllegalArgumentException> {
+            NEGATIVE_INFINITY * 0
+        }
     }
 }

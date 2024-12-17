@@ -281,6 +281,8 @@ public value class Energy internal constructor(private val rawMillijoules: Overf
         public inline val Int.terawattHours: Energy get() = toEnergy(EnergyUnit.Electricity.TerawattHour)
         public inline val Long.terawattHours: Energy get() = toEnergy(EnergyUnit.Electricity.TerawattHour)
 
+        internal inline val OverflowLong.millijoules get() = rawValue.toEnergy(EnergyUnit.International.Millijoule)
+
         public val POSITIVE_INFINITY: Energy = Energy(OverflowLong.POSITIVE_INFINITY)
         public val NEGATIVE_INFINITY: Energy = Energy(OverflowLong.NEGATIVE_INFINITY)
     }

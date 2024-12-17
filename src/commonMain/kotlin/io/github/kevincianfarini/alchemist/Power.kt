@@ -3,7 +3,13 @@ package io.github.kevincianfarini.alchemist
 import io.github.kevincianfarini.alchemist.OverflowLong.Companion.noOverflow
 import kotlin.jvm.JvmInline
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.microseconds
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
+/**
+ * Represents an amount of power and is capable of storing ±9.22 terawatts at microwatt precision.
+ */
 @JvmInline
 public value class Power internal constructor(private val rawMicrowatts: OverflowLong) {
 
@@ -17,17 +23,17 @@ public value class Power internal constructor(private val rawMicrowatts: Overflo
     /**
      * Returns a power whose value is this power value divided by the specified [scale].
      */
-    public operator fun div(scale: Int): Power = TODO()
+    public operator fun div(scale: Int): Power = div(scale.toLong())
 
     /**
      * Returns a power whose value is this power value divided by the specified [scale].
      */
-    public operator fun div(scale: Long): Power = TODO()
+    public operator fun div(scale: Long): Power = Power(rawMicrowatts / scale)
 
     /**
      * Returns a power whose value is the difference between this and the [other] power value.
      */
-    public operator fun minus(other: Power): Power = TODO()
+    public operator fun minus(other: Power): Power = Power(rawMicrowatts - other.rawMicrowatts)
 
     /**
      * Returns a power whose value is the sum between this and the [other] power value.
@@ -36,18 +42,60 @@ public value class Power internal constructor(private val rawMicrowatts: Overflo
 
     /**
      * Returns the resulting [Energy] from applying this power over the specified [duration].
+     *
+     * This operation attempts to retain precision, but for sufficiently large values of either this power or [duration],
+     * some precision may be lost.
+     *
+     * @throws IllegalArgumentException if this power is infinite and duration is zero, or if this power is zero and
+     * duration is infinite.
      */
-    public operator fun times(duration: Duration): Energy = TODO()
+    public operator fun times(duration: Duration): Energy {
+        return when {
+            duration.isInfinite() || rawMicrowatts.isInfinite() -> {
+               Energy(OverflowLong.POSITIVE_INFINITY * duration.sign * rawMicrowatts)
+            }
+            else -> duration.toEnergyComponents { thousandSeconds, secondsRemainder, millis, micros, nanos ->
+                // Try to find the right level which we can perform this operation at without losing precision.
+                //  -------------------------------------------------------------------------------------------
+                // 1 microwatt * 1 nanosecond is 1 femtojoule.
+                // 1 microwatt * 1 microsecond is 1 picojoule.
+                // 1 microwatt * 1 millisecond is 1 nanojoule.
+                // 1 microwatt * 1 second is 1 microjoule.
+                // 1 microwatt * 1,000 seconds is 1 millijoule.
+                // --------------------------------------------------------------------------------------------
+                val millijoules = rawMicrowatts * thousandSeconds
+                val microjoules = rawMicrowatts * secondsRemainder
+                val nanojoules = rawMicrowatts * millis
+                val picojoules = rawMicrowatts * micros
+                val femtojoules = rawMicrowatts * nanos
+                // ----------- Try femtojoule precision -------------------------------------------------------
+                val femtoJ = femtojoules + (picojoules * 1_000) + (nanojoules * 1_000_000) + (microjoules * 1_000_000_000) + (millijoules * 1_000_000_000_000)
+                if (femtoJ.isFinite()) return@toEnergyComponents Energy(femtoJ / 1_000_000_000_000)
+                // ----------- Try picojoule precision --------------------------------------------------------
+                val picoJ = (femtojoules / 1_000) + picojoules + (nanojoules * 1_000) + (microjoules * 1_000_000) + (millijoules * 1_000_000_000)
+                if (picoJ.isFinite()) return@toEnergyComponents Energy(picoJ / 1_000_000_000)
+                // ----------- Try nanojoule precision --------------------------------------------------------
+                val nanoJ = (femtojoules / 1_000_000) + (picojoules / 1_000) + nanojoules + (microjoules * 1_000) + (millijoules * 1_000_000)
+                if (nanoJ.isFinite()) return@toEnergyComponents Energy(nanoJ / 1_000_000)
+                // ----------- Try microjoule precision --------------------------------------------------------
+                val microJ = (femtojoules / 1_000_000_000) + (picojoules / 1_000_000) + (nanojoules / 1_000) + microjoules + (millijoules * 1_000)
+                if (microJ .isFinite()) return@toEnergyComponents Energy(microJ / 1_000)
+                // ----------- Default microjoule precision --------------------------------------------------------
+                val milliJ = (femtojoules / 1_000_000_000_000) + (picojoules / 1_000_000_000) + (nanojoules / 1_000_000) + (microjoules / 1_000) + millijoules
+                Energy(milliJ)
+            }
+        }
+    }
 
     /**
      * Returns a power whose value is this power multiplied by the specified [scale].
      */
-    public operator fun times(scale: Int): Power = TODO()
+    public operator fun times(scale: Int): Power = times(scale.toLong())
 
     /**
      * Returns a power whose value is this power multiplied by the specified [scale].
      */
-    public operator fun times(scale: Long): Power = TODO()
+    public operator fun times(scale: Long): Power = Power(rawMicrowatts * scale)
 
     public fun toDouble(unit: PowerUnit): Double {
         return this / unit.microwattScale.microwatts
@@ -114,4 +162,28 @@ public enum class PowerUnit(internal val microwattScale: Long, internal val symb
     Megawatt(1_000_000_000_000, "MW"),
     Gigawatt(1_000_000_000_000_000, "GW"),
     Terawatt(1_000_000_000_000_000_000, "TW"),
+}
+
+private fun Duration.toEnergyComponents(
+    action: (
+        thousandSeconds: Long,
+        seconds: Long,
+        millis: Long,
+        micros: Long,
+        nanos: Long
+    ) -> Energy,
+): Energy {
+    val seconds = inWholeSeconds
+    val secondsRemainder = this - seconds.seconds
+    val millis = secondsRemainder.inWholeMilliseconds
+    val millisRemainder = secondsRemainder - millis.milliseconds
+    val micros = millisRemainder.inWholeMicroseconds
+    val nanos = (millisRemainder - micros.microseconds).inWholeNanoseconds
+    return action(seconds / 1_000, seconds % 1_000, millis, micros, nanos)
+}
+
+private val Duration.sign: Int get() = when {
+    isPositive() -> 1
+    isNegative() -> -1
+    else -> 0
 }

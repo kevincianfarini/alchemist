@@ -42,20 +42,31 @@ internal value class OverflowLong private constructor(internal val rawValue: Lon
         else -> OverflowLong(-rawValue)
     }
 
-    operator fun times(other: OverflowLong): OverflowLong {
-        val max = if (rawValue.sign == other.rawValue.sign) Long.MAX_VALUE else Long.MIN_VALUE
-        val a = rawValue
-        val b = other.rawValue
-        val doesOverflow = a != 0L && (b > 0L && b > max / a || b < 0L && b < max / a)
-        return when {
-            doesOverflow && a.sign == b.sign -> POSITIVE_INFINITY
-            doesOverflow -> NEGATIVE_INFINITY
-            else -> OverflowLong(a * b)
+    operator fun times(other: OverflowLong): OverflowLong = when {
+        isInfinite() || other.isInfinite() -> when (rawValue.sign * other.rawValue.sign) {
+            1 -> POSITIVE_INFINITY
+            -1 -> NEGATIVE_INFINITY
+            else -> throw IllegalArgumentException("Dividing an infinite value by zero yields an undefined result.")
+        }
+        else -> {
+            val max = if (rawValue.sign == other.rawValue.sign) Long.MAX_VALUE else Long.MIN_VALUE
+            val a = rawValue
+            val b = other.rawValue
+            val doesOverflow = a != 0L && (b > 0L && b > max / a || b < 0L && b < max / a)
+            when {
+                doesOverflow && a.sign == b.sign -> POSITIVE_INFINITY
+                doesOverflow -> NEGATIVE_INFINITY
+                else -> OverflowLong(a * b)
+            }
         }
     }
 
     operator fun times(other: Long): OverflowLong {
         return this * OverflowLong(other)
+    }
+
+    operator fun times(other: Int): OverflowLong {
+        return times(other.toLong())
     }
 
     operator fun div(other: OverflowLong): OverflowLong = when {
