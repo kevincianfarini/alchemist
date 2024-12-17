@@ -3,7 +3,7 @@ package io.github.kevincianfarini.alchemist
 import kotlin.jvm.JvmInline
 
 @JvmInline
-public value class Mass(private val foo: Long) {
+public value class Mass internal constructor(private val foo: Long) {
 
     /**
      * Returns a mass whose value is this mass value divided by the specified [scale].

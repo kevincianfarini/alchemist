@@ -3,7 +3,7 @@ package io.github.kevincianfarini.alchemist
 import kotlin.jvm.JvmInline
 
 @JvmInline
-public value class Force(private val foo: Long) {
+public value class Force internal constructor(private val foo: Long) {
 
     /**
      * Returns the number that is the ratio of this and the [other] force value.

@@ -3,7 +3,7 @@ package io.github.kevincianfarini.alchemist
 import kotlin.jvm.JvmInline
 
 @JvmInline
-public value class Volume(private val foo: Long) {
+public value class Volume internal constructor(private val foo: Long) {
 
     /**
      * Returns the resulting [Distance] after dividing this volume over the specified [area].
