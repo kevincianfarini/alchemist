@@ -55,20 +55,20 @@ public value class SaturatingLong internal constructor(internal val rawValue: Lo
         isInfinite() || other.isInfinite() -> when (rawValue.sign * other.rawValue.sign) {
             1 -> POSITIVE_INFINITY
             -1 -> NEGATIVE_INFINITY
-            else -> throw IllegalArgumentException("Dividing an infinite value by zero yields an undefined result.")
+            else -> throw IllegalArgumentException("Multiplying an infinite value by zero yields an undefined result.")
         }
         else -> {
-            val max = if (rawValue.sign == other.rawValue.sign) Long.MAX_VALUE else Long.MIN_VALUE
-            val a = rawValue
-            val b = other.rawValue
-            val doesOverflow = a != 0L && (b > 0L && b > max / a || b < 0L && b < max / a)
+            val result = rawValue * other.rawValue
+            val doesOverflow = rawValue != 0L && result / rawValue != other.rawValue
             when {
-                doesOverflow && a.sign == b.sign -> POSITIVE_INFINITY
+                doesOverflow && sign == other.rawValue.sign -> POSITIVE_INFINITY
                 doesOverflow -> NEGATIVE_INFINITY
-                else -> SaturatingLong(a * b)
+                else -> SaturatingLong(result)
             }
         }
     }
+
+    internal val sign: Int get() = rawValue.sign
 
     public operator fun times(other: Long): SaturatingLong {
         return this * SaturatingLong(other)

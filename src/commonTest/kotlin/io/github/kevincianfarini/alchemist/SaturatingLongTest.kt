@@ -199,4 +199,17 @@ class SaturatingLongTest {
             NEGATIVE_INFINITY * 0
         }
     }
+
+    @Test
+    fun does_not_overflow_mul_negative_one() {
+        assertEquals(
+            expected = (-1_000_000_000_000_000_000).saturated,
+            actual = (-1L).saturated * 1_000_000_000_000_000_000,
+        )
+    }
+
+    @Test
+    fun multiplication_overflow_does_not_divide_by_zero() {
+        assertEquals(0L.saturated, 0L.saturated * (Long.MAX_VALUE - 1))
+    }
 }
