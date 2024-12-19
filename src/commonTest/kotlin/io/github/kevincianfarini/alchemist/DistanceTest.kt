@@ -1,17 +1,5 @@
 package io.github.kevincianfarini.alchemist
 
-import io.github.kevincianfarini.alchemist.Distance.Companion.centimeters
-import io.github.kevincianfarini.alchemist.Distance.Companion.feet
-import io.github.kevincianfarini.alchemist.Distance.Companion.gigameters
-import io.github.kevincianfarini.alchemist.Distance.Companion.inches
-import io.github.kevincianfarini.alchemist.Distance.Companion.kilometers
-import io.github.kevincianfarini.alchemist.Distance.Companion.megameters
-import io.github.kevincianfarini.alchemist.Distance.Companion.meters
-import io.github.kevincianfarini.alchemist.Distance.Companion.micrometers
-import io.github.kevincianfarini.alchemist.Distance.Companion.miles
-import io.github.kevincianfarini.alchemist.Distance.Companion.millimeters
-import io.github.kevincianfarini.alchemist.Distance.Companion.nanometers
-import io.github.kevincianfarini.alchemist.Distance.Companion.yards
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

@@ -1,7 +1,5 @@
 package io.github.kevincianfarini.alchemist
 
-import io.github.kevincianfarini.alchemist.Energy.Companion.millijoules
-import io.github.kevincianfarini.alchemist.Power.Companion.microwatts
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.time.Duration

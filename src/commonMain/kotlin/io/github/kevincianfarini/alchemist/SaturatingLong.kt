@@ -14,7 +14,7 @@ import kotlin.math.sign
  * LLVM for more details.
  */
 @JvmInline
-public value class SaturatingLong private constructor(internal val rawValue: Long) : Comparable<SaturatingLong> {
+public value class SaturatingLong internal constructor(internal val rawValue: Long) : Comparable<SaturatingLong> {
 
     internal operator fun plus(other: SaturatingLong): SaturatingLong = when {
         isInfinite() && isPositive() && other.isInfinite() && other.isPositive() -> POSITIVE_INFINITY
@@ -146,8 +146,9 @@ public value class SaturatingLong private constructor(internal val rawValue: Lon
     }
 
     internal companion object {
-        inline val Long.saturated get() = SaturatingLong(this)
         val POSITIVE_INFINITY = SaturatingLong(Long.MAX_VALUE)
         val NEGATIVE_INFINITY = SaturatingLong(Long.MIN_VALUE)
     }
 }
+
+internal val Long.saturated get() = SaturatingLong(this)

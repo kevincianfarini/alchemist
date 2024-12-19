@@ -1,6 +1,5 @@
 package io.github.kevincianfarini.alchemist
 
-import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.saturated
 import kotlin.jvm.JvmInline
 import kotlin.time.Duration
 
@@ -53,7 +52,9 @@ public value class Distance internal constructor(private val rawNanometers: Satu
     /**
      * Returns the resulting [Area] after multiplying this distance by the [other] distance value.
      */
-    public operator fun times(other: Distance): Area = TODO()
+    public operator fun times(other: Distance): Area {
+        TODO()
+    }
 
     /**
      * Returns an [Area] representing a square with a length and width of this distance.
@@ -159,126 +160,6 @@ public value class Distance internal constructor(private val rawNanometers: Satu
     public companion object {
 
         /**
-         * Returns a [Distance] equal to [Int] number of nanometers.
-         */
-        public inline val Int.nanometers: Distance get() = toDistance(DistanceUnit.International.Nanometer)
-
-        /**
-         * Returns a [Distance] equal to [Long] number of nanometers.
-         */
-        public inline val Long.nanometers: Distance get() = toDistance(DistanceUnit.International.Nanometer)
-
-        /**
-         * Returns a [Distance] equal to [Int] number of micrometers.
-         */
-        public inline val Int.micrometers: Distance get() = toDistance(DistanceUnit.International.Micrometer)
-
-        /**
-         * Returns a [Distance] equal to [Long] number of micrometers.
-         */
-        public inline val Long.micrometers: Distance get() = toDistance(DistanceUnit.International.Micrometer)
-
-        /**
-         * Returns a [Distance] equal to [Int] number of millimeters.
-         */
-        public inline val Int.millimeters: Distance get() = toDistance(DistanceUnit.International.Millimeter)
-
-        /**
-         * Returns a [Distance] equal to [Long] number of millimeters.
-         */
-        public inline val Long.millimeters: Distance get() = toDistance(DistanceUnit.International.Millimeter)
-
-        /**
-         * Returns a [Distance] equal to [Int] number of centimeters.
-         */
-        public inline val Int.centimeters: Distance get() = toDistance(DistanceUnit.International.Centimeter)
-
-        /**
-         * Returns a [Distance] equal to [Long] number of centimeters.
-         */
-        public inline val Long.centimeters: Distance get() = toDistance(DistanceUnit.International.Centimeter)
-
-        /**
-         * Returns a [Distance] equal to [Int] number of meters.
-         */
-        public inline val Int.meters: Distance get() = toDistance(DistanceUnit.International.Meter)
-
-        /**
-         * Returns a [Distance] equal to [Long] number of meters.
-         */
-        public inline val Long.meters: Distance get() = toDistance(DistanceUnit.International.Meter)
-
-        /**
-         * Returns a [Distance] equal to [Int] number of kilometers.
-         */
-        public inline val Int.kilometers: Distance get() = toDistance(DistanceUnit.International.Kilometer)
-
-        /**
-         * Returns a [Distance] equal to [Long] number of kilometers.
-         */
-        public inline val Long.kilometers: Distance get() = toDistance(DistanceUnit.International.Kilometer)
-
-        /**
-         * Returns a [Distance] equal to [Int] number of megameters.
-         */
-        public inline val Int.megameters: Distance get() = toDistance(DistanceUnit.International.Megameter)
-
-        /**
-         * Returns a [Distance] equal to [Long] number of megameters.
-         */
-        public inline val Long.megameters: Distance get() = toDistance(DistanceUnit.International.Megameter)
-
-        /**
-         * Returns a [Distance] equal to [Int] number of gigameters.
-         */
-        public inline val Int.gigameters: Distance get() = toDistance(DistanceUnit.International.Gigameter)
-
-        /**
-         * Returns a [Distance] equal to [Long] number of gigameters.
-         */
-        public inline val Long.gigameters: Distance get() = toDistance(DistanceUnit.International.Gigameter)
-
-        /**
-         * Returns a [Distance] equal to [Int] number of inches.
-         */
-        public inline val Int.inches: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Inch)
-
-        /**
-         * Returns a [Distance] equal to [Long] number of inches.
-         */
-        public inline val Long.inches: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Inch)
-
-        /**
-         * Returns a [Distance] equal to [Int] number of feet.
-         */
-        public inline val Int.feet: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Foot)
-
-        /**
-         * Returns a [Distance] equal to [Long] number of feet.
-         */
-        public inline val Long.feet: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Foot)
-
-        /**
-         * Returns a [Distance] equal to [Int] number of yards.
-         */
-        public inline val Int.yards: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Yard)
-
-        /**
-         * Returns a [Distance] equal to [Long] number of yards.
-         */
-        public inline val Long.yards: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Yard)
-
-        /**
-         * Returns a [Distance] equal to [Int] number of miles.
-         */
-        public inline val Int.miles: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Mile)
-
-        /**
-         * Returns a [Distance] equal to [Long] number of miles.
-         */
-        public inline val Long.miles: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Mile)
-
-        /**
          * A positive infinite distance.
          */
         public val POSITIVE_INFINITY: Distance = Distance(SaturatingLong.POSITIVE_INFINITY)
@@ -289,6 +170,126 @@ public value class Distance internal constructor(private val rawNanometers: Satu
         public val NEGATIVE_INFINITY: Distance = Distance(SaturatingLong.NEGATIVE_INFINITY)
     }
 }
+
+/**
+ * Returns a [Distance] equal to [Int] number of nanometers.
+ */
+public inline val Int.nanometers: Distance get() = toDistance(DistanceUnit.International.Nanometer)
+
+/**
+ * Returns a [Distance] equal to [Long] number of nanometers.
+ */
+public inline val Long.nanometers: Distance get() = toDistance(DistanceUnit.International.Nanometer)
+
+/**
+ * Returns a [Distance] equal to [Int] number of micrometers.
+ */
+public inline val Int.micrometers: Distance get() = toDistance(DistanceUnit.International.Micrometer)
+
+/**
+ * Returns a [Distance] equal to [Long] number of micrometers.
+ */
+public inline val Long.micrometers: Distance get() = toDistance(DistanceUnit.International.Micrometer)
+
+/**
+ * Returns a [Distance] equal to [Int] number of millimeters.
+ */
+public inline val Int.millimeters: Distance get() = toDistance(DistanceUnit.International.Millimeter)
+
+/**
+ * Returns a [Distance] equal to [Long] number of millimeters.
+ */
+public inline val Long.millimeters: Distance get() = toDistance(DistanceUnit.International.Millimeter)
+
+/**
+ * Returns a [Distance] equal to [Int] number of centimeters.
+ */
+public inline val Int.centimeters: Distance get() = toDistance(DistanceUnit.International.Centimeter)
+
+/**
+ * Returns a [Distance] equal to [Long] number of centimeters.
+ */
+public inline val Long.centimeters: Distance get() = toDistance(DistanceUnit.International.Centimeter)
+
+/**
+ * Returns a [Distance] equal to [Int] number of meters.
+ */
+public inline val Int.meters: Distance get() = toDistance(DistanceUnit.International.Meter)
+
+/**
+ * Returns a [Distance] equal to [Long] number of meters.
+ */
+public inline val Long.meters: Distance get() = toDistance(DistanceUnit.International.Meter)
+
+/**
+ * Returns a [Distance] equal to [Int] number of kilometers.
+ */
+public inline val Int.kilometers: Distance get() = toDistance(DistanceUnit.International.Kilometer)
+
+/**
+ * Returns a [Distance] equal to [Long] number of kilometers.
+ */
+public inline val Long.kilometers: Distance get() = toDistance(DistanceUnit.International.Kilometer)
+
+/**
+ * Returns a [Distance] equal to [Int] number of megameters.
+ */
+public inline val Int.megameters: Distance get() = toDistance(DistanceUnit.International.Megameter)
+
+/**
+ * Returns a [Distance] equal to [Long] number of megameters.
+ */
+public inline val Long.megameters: Distance get() = toDistance(DistanceUnit.International.Megameter)
+
+/**
+ * Returns a [Distance] equal to [Int] number of gigameters.
+ */
+public inline val Int.gigameters: Distance get() = toDistance(DistanceUnit.International.Gigameter)
+
+/**
+ * Returns a [Distance] equal to [Long] number of gigameters.
+ */
+public inline val Long.gigameters: Distance get() = toDistance(DistanceUnit.International.Gigameter)
+
+/**
+ * Returns a [Distance] equal to [Int] number of inches.
+ */
+public inline val Int.inches: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Inch)
+
+/**
+ * Returns a [Distance] equal to [Long] number of inches.
+ */
+public inline val Long.inches: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Inch)
+
+/**
+ * Returns a [Distance] equal to [Int] number of feet.
+ */
+public inline val Int.feet: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Foot)
+
+/**
+ * Returns a [Distance] equal to [Long] number of feet.
+ */
+public inline val Long.feet: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Foot)
+
+/**
+ * Returns a [Distance] equal to [Int] number of yards.
+ */
+public inline val Int.yards: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Yard)
+
+/**
+ * Returns a [Distance] equal to [Long] number of yards.
+ */
+public inline val Long.yards: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Yard)
+
+/**
+ * Returns a [Distance] equal to [Int] number of miles.
+ */
+public inline val Int.miles: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Mile)
+
+/**
+ * Returns a [Distance] equal to [Long] number of miles.
+ */
+public inline val Long.miles: Distance get() = toDistance(DistanceUnit.UnitedStatesCustomary.Mile)
 
 public fun Int.toDistance(unit: DistanceUnit): Distance {
     return toLong().toDistance(unit)

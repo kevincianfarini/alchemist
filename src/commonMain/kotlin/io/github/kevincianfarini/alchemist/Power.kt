@@ -1,6 +1,5 @@
 package io.github.kevincianfarini.alchemist
 
-import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.saturated
 import kotlin.jvm.JvmInline
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.microseconds
@@ -118,37 +117,37 @@ public value class Power internal constructor(private val rawMicrowatts: Saturat
     }
 
     public companion object {
-        public inline val Int.terawatts: Power get() = toPower(PowerUnit.International.Terawatt)
-        public inline val Long.terawatts: Power get() = toPower(PowerUnit.International.Terawatt)
-
-        public inline val Int.gigawatts: Power get() = toPower(PowerUnit.International.Gigawatt)
-        public inline val Long.gigawatts: Power get() = toPower(PowerUnit.International.Gigawatt)
-
-        public inline val Int.megawatts: Power get() = toPower(PowerUnit.International.Megawatt)
-        public inline val Long.megawatts: Power get() = toPower(PowerUnit.International.Megawatt)
-
-        public inline val Int.kilowatts: Power get() = toPower(PowerUnit.International.Kilowatt)
-        public inline val Long.kilowatts: Power get() = toPower(PowerUnit.International.Kilowatt)
-
-        public inline val Int.watts: Power get() = toPower(PowerUnit.International.Watt)
-        public inline val Long.watts: Power get() = toPower(PowerUnit.International.Watt)
-
-        public inline val Int.milliwatts: Power get() = toPower(PowerUnit.International.Milliwatt)
-        public inline val Long.milliwatts: Power get() = toPower(PowerUnit.International.Milliwatt)
-
-        public inline val Int.microwatts: Power get() = toPower(PowerUnit.International.Microwatt)
-        public inline val Long.microwatts: Power get() = toPower(PowerUnit.International.Microwatt)
-
-        internal inline val SaturatingLong.megawatts get() = rawValue.toPower(PowerUnit.International.Megawatt)
-        internal inline val SaturatingLong.kilowatts get() = rawValue.toPower(PowerUnit.International.Kilowatt)
-        internal inline val SaturatingLong.watts get() = rawValue.toPower(PowerUnit.International.Watt)
-        internal inline val SaturatingLong.milliwatts get() = rawValue.toPower(PowerUnit.International.Milliwatt)
-        internal inline val SaturatingLong.microwatts get() = rawValue.toPower(PowerUnit.International.Microwatt)
-
         public val POSITIVE_INFINITY: Power = Power(SaturatingLong.POSITIVE_INFINITY)
         public val NEGATIVE_INFINITY: Power = Power(SaturatingLong.NEGATIVE_INFINITY)
     }
 }
+
+public inline val Int.terawatts: Power get() = toPower(PowerUnit.International.Terawatt)
+public inline val Long.terawatts: Power get() = toPower(PowerUnit.International.Terawatt)
+
+public inline val Int.gigawatts: Power get() = toPower(PowerUnit.International.Gigawatt)
+public inline val Long.gigawatts: Power get() = toPower(PowerUnit.International.Gigawatt)
+
+public inline val Int.megawatts: Power get() = toPower(PowerUnit.International.Megawatt)
+public inline val Long.megawatts: Power get() = toPower(PowerUnit.International.Megawatt)
+
+public inline val Int.kilowatts: Power get() = toPower(PowerUnit.International.Kilowatt)
+public inline val Long.kilowatts: Power get() = toPower(PowerUnit.International.Kilowatt)
+
+public inline val Int.watts: Power get() = toPower(PowerUnit.International.Watt)
+public inline val Long.watts: Power get() = toPower(PowerUnit.International.Watt)
+
+public inline val Int.milliwatts: Power get() = toPower(PowerUnit.International.Milliwatt)
+public inline val Long.milliwatts: Power get() = toPower(PowerUnit.International.Milliwatt)
+
+public inline val Int.microwatts: Power get() = toPower(PowerUnit.International.Microwatt)
+public inline val Long.microwatts: Power get() = toPower(PowerUnit.International.Microwatt)
+
+internal inline val SaturatingLong.megawatts get() = rawValue.toPower(PowerUnit.International.Megawatt)
+internal inline val SaturatingLong.kilowatts get() = rawValue.toPower(PowerUnit.International.Kilowatt)
+internal inline val SaturatingLong.watts get() = rawValue.toPower(PowerUnit.International.Watt)
+internal inline val SaturatingLong.milliwatts get() = rawValue.toPower(PowerUnit.International.Milliwatt)
+internal inline val SaturatingLong.microwatts get() = rawValue.toPower(PowerUnit.International.Microwatt)
 
 public fun Int.toPower(unit: PowerUnit): Power {
     return toLong().toPower(unit)

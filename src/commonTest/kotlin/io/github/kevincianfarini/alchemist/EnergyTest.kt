@@ -1,20 +1,5 @@
 package io.github.kevincianfarini.alchemist
 
-import io.github.kevincianfarini.alchemist.Energy.Companion.gigajoules
-import io.github.kevincianfarini.alchemist.Energy.Companion.gigawattHours
-import io.github.kevincianfarini.alchemist.Energy.Companion.joules
-import io.github.kevincianfarini.alchemist.Energy.Companion.kilojoules
-import io.github.kevincianfarini.alchemist.Energy.Companion.kilowattHours
-import io.github.kevincianfarini.alchemist.Energy.Companion.megajoules
-import io.github.kevincianfarini.alchemist.Energy.Companion.megawattHours
-import io.github.kevincianfarini.alchemist.Energy.Companion.millijoules
-import io.github.kevincianfarini.alchemist.Energy.Companion.milliwattHours
-import io.github.kevincianfarini.alchemist.Energy.Companion.petajoules
-import io.github.kevincianfarini.alchemist.Energy.Companion.terawattHours
-import io.github.kevincianfarini.alchemist.Energy.Companion.tetrajoules
-import io.github.kevincianfarini.alchemist.Energy.Companion.wattHours
-import io.github.kevincianfarini.alchemist.Power.Companion.microwatts
-import io.github.kevincianfarini.alchemist.Power.Companion.watts
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
