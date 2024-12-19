@@ -1,6 +1,6 @@
 package io.github.kevincianfarini.alchemist
 
-import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.noOverflow
+import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.saturated
 import kotlin.jvm.JvmInline
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.microseconds
@@ -56,7 +56,7 @@ public value class Power internal constructor(private val rawMicrowatts: Saturat
             }
             else -> duration.toEnergyComponents { thousandSeconds, secondsRemainder, millis, micros, nanos ->
                 // Try to find the right level which we can perform this operation at without losing precision.
-                //  -------------------------------------------------------------------------------------------
+                // --------------------------------------------------------------------------------------------
                 // 1 microwatt * 1 nanosecond is 1 femtojoule.
                 // 1 microwatt * 1 microsecond is 1 picojoule.
                 // 1 microwatt * 1 millisecond is 1 nanojoule.
@@ -68,19 +68,19 @@ public value class Power internal constructor(private val rawMicrowatts: Saturat
                 val nanojoules = rawMicrowatts * millis
                 val picojoules = rawMicrowatts * micros
                 val femtojoules = rawMicrowatts * nanos
-                // ----------- Try femtojoule precision -------------------------------------------------------
+                // ----------- Try femtojoule precision. ------------------------------------------------------
                 val femtoJ = femtojoules + (picojoules * 1_000) + (nanojoules * 1_000_000) + (microjoules * 1_000_000_000) + (millijoules * 1_000_000_000_000)
                 if (femtoJ.isFinite()) return@toEnergyComponents Energy(femtoJ / 1_000_000_000_000)
-                // ----------- Try picojoule precision --------------------------------------------------------
+                // ----------- Try picojoule precision. -------------------------------------------------------
                 val picoJ = (femtojoules / 1_000) + picojoules + (nanojoules * 1_000) + (microjoules * 1_000_000) + (millijoules * 1_000_000_000)
                 if (picoJ.isFinite()) return@toEnergyComponents Energy(picoJ / 1_000_000_000)
-                // ----------- Try nanojoule precision --------------------------------------------------------
+                // ----------- Try nanojoule precision. -------------------------------------------------------
                 val nanoJ = (femtojoules / 1_000_000) + (picojoules / 1_000) + nanojoules + (microjoules * 1_000) + (millijoules * 1_000_000)
                 if (nanoJ.isFinite()) return@toEnergyComponents Energy(nanoJ / 1_000_000)
-                // ----------- Try microjoule precision --------------------------------------------------------
+                // ----------- Try microjoule precision. -------------------------------------------------------
                 val microJ = (femtojoules / 1_000_000_000) + (picojoules / 1_000_000) + (nanojoules / 1_000) + microjoules + (millijoules * 1_000)
-                if (microJ .isFinite()) return@toEnergyComponents Energy(microJ / 1_000)
-                // ----------- Default microjoule precision --------------------------------------------------------
+                if (microJ.isFinite()) return@toEnergyComponents Energy(microJ / 1_000)
+                // ----------- Default microjoule precision. ---------------------------------------------------
                 val milliJ = (femtojoules / 1_000_000_000_000) + (picojoules / 1_000_000_000) + (nanojoules / 1_000_000) + (microjoules / 1_000) + millijoules
                 Energy(milliJ)
             }
@@ -155,7 +155,7 @@ public fun Int.toPower(unit: PowerUnit): Power {
 }
 
 public fun Long.toPower(unit: PowerUnit): Power {
-    return Power(this.noOverflow * unit.microwattScale)
+    return Power(this.saturated * unit.microwattScale)
 }
 
 /**

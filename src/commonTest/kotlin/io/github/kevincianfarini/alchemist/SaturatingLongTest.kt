@@ -2,7 +2,7 @@ package io.github.kevincianfarini.alchemist
 
 import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.NEGATIVE_INFINITY
 import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.POSITIVE_INFINITY
-import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.noOverflow
+import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.saturated
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -12,13 +12,13 @@ class SaturatingLongTest {
 
     @Test
     fun long_max_and_min_value_is_infinite() {
-        assertTrue(Long.MAX_VALUE.noOverflow.isInfinite())
-        assertTrue(Long.MIN_VALUE.noOverflow.isInfinite())
+        assertTrue(Long.MAX_VALUE.saturated.isInfinite())
+        assertTrue(Long.MIN_VALUE.saturated.isInfinite())
     }
 
     @Test
     fun unary_minus_works() {
-        assertEquals(1L.noOverflow, -((-1L).noOverflow))
+        assertEquals(1L.saturated, -((-1L).saturated))
     }
 
     @Test
@@ -52,45 +52,45 @@ class SaturatingLongTest {
 
     @Test
     fun addition_positive_overflow_returns_positive_infinite() {
-        val a = (Long.MAX_VALUE - 1L).noOverflow
-        val b = 2L.noOverflow
+        val a = (Long.MAX_VALUE - 1L).saturated
+        val b = 2L.saturated
         assertEquals(POSITIVE_INFINITY, a + b)
     }
 
     @Test
     fun addition_negative_overflow_returns_negative_infinite() {
-        val a = (Long.MIN_VALUE + 1L).noOverflow
-        val b = (-2L).noOverflow
+        val a = (Long.MIN_VALUE + 1L).saturated
+        val b = (-2L).saturated
         assertEquals(NEGATIVE_INFINITY, a + b)
     }
 
     @Test
     fun subtraction_negative_overflow_returns_negative_infinite() {
-        val a = (Long.MIN_VALUE + 1L).noOverflow
-        val b = 2L.noOverflow
+        val a = (Long.MIN_VALUE + 1L).saturated
+        val b = 2L.saturated
         assertEquals(NEGATIVE_INFINITY, a - b)
     }
 
     @Test
     fun subtraction_positive_overflow_returns_positive_infinite() {
-        val a = -((Long.MAX_VALUE - 1L).noOverflow)
-        val b = 2L.noOverflow
+        val a = -((Long.MAX_VALUE - 1L).saturated)
+        val b = 2L.saturated
         assertEquals(POSITIVE_INFINITY, b - a)
     }
 
     @Test
     fun adding_to_infinity_produces_infinity() {
-        assertEquals(POSITIVE_INFINITY, POSITIVE_INFINITY + 50_000L.noOverflow)
+        assertEquals(POSITIVE_INFINITY, POSITIVE_INFINITY + 50_000L.saturated)
     }
 
     @Test
     fun subtracting_from_negative_infinity_produces_negative_infinity() {
-        assertEquals(NEGATIVE_INFINITY, NEGATIVE_INFINITY - 50_000L.noOverflow)
+        assertEquals(NEGATIVE_INFINITY, NEGATIVE_INFINITY - 50_000L.saturated)
     }
 
     @Test
     fun dividing_works() {
-        assertEquals(2L.noOverflow, 10L.noOverflow / 5L.noOverflow)
+        assertEquals(2L.saturated, 10L.saturated / 5L.saturated)
     }
 
     @Test
@@ -111,12 +111,12 @@ class SaturatingLongTest {
 
     @Test
     fun dividing_by_positive_infinity_produces_zero() {
-        assertEquals(0L.noOverflow, (Long.MAX_VALUE - 1L).noOverflow / POSITIVE_INFINITY)
+        assertEquals(0L.saturated, (Long.MAX_VALUE - 1L).saturated / POSITIVE_INFINITY)
     }
 
     @Test
     fun dividing_by_negative_infinity_produces_zero() {
-        assertEquals(0L.noOverflow, (Long.MAX_VALUE - 1L).noOverflow / NEGATIVE_INFINITY)
+        assertEquals(0L.saturated, (Long.MAX_VALUE - 1L).saturated / NEGATIVE_INFINITY)
     }
 
     @Test
@@ -131,7 +131,7 @@ class SaturatingLongTest {
 
     @Test
     fun multiplication_works() {
-        assertEquals(10L.noOverflow, 5L.noOverflow * 2L.noOverflow)
+        assertEquals(10L.saturated, 5L.saturated * 2L.saturated)
     }
 
     @Test
@@ -152,22 +152,22 @@ class SaturatingLongTest {
 
     @Test
     fun two_large_overflowing_positive_numbers_produces_positive_infinity() {
-        val a = (Long.MAX_VALUE / 3).noOverflow
-        val b = (Long.MAX_VALUE / 4).noOverflow
+        val a = (Long.MAX_VALUE / 3).saturated
+        val b = (Long.MAX_VALUE / 4).saturated
         assertEquals(POSITIVE_INFINITY, a * b)
     }
 
     @Test
     fun two_large_overflowing_negative_numbers_produces_positive_infinity() {
-        val a = (Long.MIN_VALUE / 3).noOverflow
-        val b = (Long.MIN_VALUE / 4).noOverflow
+        val a = (Long.MIN_VALUE / 3).saturated
+        val b = (Long.MIN_VALUE / 4).saturated
         assertEquals(POSITIVE_INFINITY, a * b)
     }
 
     @Test
     fun two_large_overflowing_mixed_sign_numbers_produces_negative_infinity() {
-        val a = (Long.MAX_VALUE / 3).noOverflow
-        val b = (Long.MIN_VALUE / 4).noOverflow
+        val a = (Long.MAX_VALUE / 3).saturated
+        val b = (Long.MIN_VALUE / 4).saturated
         assertEquals(NEGATIVE_INFINITY, a * b)
     }
 
@@ -179,8 +179,8 @@ class SaturatingLongTest {
 
     @Test
     fun absolute_value_works() {
-        assertEquals(10L.noOverflow, (-10L).noOverflow.absoluteValue)
-        assertEquals(10L.noOverflow, 10L.noOverflow.absoluteValue)
+        assertEquals(10L.saturated, (-10L).saturated.absoluteValue)
+        assertEquals(10L.saturated, 10L.saturated.absoluteValue)
     }
 
     @Test

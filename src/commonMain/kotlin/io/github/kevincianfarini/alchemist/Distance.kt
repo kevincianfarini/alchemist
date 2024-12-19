@@ -1,6 +1,6 @@
 package io.github.kevincianfarini.alchemist
 
-import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.noOverflow
+import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.saturated
 import kotlin.jvm.JvmInline
 import kotlin.time.Duration
 
@@ -54,6 +54,16 @@ public value class Distance internal constructor(private val rawNanometers: Satu
      * Returns the resulting [Area] after multiplying this distance by the [other] distance value.
      */
     public operator fun times(other: Distance): Area = TODO()
+
+    /**
+     * Returns an [Area] representing a square with a length and width of this distance.
+     */
+    public fun squared(): Area = this * this
+
+    /**
+     * Returns a [Volume] representing a cube with length, width, and height of this distance.
+     */
+    public fun cubed(): Volume = this * this * this
 
     /**
      * Returns a distance whose value is multiplied by the specified [scale].
@@ -285,7 +295,7 @@ public fun Int.toDistance(unit: DistanceUnit): Distance {
 }
 
 public fun Long.toDistance(unit: DistanceUnit): Distance {
-    return Distance(this.noOverflow * unit.nanometerScale)
+    return Distance(this.saturated * unit.nanometerScale)
 }
 
 /**

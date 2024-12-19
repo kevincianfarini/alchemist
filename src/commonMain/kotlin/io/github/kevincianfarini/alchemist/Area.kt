@@ -2,8 +2,11 @@ package io.github.kevincianfarini.alchemist
 
 import kotlin.jvm.JvmInline
 
+/**
+ * Represents a measure of area and is capable of storing ±9.22 million kilometers² at millimeter precision.
+ */
 @JvmInline
-public value class Area internal constructor(private val foo: Long) {
+public value class Area internal constructor(private val rawMillimetersSquared: Long) {
 
     /**
      * Returns the resulting distance after dividing this area by the specified [distance].

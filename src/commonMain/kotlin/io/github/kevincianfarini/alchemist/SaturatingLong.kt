@@ -146,7 +146,7 @@ public value class SaturatingLong private constructor(internal val rawValue: Lon
     }
 
     internal companion object {
-        inline val Long.noOverflow get() = SaturatingLong(this)
+        inline val Long.saturated get() = SaturatingLong(this)
         val POSITIVE_INFINITY = SaturatingLong(Long.MAX_VALUE)
         val NEGATIVE_INFINITY = SaturatingLong(Long.MIN_VALUE)
     }

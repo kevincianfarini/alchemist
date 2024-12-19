@@ -1,6 +1,6 @@
 package io.github.kevincianfarini.alchemist
 
-import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.noOverflow
+import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.saturated
 import kotlin.jvm.JvmInline
 import kotlin.text.Typography.nbsp
 
@@ -85,55 +85,55 @@ public value class Temperature internal constructor(private val rawNanokelvin: S
     public companion object {
 
         public val Int.nanokelvins: Temperature get() = toLong().nanokelvins
-        public val Long.nanokelvins: Temperature get() = noOverflow.nanokelvins
+        public val Long.nanokelvins: Temperature get() = saturated.nanokelvins
         private inline val SaturatingLong.nanokelvins get() = Temperature(
             TemperatureUnit.International.Nanokelvin.convertToNanokelvin(this)
         )
 
         public val Int.microkelvins: Temperature get() = toLong().microkelvins
-        public val Long.microkelvins: Temperature get() = noOverflow.microkelvins
+        public val Long.microkelvins: Temperature get() = saturated.microkelvins
         private inline val SaturatingLong.microkelvins get() = Temperature(
             TemperatureUnit.International.Microkelvin.convertToNanokelvin(this)
         )
 
         public val Int.millikelvins: Temperature get() = toLong().millikelvins
-        public val Long.millikelvins: Temperature get() = noOverflow.millikelvins
+        public val Long.millikelvins: Temperature get() = saturated.millikelvins
         private inline val SaturatingLong.millikelvins get() = Temperature(
             TemperatureUnit.International.Millikelvin.convertToNanokelvin(this)
         )
 
         public val Int.kelvins: Temperature get() = toLong().kelvins
-        public val Long.kelvins: Temperature get() = noOverflow.kelvins
+        public val Long.kelvins: Temperature get() = saturated.kelvins
         private inline val SaturatingLong.kelvins get() = Temperature(
             TemperatureUnit.International.Kelvin.convertToNanokelvin(this)
         )
 
         public val Int.kilokelvins: Temperature get() = toLong().kilokelvins
-        public val Long.kilokelvins: Temperature get() = noOverflow.kilokelvins
+        public val Long.kilokelvins: Temperature get() = saturated.kilokelvins
         private inline val SaturatingLong.kilokelvins get() = Temperature(
             TemperatureUnit.International.Kilokelvin.convertToNanokelvin(this)
         )
 
         public val Int.megakelvins: Temperature get() = toLong().megakelvins
-        public val Long.megakelvins: Temperature get() = noOverflow.megakelvins
+        public val Long.megakelvins: Temperature get() = saturated.megakelvins
         private inline val SaturatingLong.megakelvins get() = Temperature(
             TemperatureUnit.International.Megakelvin.convertToNanokelvin(this)
         )
 
         public val Int.gigskelvins: Temperature get() = toLong().gigakelvins
-        public val Long.gigakelvins: Temperature get() = noOverflow.gigakelvins
+        public val Long.gigakelvins: Temperature get() = saturated.gigakelvins
         private inline val SaturatingLong.gigakelvins get() = Temperature(
             TemperatureUnit.International.Gigakelvin.convertToNanokelvin(this)
         )
 
         public val Int.celsius: Temperature get() = toLong().celsius
-        public val Long.celsius: Temperature get() = noOverflow.celsius
+        public val Long.celsius: Temperature get() = saturated.celsius
         private inline val SaturatingLong.celsius get() = Temperature(
             TemperatureUnit.International.Celsius.convertToNanokelvin(this)
         )
 
         public val Int.fahrenheit: Temperature get() = toLong().fahrenheit
-        public val Long.fahrenheit: Temperature get() = noOverflow.fahrenheit
+        public val Long.fahrenheit: Temperature get() = saturated.fahrenheit
         private inline val SaturatingLong.fahrenheit get() = Temperature(
             TemperatureUnit.Fahrenheit.convertToNanokelvin(this)
         )

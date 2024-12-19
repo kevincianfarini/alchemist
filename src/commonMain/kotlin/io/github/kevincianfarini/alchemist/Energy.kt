@@ -1,6 +1,6 @@
 package io.github.kevincianfarini.alchemist
 
-import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.noOverflow
+import io.github.kevincianfarini.alchemist.SaturatingLong.Companion.saturated
 import io.github.kevincianfarini.alchemist.Power.Companion.kilowatts
 import io.github.kevincianfarini.alchemist.Power.Companion.megawatts
 import io.github.kevincianfarini.alchemist.Power.Companion.microwatts
@@ -32,7 +32,7 @@ public value class Energy internal constructor(private val rawMillijoules: Satur
      */
     public operator fun div(duration: Duration): Power {
         // Try to find the right level which we can perform this operation at without losing precision.
-        //  -------------------------------------------------------------------------------------------
+        // --------------------------------------------------------------------------------------------
         // 1 femtojoule per 1 nanosecond is 1 microwatt.
         // 1 picojoule per 1 nanosecond is 1 milliwatt.
         // 1 nanojoule per 1 nanosecond is 1 watt.
@@ -53,7 +53,7 @@ public value class Energy internal constructor(private val rawMillijoules: Satur
                 throw IllegalArgumentException("Dividing two infinite values yields an undefined result.")
             }
             rawMillijoules.isInfinite() -> Power(rawMillijoules)
-            duration.isInfinite() -> Power(0L.noOverflow)
+            duration.isInfinite() -> Power(0L.saturated)
             durationPreciseToNanosecond && femtojoules.isFinite() -> {
                 (femtojoules / duration.inWholeNanoseconds).microwatts
             }
@@ -339,5 +339,5 @@ public fun Int.toEnergy(unit: EnergyUnit): Energy {
 }
 
 public fun Long.toEnergy(unit: EnergyUnit): Energy {
-    return Energy(this.noOverflow * unit.millijouleScale)
+    return Energy(this.saturated * unit.millijouleScale)
 }
