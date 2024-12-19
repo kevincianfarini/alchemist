@@ -98,4 +98,40 @@ class DistanceTest {
     fun to_double_converts_miles_to_km_correctly() {
         assertEquals(1.609344, 1.miles.toDouble(DistanceUnit.International.Kilometer))
     }
+
+    @Test
+    fun distance_mul_distance_maximum_nanometers_component_is_lost_to_precision() {
+        // 0.998001998 millimeters², but we lose precision.
+        val nanos = 999_999.nanometers
+        assertEquals(0.mm2, nanos * nanos)
+    }
+
+    @Test
+    fun distance_mul_distance_gigameters_is_infinite() {
+        assertEquals(Area.POSITIVE_INFINITY, 1.gigameters * 1.gigameters)
+        assertEquals(Area.NEGATIVE_INFINITY, 1.gigameters * (-1).gigameters)
+        assertEquals(Area.POSITIVE_INFINITY, (-1).gigameters * (-1).gigameters)
+        assertEquals(Area.NEGATIVE_INFINITY, (-1).gigameters * 1.gigameters)
+    }
+
+    @Test
+    fun distance_mul_distance_megameter_overflow() {
+        assertEquals(Area.POSITIVE_INFINITY, 100.megameters * 10.megameters)
+    }
+
+    @Test
+    fun distance_mul_distance_megameter_no_overflow() {
+        assertEquals(
+            expected = 8_000_000_000_000_000_000L.mm2,
+            actual = 4.megameters * 2.megameters
+        )
+    }
+
+    @Test
+    fun distance_squared_is_correct() {
+        assertEquals(
+            expected = 1_000_000.mm2,
+            actual = 1.meters.squared(),
+        )
+    }
 }

@@ -6,7 +6,7 @@ import kotlin.jvm.JvmInline
  * Represents a measure of area and is capable of storing ±9.22 million kilometers² at millimeter² precision.
  */
 @JvmInline
-public value class Area internal constructor(private val rawMillimetersSquared: Long) {
+public value class Area internal constructor(private val rawMillimetersSquared: SaturatingLong) {
 
     /**
      * Returns the resulting distance after dividing this area by the specified [distance].
@@ -54,6 +54,10 @@ public value class Area internal constructor(private val rawMillimetersSquared: 
     public operator fun times(scale: Long): Area = TODO()
 
     public companion object {
-
+        public val POSITIVE_INFINITY: Area = Area(SaturatingLong.POSITIVE_INFINITY)
+        public val NEGATIVE_INFINITY: Area = Area(SaturatingLong.NEGATIVE_INFINITY)
     }
 }
+
+internal val Long.mm2: Area get() = Area(saturated)
+internal val Int.mm2: Area get() = Area(toLong().saturated)

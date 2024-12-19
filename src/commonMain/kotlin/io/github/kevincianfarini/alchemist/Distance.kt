@@ -53,7 +53,30 @@ public value class Distance internal constructor(private val rawNanometers: Satu
      * Returns the resulting [Area] after multiplying this distance by the [other] distance value.
      */
     public operator fun times(other: Distance): Area {
-        TODO()
+        // Omit micrometer and nanometer components for now. The maximum value these components could ever produce is
+        // 998,001,998,001 nanometers², and therefore micrometers and nanometers are always lost to precision rounding
+        // when converting to millimeters². In the future we may choose more precise measures of Area and this might
+        // be revisited.
+        return toSaturatedInternationalComponents { giga, mega, kilo, meters, centi, milli, _, _ ->
+            other.toSaturatedInternationalComponents { otherGiga, otherMega, otherKilo, otherMeters, otherCenti, otherMilli, _, _ ->
+                val gigaSquared = giga * otherGiga
+                val megaSquared = mega * otherMega
+                val kiloSquared = kilo * otherKilo
+                val metersSquared = meters * otherMeters
+                val centiSquared = centi * otherCenti
+                val millisSquared = milli * otherMilli
+                if (gigaSquared != 0L.saturated) {
+                    // We can't represent gigameter² at millimeter² precision.
+                    Area(SaturatingLong.POSITIVE_INFINITY * gigaSquared.sign)
+                } else {
+                    val megaMillis = megaSquared * 1_000_000_000_000_000_000
+                    val kiloMillis = kiloSquared * 1_000_000_000_000
+                    val meterMillis = metersSquared * 1_000_000
+                    val centiMillis = centiSquared * 100
+                    Area(megaMillis + kiloMillis + meterMillis + centiMillis + millisSquared)
+                }
+            }
+        }
     }
 
     /**
@@ -80,20 +103,24 @@ public value class Distance internal constructor(private val rawNanometers: Satu
         return Distance(rawNanometers * scale)
     }
 
+    /**
+     * Returns the value of this distance expressed as a [Double] number of the specified [unit]. Infinite values are
+     * converted to either [Double.POSITIVE_INFINITY] or [Double.NEGATIVE_INFINITY] depending on its sign.
+     */
     public fun toDouble(unit: DistanceUnit): Double {
         return this / unit.nanometerScale.nanometers
     }
 
-    public fun <T> toInternationalComponents(
+    private fun <T> toSaturatedInternationalComponents(
         action: (
-            gigameters: Long,
-            megameters: Long,
-            kilometers: Long,
-            meters: Long,
-            centimeters: Long,
-            millimeters: Long,
-            micrometers: Long,
-            nanometers: Long,
+            gigameters: SaturatingLong,
+            megameters: SaturatingLong,
+            kilometers: SaturatingLong,
+            meters: SaturatingLong,
+            centimeters: SaturatingLong,
+            millimeters: SaturatingLong,
+            micrometers: SaturatingLong,
+            nanometers: SaturatingLong,
         ) -> T,
     ): T {
         val giga = rawNanometers / DistanceUnit.International.Gigameter.nanometerScale
@@ -110,7 +137,22 @@ public value class Distance internal constructor(private val rawNanometers: Satu
         val milliRemainder = centiRemainder % DistanceUnit.International.Millimeter.nanometerScale
         val micro = milliRemainder / DistanceUnit.International.Micrometer.nanometerScale
         val nano = milliRemainder % DistanceUnit.International.Micrometer.nanometerScale
-        return action(
+        return action(giga, mega, kilo, meters, centi, milli, micro, nano)
+    }
+
+    public fun <T> toInternationalComponents(
+        action: (
+            gigameters: Long,
+            megameters: Long,
+            kilometers: Long,
+            meters: Long,
+            centimeters: Long,
+            millimeters: Long,
+            micrometers: Long,
+            nanometers: Long,
+        ) -> T,
+    ): T = toSaturatedInternationalComponents { giga, mega, kilo, meters, centi, milli, micro, nano ->
+        action(
             giga.rawValue,
             mega.rawValue,
             kilo.rawValue,
