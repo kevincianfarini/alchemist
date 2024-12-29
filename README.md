@@ -49,6 +49,7 @@ val volume: Volume = length * length * length
 | linuxX64             | ✅            |
 | macosArm64           | ✅            |
 | macosX64             | ✅            |
+| mingwX64             | ✅            |
 | tvosArm64            | ❌            |
 | tvosSimulatorArm64   | ✅            |
 | tvosX64              | ✅            |
