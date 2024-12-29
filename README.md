@@ -40,7 +40,7 @@ val volume: Volume = length * length * length
 | androidNativeArm64   | ❌            |
 | androidNativeX64     | ❌            |
 | androidNativeX86     | ❌            |
-| iosArm64             | ✅            |
+| iosArm64             | ❌            |
 | iosSimulatorArm64    | ✅            |
 | iosX64               | ✅            |
 | js                   | ✅            |
@@ -49,13 +49,13 @@ val volume: Volume = length * length * length
 | linuxX64             | ✅            |
 | macosArm64           | ✅            |
 | macosX64             | ✅            |
-| tvosArm64            | ✅            |
+| tvosArm64            | ❌            |
 | tvosSimulatorArm64   | ✅            |
 | tvosX64              | ✅            |
 | wasmJs               | ✅            |
 | wasmWasi             | ❌            |
-| watchosArm32         | ✅            |
-| watchosArm64         | ✅            |
-| watchosDeviceArm64   | ✅            |
+| watchosArm32         | ❌            |
+| watchosArm64         | ❌            |
+| watchosDeviceArm64   | ❌            |
 | watchosSimuatorArm64 | ✅            |
 | watchosX64           | ✅            |

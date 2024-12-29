@@ -16,11 +16,11 @@ jobs:
         os: [macOS-latest, windows-latest, ubuntu-latest]
         include:
           - os: macOS-latest
-            job: iosArm64 iosSimulatorArm64 iosX64Test macosArm64Test macosX64Test tvosSimulatorArm64Test tvosX64Test watchosSimulatorArm64Test watchosX64Test
+            job: iosSimulatorArm64 iosX64Test macosArm64Test macosX64Test tvosSimulatorArm64Test tvosX64Test watchosSimulatorArm64Test watchosX64Test
           - os: windows-latest
             job: mingwX64Test
           - os: ubuntu-latest
-            job: jsTest jvmTest linuxX64Test
+            job: jsTest jvmTest linuxX64Test wasmJsTest
 
     runs-on: ${{matrix.os}}
     steps:
