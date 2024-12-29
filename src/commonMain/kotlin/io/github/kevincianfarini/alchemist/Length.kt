@@ -309,9 +309,12 @@ public value class Length internal constructor(internal val rawNanometers: Satur
     /**
      * Returns a fractional string representation of this length expressed in the specified [unit].
      */
-    public fun toString(unit: LengthUnit): String = when (rawNanometers.isInfinite()) {
+    public fun toString(unit: LengthUnit, decimals: Int = 0): String = when (rawNanometers.isInfinite()) {
         true -> rawNanometers.toString()
-        false -> "${toDouble(unit)}${unit.symbol}"
+        false -> buildString {
+            append(toDouble(unit).toDecimalString(decimals))
+            append(unit.symbol)
+        }
     }
 
     /**
@@ -321,7 +324,7 @@ public value class Length internal constructor(internal val rawNanometers: Satur
         val largestUnit = LengthUnit.International.entries.asReversed().firstOrNull { unit ->
             rawNanometers.absoluteValue / unit.nanometerScale > 0
         }
-        return toString(largestUnit ?: LengthUnit.International.Nanometer)
+        return toString(largestUnit ?: LengthUnit.International.Nanometer, decimals = 2)
     }
 
     // endregion

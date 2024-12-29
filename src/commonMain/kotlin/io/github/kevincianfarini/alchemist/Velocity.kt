@@ -93,10 +93,20 @@ public value class Velocity internal constructor(
      * Returns a fractional string representation of this velocity expressed in the specified [lengthUnit] per
      * [durationUnit].
      */
-    public fun toString(lengthUnit: LengthUnit, durationUnit: DurationUnit = DurationUnit.SECONDS): String {
+    public fun toString(
+        lengthUnit: LengthUnit,
+        durationUnit: DurationUnit = DurationUnit.SECONDS,
+        decimals: Int = 0,
+    ): String {
         return when (isInfinite()) {
             true -> rawNanometersPerSecond.toString()
-            false -> "${toDouble(lengthUnit, durationUnit)}$nbsp${lengthUnit.symbol}/${durationUnit.shortName}"
+            false -> buildString {
+                append(toDouble(lengthUnit, durationUnit).toDecimalString(decimals))
+                append(nbsp)
+                append(lengthUnit.symbol)
+                append("/")
+                append(durationUnit.shortName)
+            }
         }
     }
 
@@ -104,7 +114,7 @@ public value class Velocity internal constructor(
         val lengthUnit = LengthUnit.International.entries.asReversed().firstOrNull { unit ->
             rawNanometersPerSecond.absoluteValue / unit.nanometerScale > 0
         }
-        return toString(lengthUnit ?: LengthUnit.International.Nanometer, DurationUnit.SECONDS)
+        return toString(lengthUnit ?: LengthUnit.International.Nanometer, DurationUnit.SECONDS, decimals = 2)
     }
 
     // endregion

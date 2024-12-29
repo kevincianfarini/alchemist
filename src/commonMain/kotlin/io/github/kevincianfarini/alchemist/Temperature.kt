@@ -53,12 +53,15 @@ public value class Temperature internal constructor(private val rawNanokelvin: S
 
     // region Temperature to Scalar Conversions
 
-    public fun toString(unit: TemperatureUnit): String {
-        return "${unit.convertNanokelvinsToThis(rawNanokelvin)}${unit.symbol}"
+    public fun toString(unit: TemperatureUnit, decimals: Int = 0): String {
+        return buildString {
+            append(unit.convertNanokelvinsToThis(rawNanokelvin).toDecimalString(decimals))
+            append(unit.symbol)
+        }
     }
 
     public override fun toString(): String {
-        return toString(toStringUnit())
+        return toString(toStringUnit(), decimals = 2)
     }
 
     private fun toStringUnit(): TemperatureUnit {

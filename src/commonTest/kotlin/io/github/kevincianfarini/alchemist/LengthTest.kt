@@ -88,7 +88,7 @@ class LengthTest {
     fun default_to_string_renders_into_metric_components() {
         val length = 10_000.meters
         assertEquals(
-            expected = "10.0km",
+            expected = "10.00km",
             actual = length.toString(),
         )
     }

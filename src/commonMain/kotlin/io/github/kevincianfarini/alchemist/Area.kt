@@ -110,16 +110,19 @@ public value class Area internal constructor(private val rawMillimetersSquared: 
         return action(mega.rawValue, kilo.rawValue, meters.rawValue, centi.rawValue, milli.rawValue)
     }
 
-    public fun toString(unit: AreaUnit): String = when (rawMillimetersSquared.isInfinite()) {
+    public fun toString(unit: AreaUnit, decimals: Int = 0): String = when (rawMillimetersSquared.isInfinite()) {
         true -> rawMillimetersSquared.toString()
-        false -> "${toDouble(unit)}${unit.symbol}"
+        false -> buildString {
+            append(toDouble(unit).toDecimalString(decimals))
+            append(unit.symbol)
+        }
     }
 
     public override fun toString(): String {
         val largestUnit = AreaUnit.International.entries.asReversed().firstOrNull { unit ->
             rawMillimetersSquared.absoluteValue / unit.millimetersSquaredScale > 0
         }
-        return toString(largestUnit ?: AreaUnit.International.MillimeterSquared)
+        return toString(largestUnit ?: AreaUnit.International.MillimeterSquared, decimals = 2)
     }
 
     // endregion

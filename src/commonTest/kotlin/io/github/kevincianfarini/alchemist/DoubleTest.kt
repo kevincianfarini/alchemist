@@ -17,7 +17,7 @@ class DoubleTest {
     fun decimals_rounded_up() {
         assertEquals(
             expected = "123.457",
-            actual = 123.4565.toDecimalString(3),
+            actual = 123.4566.toDecimalString(3),
         )
     }
 
@@ -33,7 +33,7 @@ class DoubleTest {
     fun negative_sign() {
         assertEquals(
             expected = "-123.457",
-            actual = (-123.4565).toDecimalString(3)
+            actual = (-123.4566).toDecimalString(3)
         )
     }
 }

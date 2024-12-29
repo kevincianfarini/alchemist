@@ -85,10 +85,16 @@ public value class Acceleration internal constructor(
      * Returns a fractional string representation of this acceleration expressed in the specified [lengthUnit] per
      * [durationUnit]².
      */
-    public fun toString(lengthUnit: LengthUnit, durationUnit: DurationUnit): String {
+    public fun toString(lengthUnit: LengthUnit, durationUnit: DurationUnit, decimals: Int = 0): String {
         return when (isInfinite()) {
             true -> rawNanometersPerSecondSquared.toString()
-            false -> "${toDouble(lengthUnit, durationUnit)}$nbsp${lengthUnit.symbol}/${durationUnit.shortNameSquared}"
+            false -> buildString {
+                append(toDouble(lengthUnit, durationUnit).toDecimalString(decimals))
+                append(nbsp)
+                append(lengthUnit.symbol)
+                append("/")
+                append(durationUnit.shortNameSquared)
+            }
         }
     }
 
@@ -96,7 +102,7 @@ public value class Acceleration internal constructor(
         val lengthUnit = LengthUnit.International.entries.asReversed().firstOrNull { unit ->
             rawNanometersPerSecondSquared.absoluteValue / unit.nanometerScale > 0
         }
-        return toString(lengthUnit ?: LengthUnit.International.Nanometer, DurationUnit.SECONDS)
+        return toString(lengthUnit ?: LengthUnit.International.Nanometer, DurationUnit.SECONDS, decimals = 2)
     }
 
     // endregion

@@ -28,6 +28,7 @@ class VelocityTest {
             actual = (1.meters / 1.seconds).toString(
                 lengthUnit = LengthUnit.International.Kilometer,
                 durationUnit = DurationUnit.HOURS,
+                decimals = 1,
             )
         )
     }
@@ -35,7 +36,7 @@ class VelocityTest {
     @Test
     fun default_to_string_simple_works() {
         assertEquals(
-            expected = "1.0${nbsp}m/s",
+            expected = "1.00${nbsp}m/s",
             actual = (1.meters / 1.seconds).toString()
         )
     }

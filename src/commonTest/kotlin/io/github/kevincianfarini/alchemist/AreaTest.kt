@@ -150,15 +150,15 @@ class AreaTest {
 
     @Test
     fun to_string_override_works() {
-        assertEquals("0.0mm²", 0.mm2.toString())
-        assertEquals("1.0mm²", 1.mm2.toString())
-        assertEquals("1.0cm²", 100.mm2.toString())
+        assertEquals("0.00mm²", 0.mm2.toString())
+        assertEquals("1.00mm²", 1.mm2.toString())
+        assertEquals("1.00cm²", 100.mm2.toString())
         assertEquals("1.01cm²", 101.mm2.toString())
-        assertEquals("1.0m²", 1_000_000.mm2.toString())
+        assertEquals("1.00m²", 1_000_000.mm2.toString())
         assertEquals("1.01m²", 1_010_000.mm2.toString())
-        assertEquals("1.0km²", 1_000_000_000_000.mm2.toString())
+        assertEquals("1.00km²", 1_000_000_000_000.mm2.toString())
         assertEquals("1.01km²", 1_010_000_000_000.mm2.toString())
-        assertEquals("1.0Mm²", 1_000_000_000_000_000_000.mm2.toString())
+        assertEquals("1.00Mm²", 1_000_000_000_000_000_000.mm2.toString())
         assertEquals("1.01Mm²", 1_010_000_000_000_000_000.mm2.toString())
         assertEquals("Infinity", Area.POSITIVE_INFINITY.toString())
         assertEquals("-Infinity", Area.NEGATIVE_INFINITY.toString())

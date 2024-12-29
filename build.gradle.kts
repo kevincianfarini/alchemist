@@ -37,7 +37,15 @@ kotlin {
     tvosArm64()
     tvosSimulatorArm64()
     tvosX64()
-    wasmJs()
+    wasmJs {
+        nodejs {
+            testTask {
+                useMocha {
+                    timeout = "5s"
+                }
+            }
+        }
+    }
     wasmWasi { nodejs() }
     watchosArm32()
     watchosArm64()

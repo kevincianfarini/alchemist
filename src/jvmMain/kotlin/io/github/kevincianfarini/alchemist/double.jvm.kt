@@ -7,6 +7,7 @@ internal actual fun Double.toDecimalString(decimals: Int): String {
     val format = DecimalFormat("0").apply {
         if (decimals > 0) {
             minimumFractionDigits = decimals
+            maximumFractionDigits = decimals
         }
         roundingMode = RoundingMode.HALF_UP
     }
