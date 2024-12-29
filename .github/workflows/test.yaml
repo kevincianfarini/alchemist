@@ -16,7 +16,7 @@ jobs:
         os: [macOS-latest, windows-latest, ubuntu-latest]
         include:
           - os: macOS-latest
-            job: iosSimulatorArm64 iosX64Test macosArm64Test macosX64Test tvosSimulatorArm64Test tvosX64Test watchosSimulatorArm64Test watchosX64Test
+            job: iosSimulatorArm64Test iosX64Test macosArm64Test macosX64Test tvosSimulatorArm64Test tvosX64Test watchosSimulatorArm64Test watchosX64Test
           - os: windows-latest
             job: mingwX64Test
           - os: ubuntu-latest
