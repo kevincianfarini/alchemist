@@ -31,3 +31,31 @@ val volume: Volume = length * length * length
 3. Providing as many formulaic conversions as possible out of the box, such as `energyₖ = ½ * mass * velocity²`.
 4. Infinitely precise values. 
 5. Infinitely large ranges of valid values. 
+
+## Platform Support 
+
+| Platform             | Tested in CI |
+|----------------------|--------------|
+| androidNativeArm32   | ❌            |
+| androidNativeArm64   | ❌            |
+| androidNativeX64     | ❌            |
+| androidNativeX86     | ❌            |
+| iosArm64             | ✅            |
+| iosSimulatorArm64    | ✅            |
+| iosX64               | ✅            |
+| js                   | ✅            |
+| jvm                  | ✅            |
+| linuxArm64           | ❌            |
+| linuxX64             | ✅            |
+| macosArm64           | ✅            |
+| macosX64             | ✅            |
+| tvosArm64            | ✅            |
+| tvosSimulatorArm64   | ✅            |
+| tvosX64              | ✅            |
+| wasmJs               | ✅            |
+| wasmWasi             | ❌            |
+| watchosArm32         | ✅            |
+| watchosArm64         | ✅            |
+| watchosDeviceArm64   | ✅            |
+| watchosSimuatorArm64 | ✅            |
+| watchosX64           | ✅            |

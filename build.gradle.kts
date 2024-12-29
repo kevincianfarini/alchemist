@@ -1,4 +1,5 @@
 import com.vanniktech.maven.publish.SonatypeHost
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.dokka)
@@ -6,13 +7,27 @@ plugins {
     alias(libs.plugins.publish)
 }
 
+@OptIn(ExperimentalWasmDsl::class)
 kotlin {
 
     explicitApi()
 
+    androidNativeArm32()
+    androidNativeArm64()
+    androidNativeX64()
+    androidNativeX86()
     iosArm64()
     iosSimulatorArm64()
     iosX64()
+    js {
+        nodejs {
+            testTask {
+                useMocha {
+                    timeout = "5s"
+                }
+            }
+        }
+    }
     jvm()
     linuxArm64()
     linuxX64()
@@ -22,6 +37,8 @@ kotlin {
     tvosArm64()
     tvosSimulatorArm64()
     tvosX64()
+    wasmJs()
+    wasmWasi { nodejs() }
     watchosArm32()
     watchosArm64()
     watchosDeviceArm64()
