@@ -101,7 +101,7 @@ public value class Area internal constructor(private val rawMillimetersSquared: 
      * Returns an area whose value is multiplied by the specified [scale].
      *
      * @throws IllegalArgumentException when this area is [infinite][isInfinite] and [scale] is 0, or when this
-     * acceleration is 0 and scale is [Long.MAX_VALUE] or [Long.MIN_VALUE].
+     * area is 0 and scale is [Long.MAX_VALUE] or [Long.MIN_VALUE].
      */
     public operator fun times(scale: Long): Area = Area(rawMillimetersSquared * scale)
 
@@ -166,8 +166,8 @@ public value class Area internal constructor(private val rawMillimetersSquared: 
     }
 
     /**
-     * Returns a fractional string representation of this area expressed in the specified [LengthUnit]² and is rounded
-     * to the specified [decimals].
+     * Returns a fractional string representation of this area expressed in the specified [LengthUnit.International]²
+     * and is rounded to the specified [decimals].
      */
     public fun toString(squareUnit: LengthUnit, decimals: Int = 0): String = when (isInfinite()) {
         true -> rawMillimetersSquared.toString()

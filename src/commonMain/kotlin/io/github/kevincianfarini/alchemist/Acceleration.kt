@@ -135,8 +135,8 @@ public value class Acceleration internal constructor(
     }
 
     /**
-     * Returns a fractional string representation of this acceleration expressed in the largest [LengthUnit]
-     * per second² quantity which is greater than or equal to 1.
+     * Returns a fractional string representation of this acceleration expressed in the largest
+     * [LengthUnit.International] per second² quantity which is greater than or equal to 1.
      */
     override fun toString(): String {
         val lengthUnit = LengthUnit.International.entries.asReversed().firstOrNull { unit ->
