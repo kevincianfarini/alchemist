@@ -10,6 +10,10 @@ import kotlin.text.Typography.nbsp
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 
+/**
+ * Represents a measure of acceleration and is capable of storing ±9.2 billion meters per second² at nanometer per
+ * second² precision.
+ */
 @JvmInline
 public value class Acceleration internal constructor(
     private val rawNanometersPerSecondSquared: SaturatingLong
@@ -18,12 +22,24 @@ public value class Acceleration internal constructor(
     // region SI Arithmetic
 
     /**
-     * Returns the resulting [Velocity] after applying this acceleration for [duration].
+     * Returns the resulting [Velocity] after multiplying this acceleration by the specified [duration].
+     *
+     * This operation attempts to retain precision, but for sufficiently large values of this acceleration or the
+     * specified [duration] some precision may be lost.
+     *
+     * @throws IllegalArgumentException if this acceleration is infinite and [duration] is zero, or if this acceleration
+     * is zero and [duration] is infinite.
      */
     public operator fun times(duration: Duration): Velocity = TODO()
 
     /**
-     * Returns the resulting [Force] after applying this acceleration to [mass].
+     * Returns the resulting [Force] after multiplying this acceleration by the specified [mass].
+     *
+     * This operation attempts to retain precision, but for sufficiently large values of this acceleration or the
+     * specified [mass] some precision may be lost.
+     *
+     * @throws IllegalArgumentException if this acceleration is infinite and [mass] is zero, or if this acceleration
+     * is zero and [mass] is infinite.
      */
     public operator fun times(mass: Mass): Force = TODO()
 
@@ -45,11 +61,17 @@ public value class Acceleration internal constructor(
 
     /**
      * Returns an acceleration whose value is this acceleration value divided by the specified [scale].
+     *
+     * @throws IllegalArgumentException when [scale] is equal to [Long.MAX_VALUE] or [Long.MIN_VALUE] and this
+     * acceleration is [infinite][isInfinite].
      */
     public operator fun div(scale: Long): Acceleration = Acceleration(rawNanometersPerSecondSquared / scale)
 
     /**
      * Returns an acceleration whose value is the difference between this and the [other] acceleration value.
+     *
+     * @throws IllegalArgumentException if this acceleration and the [other] acceleration are both
+     * [infinite][isInfinite] but have equivalent signs.
      */
     public operator fun minus(other: Acceleration): Acceleration {
         return Acceleration(rawNanometersPerSecondSquared - other.rawNanometersPerSecondSquared)
@@ -57,6 +79,9 @@ public value class Acceleration internal constructor(
 
     /**
      * Returns an acceleration whose value is the sum between this and the [other] acceleration value.
+     *
+     * @throws IllegalArgumentException if this acceleration and the [other] acceleration are both
+     * [infinite][isInfinite] but have differing signs.
      */
     public operator fun plus(other: Acceleration): Acceleration {
         return Acceleration(rawNanometersPerSecondSquared + other.rawNanometersPerSecondSquared)
@@ -64,11 +89,16 @@ public value class Acceleration internal constructor(
 
     /**
      * Returns an acceleration whose value is multiplied by the specified [scale].
+     *
+     * @throws IllegalArgumentException when this acceleration is [infinite][isInfinite] and [scale] is 0.
      */
     public operator fun times(scale: Int): Acceleration = times(scale.toLong())
 
     /**
      * Returns an acceleration whose value is multiplied by the specified [scale].
+     *
+     * @throws IllegalArgumentException when this acceleration is [infinite][isInfinite] and [scale] is 0, or when this
+     * acceleration is 0 and scale is [Long.MAX_VALUE] or [Long.MIN_VALUE].
      */
     public operator fun times(scale: Long): Acceleration = Acceleration(rawNanometersPerSecondSquared * scale)
 
@@ -103,6 +133,10 @@ public value class Acceleration internal constructor(
         }
     }
 
+    /**
+     * Returns a fractional string representation of this acceleration expressed in the largest [LengthUnit]
+     * per second² quantity which is greater than or equal to 1.
+     */
     override fun toString(): String {
         val lengthUnit = LengthUnit.International.entries.asReversed().firstOrNull { unit ->
             rawNanometersPerSecondSquared.absoluteValue / unit.nanometerScale > 0
@@ -124,6 +158,11 @@ public value class Acceleration internal constructor(
      */
     public fun isInfinite(): Boolean = rawNanometersPerSecondSquared.isInfinite()
 
+    /**
+     * Compares this acceleration with the [other] acceleration. Returns zero if this object is equal
+     * to the specified [other] acceleration, a negative number if it's less than [other], or a positive number
+     * if it's greater than [other].
+     */
     override fun compareTo(other: Acceleration): Int {
         return rawNanometersPerSecondSquared.compareTo(other.rawNanometersPerSecondSquared)
     }
