@@ -20,10 +20,8 @@ jobs:
           - os: windows-latest
             job: mingwX64Test
           - os: ubuntu-latest
-            arch: amd64
             job: jsTest jvmTest linuxX64Test wasmJsTest
-          - os: ubuntu-latest
-            arch: arm64
+          - os: ubuntu-latest-arm
             job: linuxArm64Test
 
     runs-on: ${{matrix.os}}
