@@ -94,16 +94,20 @@ public value class Mass internal constructor(private val rawMicrograms: Saturati
         return rawMicrograms.toDouble() / unit.microgramScale.toDouble()
     }
 
-    public fun toString(unit: MassUnit): String = when (isInfinite()) {
+    public fun toString(unit: MassUnit, decimals: Int = 0): String = when (isInfinite()) {
         true -> rawMicrograms.toString()
-        false -> "${toDouble(unit)}$nbsp${unit.symbol}"
+        false -> buildString {
+            append(toDouble(unit).toDecimalString(decimals))
+            append(nbsp)
+            append(unit.symbol)
+        }
     }
 
     override fun toString(): String {
         val largestUnit = MassUnit.International.entries.asReversed().firstOrNull { unit ->
             rawMicrograms.absoluteValue / unit.microgramScale > 0
         }
-        return toString(largestUnit ?: MassUnit.International.Microgram)
+        return toString(largestUnit ?: MassUnit.International.Microgram, decimals = 2)
     }
 
     // endregion

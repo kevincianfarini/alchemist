@@ -110,16 +110,19 @@ public value class Power internal constructor(private val rawMicrowatts: Saturat
         return this / unit.microwattScale.microwatts
     }
 
-    public fun toString(unit: PowerUnit): String = when (rawMicrowatts.isInfinite()) {
+    public fun toString(unit: PowerUnit, decimals: Int = 0): String = when (rawMicrowatts.isInfinite()) {
         true -> rawMicrowatts.toString()
-        false -> "${toDouble(unit)}${unit.symbol}"
+        false -> buildString {
+            append(toDouble(unit).toDecimalString(decimals))
+            append(unit.symbol)
+        }
     }
 
     override fun toString(): String {
         val largestUnit = PowerUnit.International.entries.asReversed().firstOrNull { unit ->
             rawMicrowatts.absoluteValue / unit.microwattScale > 0
         }
-        return toString(largestUnit ?: PowerUnit.International.Microwatt)
+        return toString(largestUnit ?: PowerUnit.International.Microwatt, decimals = 2)
     }
 
     // endregion

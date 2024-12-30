@@ -222,16 +222,19 @@ public value class Energy internal constructor(private val rawMillijoules: Satur
         )
     }
 
-    public fun toString(unit: EnergyUnit): String = when (rawMillijoules.isInfinite()) {
+    public fun toString(unit: EnergyUnit, decimals: Int = 0): String = when (rawMillijoules.isInfinite()) {
         true -> rawMillijoules.toString()
-        false -> "${toDouble(unit)}${unit.symbol}"
+        false -> buildString {
+            append(toDouble(unit).toDecimalString(decimals))
+            append(unit.symbol)
+        }
     }
 
     public override fun toString(): String {
         val largestUnit = EnergyUnit.International.entries.asReversed().firstOrNull { unit ->
             rawMillijoules.absoluteValue / unit.millijouleScale > 0
         }
-        return toString(largestUnit ?: EnergyUnit.International.Millijoule)
+        return toString(largestUnit ?: EnergyUnit.International.Millijoule, decimals = 2)
     }
 
     // endregion
