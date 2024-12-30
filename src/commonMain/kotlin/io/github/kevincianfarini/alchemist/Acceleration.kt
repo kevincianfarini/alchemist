@@ -11,8 +11,7 @@ import kotlin.time.Duration
 import kotlin.time.DurationUnit
 
 /**
- * Represents a measure of acceleration and is capable of storing ±9.2 billion meters per second² at nanometer per
- * second² precision.
+ * Represents a measure of acceleration and is capable of storing ±9.2 billion m/s² at nm/s² precision.
  */
 @JvmInline
 public value class Acceleration internal constructor(
@@ -49,6 +48,8 @@ public value class Acceleration internal constructor(
 
     /**
      * Returns the number that is the ratio of this and the [other] acceleration value.
+     *
+     * @throws IllegalArgumentException when both this and the [other] acceleration are [infinite][isInfinite].
      */
     public operator fun div(other: Acceleration): Double {
         return rawNanometersPerSecondSquared.toDouble() / other.rawNanometersPerSecondSquared.toDouble()
@@ -118,7 +119,7 @@ public value class Acceleration internal constructor(
 
     /**
      * Returns a fractional string representation of this acceleration expressed in the specified [lengthUnit] per
-     * [durationUnit]².
+     * [durationUnit]² and is rounded to the specified [decimals].
      */
     public fun toString(lengthUnit: LengthUnit, durationUnit: DurationUnit, decimals: Int = 0): String {
         return when (isInfinite()) {
@@ -159,7 +160,7 @@ public value class Acceleration internal constructor(
     public fun isInfinite(): Boolean = rawNanometersPerSecondSquared.isInfinite()
 
     /**
-     * Compares this acceleration with the [other] acceleration. Returns zero if this object is equal
+     * Compares this acceleration with the [other] acceleration. Returns zero if this acceleration is equal
      * to the specified [other] acceleration, a negative number if it's less than [other], or a positive number
      * if it's greater than [other].
      */
