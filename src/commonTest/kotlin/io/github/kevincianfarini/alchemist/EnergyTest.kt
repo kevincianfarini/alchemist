@@ -75,13 +75,13 @@ class EnergyTest {
     @Test
     fun to_decial_string_works() {
         val energy = 12_345.wattHours
-        assertEquals("12.345kWh", energy.toString(EnergyUnit.Electricity.KilowattHour))
+        assertEquals("12.345kWh", energy.toString(EnergyUnit.Electricity.KilowattHour, decimals = 3))
     }
 
     @Test
     fun to_string_picks_correct_energy_display_unit() {
-        val energy = 12_345.joules
-        assertEquals("12.345kJ", energy.toString())
+        val energy = 12_346.joules
+        assertEquals("12.35kJ", energy.toString())
     }
 
     @Test
