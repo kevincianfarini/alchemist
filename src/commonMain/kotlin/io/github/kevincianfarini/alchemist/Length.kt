@@ -144,6 +144,11 @@ public value class Length internal constructor(internal val rawNanometers: Satur
 
     /**
      * Returns the resulting [Area] after multiplying this length by the [other] length value.
+     *
+     * This operation attempts to retain precision, but for sufficiently large values of either this length or the
+     * [other] length, some precision may be lost.
+     *
+     * @throws IllegalArgumentException when this energy is [infinite][isInfinite] and [other] is 0 or vice versa.
      */
     public operator fun times(other: Length): Area {
         // Omit micrometer and nanometer components for now. The maximum value these components could ever produce is
@@ -174,11 +179,17 @@ public value class Length internal constructor(internal val rawNanometers: Satur
 
     /**
      * Returns an [Area] representing a square with two dimensions of this length.
+     *
+     * This operation attempts to retain precision, but for sufficiently large values of either this length some
+     * precision may be lost.
      */
     public fun squared(): Area = this * this
 
     /**
      * Returns a [Volume] representing a cube with three dimensions of this length.
+     *
+     * This operation attempts to retain precision, but for sufficiently large values of either this length some
+     * precision may be lost.
      */
     public fun cubed(): Volume = this * this * this
 
@@ -188,6 +199,8 @@ public value class Length internal constructor(internal val rawNanometers: Satur
 
     /**
      * Returns the number that is the ratio of this and the [other] length value.
+     *
+     * @throws IllegalArgumentException when both this and the [other] length are [infinite][isInfinite].
      */
     public operator fun div(other: Length): Double {
         return rawNanometers.toDouble() / other.rawNanometers.toDouble()
@@ -202,6 +215,9 @@ public value class Length internal constructor(internal val rawNanometers: Satur
 
     /**
      * Returns a length whose value is this length value divided by the specified [scale].
+     *
+     * @throws IllegalArgumentException when [scale] is equal to [Long.MAX_VALUE] or [Long.MIN_VALUE] and this
+     * length is [infinite][isInfinite].
      */
     public operator fun div(scale: Long): Length {
         return Length(rawNanometers / scale)
@@ -209,6 +225,9 @@ public value class Length internal constructor(internal val rawNanometers: Satur
 
     /**
      * Returns a length whose value is the difference between this and the [other] length value.
+     *
+     * @throws IllegalArgumentException if this length and the [other] length are both
+     * [infinite][isInfinite] but have equivalent signs.
      */
     public operator fun minus(other: Length): Length {
         return Length(rawNanometers - other.rawNanometers)
@@ -216,6 +235,9 @@ public value class Length internal constructor(internal val rawNanometers: Satur
 
     /**
      * Returns a length whose value is the sum between this and the [other] length value.
+     *
+     * @throws IllegalArgumentException if this length and the [other] length are both
+     * [infinite][isInfinite] but have differing signs.
      */
     public operator fun plus(other: Length): Length {
         return Length(rawNanometers + other.rawNanometers)
@@ -223,6 +245,8 @@ public value class Length internal constructor(internal val rawNanometers: Satur
 
     /**
      * Returns a length whose value is multiplied by the specified [scale].
+     *
+     * @throws IllegalArgumentException when this length is [infinite][isInfinite] and [scale] is 0.
      */
     public operator fun times(scale: Int): Length {
         return times(scale.toLong())
@@ -230,6 +254,9 @@ public value class Length internal constructor(internal val rawNanometers: Satur
 
     /**
      * Returns a length whose value is multiplied by the specified [scale].
+     *
+     * @throws IllegalArgumentException when this length is [infinite][isInfinite] and [scale] is 0, or when this
+     * length is 0 and scale is [Long.MAX_VALUE] or [Long.MIN_VALUE].
      */
     public operator fun times(scale: Long): Length {
         return Length(rawNanometers * scale)
@@ -238,14 +265,6 @@ public value class Length internal constructor(internal val rawNanometers: Satur
     // endregion
 
     // region Length to Scalar Conversions
-
-    /**
-     * Returns the value of this length expressed as a [Double] number of the specified [unit]. Infinite values are
-     * converted to either [Double.POSITIVE_INFINITY] or [Double.NEGATIVE_INFINITY] depending on its sign.
-     */
-    public fun toDouble(unit: LengthUnit): Double {
-        return this / unit.nanometerScale.nanometers
-    }
 
     private fun <T> toSaturatedInternationalComponents(
         action: (
@@ -276,6 +295,14 @@ public value class Length internal constructor(internal val rawNanometers: Satur
         return action(giga, mega, kilo, meters, centi, milli, micro, nano)
     }
 
+    /**
+     * Splits this length into gigameters, megameters, kilometers, meters, centimeters, millimeters, micrometers, and
+     * nanometers and executes the [action] with those components. The result of [action] is returned as the result of
+     * this function.
+     *
+     * Infinite length values invoke [action] with [Long.MAX_VALUE] or [Long.MIN_VALUE] for every component, depending
+     * on the infinite value's sign.
+     */
     public fun <T> toInternationalComponents(
         action: (
             gigameters: Long,
@@ -300,6 +327,13 @@ public value class Length internal constructor(internal val rawNanometers: Satur
         )
     }
 
+    /**
+     * Splits this length into miles, yards, feet, and inches and executes the [action] with those components. The
+     * result of [action] is returned as the result of this function.
+     *
+     * Infinite length values invoke [action] with [Long.MAX_VALUE], [Long.MIN_VALUE], [Double.POSITIVE_INFINITY], or
+     * [Double.NEGATIVE_INFINITY] for every component, depending on the infinite value's sign and the component's type.
+     */
     public fun <T> toUnitedStatesCustomaryComponents(
         action: (miles: Long, yards: Long, feet: Long, inches: Double) -> T,
     ): T {
@@ -314,7 +348,16 @@ public value class Length internal constructor(internal val rawNanometers: Satur
     }
 
     /**
-     * Returns a fractional string representation of this length expressed in the specified [unit].
+     * Returns the value of this length expressed as a [Double] number of the specified [unit]. Infinite values are
+     * converted to either [Double.POSITIVE_INFINITY] or [Double.NEGATIVE_INFINITY] depending on its sign.
+     */
+    public fun toDouble(unit: LengthUnit): Double {
+        return this / unit.nanometerScale.nanometers
+    }
+
+    /**
+     * Returns a fractional string representation of this length expressed in the specified [unit] and is rounded
+     * to the specified [decimals].
      */
     public fun toString(unit: LengthUnit, decimals: Int = 0): String = when (rawNanometers.isInfinite()) {
         true -> rawNanometers.toString()
@@ -325,7 +368,8 @@ public value class Length internal constructor(internal val rawNanometers: Satur
     }
 
     /**
-     * Returns a string representation of this length expressed in its [metric][LengthUnit.International] components.
+     * Returns a fractional string representation of this energy expressed in the largest [LengthUnit.International]
+     * quantity which is greater than or equal to 1.
      */
     public override fun toString(): String {
         val largestUnit = LengthUnit.International.entries.asReversed().firstOrNull { unit ->
@@ -338,13 +382,24 @@ public value class Length internal constructor(internal val rawNanometers: Satur
 
     // region Comparisons
 
+    /**
+     * Returns true if this area value is infinite.
+     */
+    public fun isInfinite(): Boolean = rawNanometers.isInfinite()
+
+    /**
+     * Returns true if this area value is finite.
+     */
+    public fun isFinite(): Boolean = rawNanometers.isFinite()
+
+    /**
+     * Compares this length with the [other] length. Returns zero if this length is equal
+     * to the specified [other] length, a negative number if it's less than [other], or a positive number
+     * if it's greater than [other].
+     */
     public override fun compareTo(other: Length): Int {
         return rawNanometers.compareTo(other.rawNanometers)
     }
-
-    public fun isInfinite(): Boolean = rawNanometers.isInfinite()
-
-    public fun isFinite(): Boolean = rawNanometers.isFinite()
 
     // endregion
 }
@@ -375,6 +430,8 @@ public inline val Long.micrometers: Length get() = toLength(LengthUnit.Internati
 
 /**
  * Returns a [Length] equal to [Double] number of micrometers. Depending on its magnitude, some precision may be lost.
+ *
+ * @throws IllegalArgumentException is this [Double] is [Double.NaN].
  */
 public inline val Double.micrometers: Length get() = toLength(LengthUnit.International.Micrometer)
 
@@ -390,6 +447,8 @@ public inline val Long.millimeters: Length get() = toLength(LengthUnit.Internati
 
 /**
  * Returns a [Length] equal to [Double] number of millimeters. Depending on its magnitude, some precision may be lost.
+ *
+ * @throws IllegalArgumentException is this [Double] is [Double.NaN].
  */
 public inline val Double.millimeters: Length get() = toLength(LengthUnit.International.Millimeter)
 
@@ -420,6 +479,8 @@ public inline val Long.meters: Length get() = toLength(LengthUnit.International.
 
 /**
  * Returns a [Length] equal to [Double] number of meters. Depending on its magnitude, some precision may be lost.
+ *
+ * @throws IllegalArgumentException is this [Double] is [Double.NaN].
  */
 public inline val Double.meters: Length get() = toLength(LengthUnit.International.Meter)
 
@@ -435,6 +496,8 @@ public inline val Long.kilometers: Length get() = toLength(LengthUnit.Internatio
 
 /**
  * Returns a [Length] equal to [Double] number of kilometers. Depending on its magnitude, some precision may be lost.
+ *
+ * @throws IllegalArgumentException is this [Double] is [Double.NaN].
  */
 public inline val Double.kilometers: Length get() = toLength(LengthUnit.International.Kilometer)
 
@@ -450,6 +513,8 @@ public inline val Long.megameters: Length get() = toLength(LengthUnit.Internatio
 
 /**
  * Returns a [Length] equal to [Double] number of megameters. Depending on its magnitude, some precision may be lost.
+ *
+ * @throws IllegalArgumentException is this [Double] is [Double.NaN].
  */
 public inline val Double.megameters: Length get() = toLength(LengthUnit.International.Megameter)
 
@@ -465,6 +530,8 @@ public inline val Long.gigameters: Length get() = toLength(LengthUnit.Internatio
 
 /**
  * Returns a [Length] equal to [Double] number of gigameters. Depending on its magnitude, some precision may be lost.
+ *
+ * @throws IllegalArgumentException is this [Double] is [Double.NaN].
  */
 public inline val Double.gigameters: Length get() = toLength(LengthUnit.International.Gigameter)
 
@@ -480,6 +547,8 @@ public inline val Long.inches: Length get() = toLength(LengthUnit.UnitedStatesCu
 
 /**
  * Returns a [Length] equal to [Double] number of inches. Depending on its magnitude, some precision may be lost.
+ *
+ * @throws IllegalArgumentException is this [Double] is [Double.NaN].
  */
 public inline val Double.inches: Length get() = toLength(LengthUnit.UnitedStatesCustomary.Inch)
 
@@ -495,6 +564,8 @@ public inline val Long.feet: Length get() = toLength(LengthUnit.UnitedStatesCust
 
 /**
  * Returns a [Length] equal to [Double] number of feet. Depending on its magnitude, some precision may be lost.
+ *
+ * @throws IllegalArgumentException is this [Double] is [Double.NaN].
  */
 public inline val Double.feet: Length get() = toLength(LengthUnit.UnitedStatesCustomary.Foot)
 
@@ -510,6 +581,8 @@ public inline val Long.yards: Length get() = toLength(LengthUnit.UnitedStatesCus
 
 /**
  * Returns a [Length] equal to [Double] number of yards. Depending on its magnitude, some precision may be lost.
+ *
+ * @throws IllegalArgumentException is this [Double] is [Double.NaN].
  */
 public inline val Double.yards: Length get() = toLength(LengthUnit.UnitedStatesCustomary.Yard)
 
@@ -525,17 +598,31 @@ public inline val Long.miles: Length get() = toLength(LengthUnit.UnitedStatesCus
 
 /**
  * Returns a [Length] equal to [Double] number of miles. Depending on its magnitude, some precision may be lost.
+ *
+ * @throws IllegalArgumentException is this [Double] is [Double.NaN].
  */
 public inline val Double.miles: Length get() = toLength(LengthUnit.UnitedStatesCustomary.Mile)
 
+/**
+ * Returns a [Length] equal to [Int] number of the specified [unit].
+ */
 public fun Int.toLength(unit: LengthUnit): Length {
     return toLong().toLength(unit)
 }
 
+/**
+ * Returns a [Length] equal to [Long] number of the specified [unit].
+ */
 public fun Long.toLength(unit: LengthUnit): Length {
     return Length(this.saturated * unit.nanometerScale)
 }
 
+/**
+ * Returns a [Length] equal to [Double] number of the specified [unit]. Depending on its magnitude, some precision may
+ * be lost.
+ *
+ * @throws IllegalArgumentException is this [Double] is [Double.NaN].
+ */
 public fun Double.toLength(unit: LengthUnit): Length {
     val valueInNanometers = this * unit.nanometerScale
     require(!valueInNanometers.isNaN()) { "Length value cannot be NaN." }
