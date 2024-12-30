@@ -35,6 +35,7 @@ $dokka.location:io.github.kevincianfarini.alchemist//gigajoules/kotlin.Double#/P
 $dokka.location:io.github.kevincianfarini.alchemist//gigajoules/kotlin.Int#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/gigajoules.html
 $dokka.location:io.github.kevincianfarini.alchemist//gigajoules/kotlin.Long#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/gigajoules.html
 $dokka.location:io.github.kevincianfarini.alchemist//gigakelvins/kotlin.Double#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/gigakelvins.html
+$dokka.location:io.github.kevincianfarini.alchemist//gigakelvins/kotlin.Int#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/gigakelvins.html
 $dokka.location:io.github.kevincianfarini.alchemist//gigakelvins/kotlin.Long#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/gigakelvins.html
 $dokka.location:io.github.kevincianfarini.alchemist//gigaliters/kotlin.Double#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/gigaliters.html
 $dokka.location:io.github.kevincianfarini.alchemist//gigaliters/kotlin.Int#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/gigaliters.html
@@ -51,7 +52,6 @@ $dokka.location:io.github.kevincianfarini.alchemist//gigawattHours/kotlin.Long#/
 $dokka.location:io.github.kevincianfarini.alchemist//gigawatts/kotlin.Double#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/gigawatts.html
 $dokka.location:io.github.kevincianfarini.alchemist//gigawatts/kotlin.Int#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/gigawatts.html
 $dokka.location:io.github.kevincianfarini.alchemist//gigawatts/kotlin.Long#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/gigawatts.html
-$dokka.location:io.github.kevincianfarini.alchemist//gigskelvins/kotlin.Int#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/gigskelvins.html
 $dokka.location:io.github.kevincianfarini.alchemist//grams/kotlin.Double#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/grams.html
 $dokka.location:io.github.kevincianfarini.alchemist//grams/kotlin.Int#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/grams.html
 $dokka.location:io.github.kevincianfarini.alchemist//grams/kotlin.Long#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/grams.html
