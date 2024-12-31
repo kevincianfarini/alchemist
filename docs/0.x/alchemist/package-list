@@ -192,6 +192,9 @@ $dokka.location:io.github.kevincianfarini.alchemist//terawatts/kotlin.Long#/Poin
 $dokka.location:io.github.kevincianfarini.alchemist//tetrajoules/kotlin.Double#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/tetrajoules.html
 $dokka.location:io.github.kevincianfarini.alchemist//tetrajoules/kotlin.Int#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/tetrajoules.html
 $dokka.location:io.github.kevincianfarini.alchemist//tetrajoules/kotlin.Long#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/tetrajoules.html
+$dokka.location:io.github.kevincianfarini.alchemist//times/kotlin.time.Duration#io.github.kevincianfarini.alchemist.Acceleration/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/times.html
+$dokka.location:io.github.kevincianfarini.alchemist//times/kotlin.time.Duration#io.github.kevincianfarini.alchemist.Power/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/times.html
+$dokka.location:io.github.kevincianfarini.alchemist//times/kotlin.time.Duration#io.github.kevincianfarini.alchemist.Velocity/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/times.html
 $dokka.location:io.github.kevincianfarini.alchemist//toArea/kotlin.Double#io.github.kevincianfarini.alchemist.AreaUnit/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/to-area.html
 $dokka.location:io.github.kevincianfarini.alchemist//toArea/kotlin.Int#io.github.kevincianfarini.alchemist.AreaUnit/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/to-area.html
 $dokka.location:io.github.kevincianfarini.alchemist//toArea/kotlin.Long#io.github.kevincianfarini.alchemist.AreaUnit/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist/to-area.html
