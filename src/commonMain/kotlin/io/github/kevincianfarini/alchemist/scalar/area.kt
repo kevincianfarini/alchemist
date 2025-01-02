@@ -40,7 +40,7 @@ public inline val Long.centiares: Area get() = toArea(AreaUnit.Metric.Centiare)
  *
  * @throws IllegalArgumentException is this [Double] is [Double.NaN].
  */
-public inline val Double.centiarea: Area get() = toArea(AreaUnit.Metric.Centiare)
+public inline val Double.centiares: Area get() = toArea(AreaUnit.Metric.Centiare)
 
 /**
  * Returns an [Area] equal to [Int] number of deciares.
