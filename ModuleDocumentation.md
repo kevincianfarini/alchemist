@@ -4,6 +4,20 @@ Alchemist allows you to manage physical quanities defined in the [International 
 Like [kotlin.time.Duration](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/), alchemist models its 
 quanities as a value class with a single underlying `Long` value. 
 
+### Type Safety
+
+Alchemist's main goal is to provide type safety for arithmetic on physical quanities. There's no need to pass loosely 
+typed `Long`, `Int`, or `Double` values around anymore! 
+
+```kt
+val energy1 = 10.wattHours
+val energy2 = 10.millijoules
+println(energy1 + energy2) // OK: both are type Energy.
+
+val power = 10.watts
+println(energy1 + power) // Compiler Error! 
+```
+
 ### Scalar Arithmetic 
 
 Physical quantities expose scalar arithmetic like the following:
