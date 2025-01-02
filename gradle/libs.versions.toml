@@ -2,7 +2,7 @@
 dokka = "2.0.0"
 kmpmt = "0.1.1"
 kotlin = "2.1.0"
-publish = "0.29.0"
+publish = "0.30.0"
 
 [libraries]
 kotlin-test-core = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
