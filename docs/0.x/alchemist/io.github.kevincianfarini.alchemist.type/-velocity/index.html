@@ -26,198 +26,256 @@
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
 <link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
 <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
 <script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
     <div class="root">
-<nav class="navigation" id="navigation-wrapper">
-    <div class="navigation--inner">
-        <div class="navigation-title">
-            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
-            <div class="library-name">
-                    <a class="library-name--link" href="../../../index.html">
-                            alchemist
-                    </a>
-            </div>
-            <div class="library-version">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../../index.html">
+                    alchemist
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        data-filter=":/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":/commonMain"
+                                       data-filter=":/commonMain"/>
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
         </div>
-        <div class="filter-section" id="filter-section">
-                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":dokkaHtml/commonMain">common</button>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
         </div>
-    </div>
-    <div class="navigation-controls">
-        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
-        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
-    </div>
-</nav>
+    </nav>
         <div id="container">
             <div class="sidebar" id="leftColumn">
-                <div class="sidebar--inner" id="sideMenu"></div>
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    alchemist
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
             </div>
             <div id="main">
-<div class="main-content" data-page-type="classlike" id="content" pageIds="alchemist::io.github.kevincianfarini.alchemist.type/Velocity///PointingToDeclaration//788909594">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="alchemist::io.github.kevincianfarini.alchemist.type/Velocity///PointingToDeclaration//1558683979">
   <div class="breadcrumbs"><a href="../../../index.html">alchemist</a><span class="delimiter">/</span><a href="../index.html">io.github.kevincianfarini.alchemist.type</a><span class="delimiter">/</span><span class="current">Velocity</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Velocity</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="index.html">Velocity</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="index.html">Velocity</a><span class="token operator">&gt; </span></div><p class="paragraph">Represents a measure of velocity and is capable of storing ±9.2 million km/s at nm/s precision.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="index.html">Velocity</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="index.html">Velocity</a><span class="token operator">&gt; </span></div><p class="paragraph">Represents a measure of velocity and is capable of storing ±9.2 million km/s at nm/s precision.</p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
       <div data-togglable="FUNCTION">
         <h2 class="">Functions</h2>
-        <div class="table"><a data-name="1585673719%2FFunctions%2F788909594" anchor-label="compareTo" id="1585673719%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+        <div class="table"><a data-name="1585673719%2FFunctions%2F1558683979" anchor-label="compareTo" id="1585673719%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="compare-to.html"><span>compare</span><wbr></wbr><span><span>To</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1585673719%2FFunctions%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1585673719%2FFunctions%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">operator override </span><span class="token keyword">fun </span><a href="compare-to.html"><span class="token function">compareTo</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="index.html">Velocity</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div><div class="brief "><p class="paragraph">Compares this velocity with the <a href="compare-to.html">other</a> velocity. Returns zero if this velocity is equal to the specified <a href="compare-to.html">other</a> velocity, a negative number if it's less than <a href="compare-to.html">other</a>, or a positive number if it's greater than <a href="compare-to.html">other</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">operator override </span><span class="token keyword">fun </span><a href="compare-to.html"><span class="token function">compareTo</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="index.html">Velocity</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div><div class="brief "><p class="paragraph">Compares this velocity with the <a href="compare-to.html">other</a> velocity. Returns zero if this velocity is equal to the specified <a href="compare-to.html">other</a> velocity, a negative number if it's less than <a href="compare-to.html">other</a>, or a positive number if it's greater than <a href="compare-to.html">other</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-113113598%2FFunctions%2F788909594" anchor-label="div" id="-113113598%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="-113113598%2FFunctions%2F1558683979" anchor-label="div" id="-113113598%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="div.html"><span><span>div</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-113113598%2FFunctions%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-113113598%2FFunctions%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="div.html"><span class="token function">div</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="index.html">Velocity</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Returns the number that is the ratio of this and the <a href="div.html">other</a> velocity value.</p></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="div.html"><span class="token function">div</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">scale<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Velocity</a></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="div.html"><span class="token function">div</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">scale<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Velocity</a></div><div class="brief "><p class="paragraph">Returns a velocity whose value is this velocity value divided by the specified <a href="div.html">scale</a>.</p></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="div.html"><span class="token function">div</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">duration<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.time/-duration/index.html">Duration</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-acceleration/index.html">Acceleration</a></div><div class="brief "><p class="paragraph">Returns the constant <a href="../-acceleration/index.html">Acceleration</a> required achieve this velocity in the specified <a href="div.html">duration</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="div.html"><span class="token function">div</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="index.html">Velocity</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Returns the number that is the ratio of this and the <a href="div.html">other</a> velocity value.</p></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="div.html"><span class="token function">div</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">scale<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Velocity</a></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="div.html"><span class="token function">div</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">scale<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Velocity</a></div><div class="brief "><p class="paragraph">Returns a velocity whose value is this velocity value divided by the specified <a href="div.html">scale</a>.</p></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="div.html"><span class="token function">div</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">duration<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-acceleration/index.html">Acceleration</a></div><div class="brief "><p class="paragraph">Returns the constant <a href="../-acceleration/index.html">Acceleration</a> required achieve this velocity in the specified <a href="div.html">duration</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1856220987%2FFunctions%2F788909594" anchor-label="isFinite" id="1856220987%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="1856220987%2FFunctions%2F1558683979" anchor-label="isFinite" id="1856220987%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="is-finite.html"><span>is</span><wbr></wbr><span><span>Finite</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1856220987%2FFunctions%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1856220987%2FFunctions%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-finite.html"><span class="token function">isFinite</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Returns true if this velocity value is infinite.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-finite.html"><span class="token function">isFinite</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Returns true if this velocity value is infinite.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1709121078%2FFunctions%2F788909594" anchor-label="isInfinite" id="1709121078%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="1709121078%2FFunctions%2F1558683979" anchor-label="isInfinite" id="1709121078%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="is-infinite.html"><span>is</span><wbr></wbr><span><span>Infinite</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1709121078%2FFunctions%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1709121078%2FFunctions%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-infinite.html"><span class="token function">isInfinite</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Returns true if this velocity value is finite.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-infinite.html"><span class="token function">isInfinite</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Returns true if this velocity value is finite.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-782670937%2FFunctions%2F788909594" anchor-label="minus" id="-782670937%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="-782670937%2FFunctions%2F1558683979" anchor-label="minus" id="-782670937%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="minus.html"><span><span>minus</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-782670937%2FFunctions%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-782670937%2FFunctions%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="minus.html"><span class="token function">minus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="index.html">Velocity</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Velocity</a></div><div class="brief "><p class="paragraph">Returns a velocity whose value is the difference between this and the <a href="minus.html">other</a> velocity value.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="minus.html"><span class="token function">minus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="index.html">Velocity</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Velocity</a></div><div class="brief "><p class="paragraph">Returns a velocity whose value is the difference between this and the <a href="minus.html">other</a> velocity value.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="725007939%2FFunctions%2F788909594" anchor-label="plus" id="725007939%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="725007939%2FFunctions%2F1558683979" anchor-label="plus" id="725007939%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="plus.html"><span><span>plus</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="725007939%2FFunctions%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="725007939%2FFunctions%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="plus.html"><span class="token function">plus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="index.html">Velocity</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Velocity</a></div><div class="brief "><p class="paragraph">Returns a velocity whose value is the sum between this and the <a href="plus.html">other</a> velocity value.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="plus.html"><span class="token function">plus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="index.html">Velocity</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Velocity</a></div><div class="brief "><p class="paragraph">Returns a velocity whose value is the sum between this and the <a href="plus.html">other</a> velocity value.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1060777005%2FFunctions%2F788909594" anchor-label="times" id="-1060777005%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="-1060777005%2FFunctions%2F1558683979" anchor-label="times" id="-1060777005%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="times.html"><span><span>times</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1060777005%2FFunctions%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1060777005%2FFunctions%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="times.html"><span class="token function">times</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">scale<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Velocity</a></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="times.html"><span class="token function">times</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">scale<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Velocity</a></div><div class="brief "><p class="paragraph">Returns a velocity whose value is multiplied by the specified <a href="times.html">scale</a>.</p></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="times.html"><span class="token function">times</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">duration<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.time/-duration/index.html">Duration</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-length/index.html">Length</a></div><div class="brief "><p class="paragraph">Returns the <a href="../-length/index.html">Length</a> traveled at this velocity for the specified <a href="times.html">duration</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="times.html"><span class="token function">times</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">scale<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Velocity</a></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="times.html"><span class="token function">times</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">scale<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Velocity</a></div><div class="brief "><p class="paragraph">Returns a velocity whose value is multiplied by the specified <a href="times.html">scale</a>.</p></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="times.html"><span class="token function">times</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">duration<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-length/index.html">Length</a></div><div class="brief "><p class="paragraph">Returns the <a href="../-length/index.html">Length</a> traveled at this velocity for the specified <a href="times.html">duration</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1692663809%2FFunctions%2F788909594" anchor-label="toDouble" id="1692663809%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="1692663809%2FFunctions%2F1558683979" anchor-label="toDouble" id="1692663809%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="to-double.html"><span>to</span><wbr></wbr><span><span>Double</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1692663809%2FFunctions%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1692663809%2FFunctions%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="to-double.html"><span class="token function">toDouble</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">lengthUnit<span class="token operator">: </span><a href="../../io.github.kevincianfarini.alchemist.unit/-length-unit/index.html">LengthUnit</a><span class="token punctuation">, </span></span><span class="parameter ">durationUnit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.time/-duration-unit/index.html">DurationUnit</a><span class="token operator"> = </span>DurationUnit.SECONDS</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Returns the value of this velocity expressed as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a> number of the specific <a href="to-double.html">lengthUnit</a> per <a href="to-double.html">durationUnit</a>. Infinite values are converted to either <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/-p-o-s-i-t-i-v-e_-i-n-f-i-n-i-t-y.html">Double.POSITIVE_INFINITY</a> or <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/-n-e-g-a-t-i-v-e_-i-n-f-i-n-i-t-y.html">Double.NEGATIVE_INFINITY</a> depending on its sign.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="to-double.html"><span class="token function">toDouble</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">lengthUnit<span class="token operator">: </span><a href="../../io.github.kevincianfarini.alchemist.unit/-length-unit/index.html">LengthUnit</a><span class="token punctuation">, </span></span><span class="parameter ">durationUnit<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration-unit/index.html">DurationUnit</a><span class="token operator"> = </span>DurationUnit.SECONDS</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Returns the value of this velocity expressed as a <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a> number of the specific <a href="to-double.html">lengthUnit</a> per <a href="to-double.html">durationUnit</a>. Infinite values are converted to either <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/-companion/-p-o-s-i-t-i-v-e_-i-n-f-i-n-i-t-y.html">Double.POSITIVE_INFINITY</a> or <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/-companion/-n-e-g-a-t-i-v-e_-i-n-f-i-n-i-t-y.html">Double.NEGATIVE_INFINITY</a> depending on its sign.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="740012854%2FFunctions%2F788909594" anchor-label="toLong" id="740012854%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="740012854%2FFunctions%2F1558683979" anchor-label="toLong" id="740012854%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="to-long.html"><span>to</span><wbr></wbr><span><span>Long</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="740012854%2FFunctions%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="740012854%2FFunctions%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="to-long.html"><span class="token function">toLong</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">lengthUnit<span class="token operator">: </span><a href="../../io.github.kevincianfarini.alchemist.unit/-length-unit/index.html">LengthUnit</a><span class="token punctuation">, </span></span><span class="parameter ">durationUnit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.time/-duration-unit/index.html">DurationUnit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></div><div class="brief "><p class="paragraph">Returns the value of this velocity expressed as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a> number of the specified <a href="to-long.html">lengthUnit</a> per <a href="to-long.html">durationUnit</a>. Infinite values are converted to either <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/-m-a-x_-v-a-l-u-e.html">Long.MAX_VALUE</a> or <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/-m-i-n_-v-a-l-u-e.html">Long.MIN_VALUE</a> depending on its sign.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="to-long.html"><span class="token function">toLong</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">lengthUnit<span class="token operator">: </span><a href="../../io.github.kevincianfarini.alchemist.unit/-length-unit/index.html">LengthUnit</a><span class="token punctuation">, </span></span><span class="parameter ">durationUnit<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration-unit/index.html">DurationUnit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a></div><div class="brief "><p class="paragraph">Returns the value of this velocity expressed as a <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a> number of the specified <a href="to-long.html">lengthUnit</a> per <a href="to-long.html">durationUnit</a>. Infinite values are converted to either <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/-companion/-m-a-x_-v-a-l-u-e.html">Long.MAX_VALUE</a> or <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/-companion/-m-i-n_-v-a-l-u-e.html">Long.MIN_VALUE</a> depending on its sign.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="769434136%2FFunctions%2F788909594" anchor-label="toString" id="769434136%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="769434136%2FFunctions%2F1558683979" anchor-label="toString" id="769434136%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="to-string.html"><span>to</span><wbr></wbr><span><span>String</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="769434136%2FFunctions%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="769434136%2FFunctions%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="to-string.html"><span class="token function">toString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Returns a fractional string representation of this velocity expressed in the largest <a href="../../io.github.kevincianfarini.alchemist.unit/-length-unit/-international/index.html">LengthUnit.International</a> per <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.time/-duration-unit/-s-e-c-o-n-d-s/index.html">second</a> which is greater than or equal to 1.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="to-string.html"><span class="token function">toString</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">lengthUnit<span class="token operator">: </span><a href="../../io.github.kevincianfarini.alchemist.unit/-length-unit/index.html">LengthUnit</a><span class="token punctuation">, </span></span><span class="parameter ">durationUnit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.time/-duration-unit/index.html">DurationUnit</a><span class="token operator"> = </span>DurationUnit.SECONDS<span class="token punctuation">, </span></span><span class="parameter ">decimals<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Returns a fractional string representation of this velocity expressed in the specified <a href="to-string.html">lengthUnit</a> per <a href="to-string.html">durationUnit</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="to-string.html"><span class="token function">toString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Returns a fractional string representation of this velocity expressed in the largest <a href="../../io.github.kevincianfarini.alchemist.unit/-length-unit/-international/index.html">LengthUnit.International</a> per <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration-unit/-s-e-c-o-n-d-s/index.html">second</a> which is greater than or equal to 1.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="to-string.html"><span class="token function">toString</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">lengthUnit<span class="token operator">: </span><a href="../../io.github.kevincianfarini.alchemist.unit/-length-unit/index.html">LengthUnit</a><span class="token punctuation">, </span></span><span class="parameter ">durationUnit<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration-unit/index.html">DurationUnit</a><span class="token operator"> = </span>DurationUnit.SECONDS<span class="token punctuation">, </span></span><span class="parameter ">decimals<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Returns a fractional string representation of this velocity expressed in the specified <a href="to-string.html">lengthUnit</a> per <a href="to-string.html">durationUnit</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1501476749%2FFunctions%2F1558683979" anchor-label="unaryMinus" id="-1501476749%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="unary-minus.html"><span>unary</span><wbr></wbr><span><span>Minus</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1501476749%2FFunctions%2F1558683979"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="unary-minus.html"><span class="token function">unaryMinus</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Velocity</a></div><div class="brief "><p class="paragraph">Returns the negative of this velocity value.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -227,11 +285,16 @@
     </div>
   </div>
 </div>
-      <div class="footer">
-        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span
-                class="pull-right"><span>Generated by </span><a
-                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-      </div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
             </div>
         </div>
     </div>

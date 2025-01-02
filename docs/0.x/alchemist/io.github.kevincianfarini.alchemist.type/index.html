@@ -26,42 +26,85 @@
 <link href="../../styles/prism.css" rel="Stylesheet">
 <link href="../../styles/logo-styles.css" rel="Stylesheet">
 <link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
 <script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script>
 <script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
 <script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer="defer"></script>
 <script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
     <div class="root">
-<nav class="navigation" id="navigation-wrapper">
-    <div class="navigation--inner">
-        <div class="navigation-title">
-            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
-            <div class="library-name">
-                    <a class="library-name--link" href="../../index.html">
-                            alchemist
-                    </a>
-            </div>
-            <div class="library-version">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../index.html">
+                    alchemist
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        data-filter=":/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":/commonMain"
+                                       data-filter=":/commonMain"/>
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
         </div>
-        <div class="filter-section" id="filter-section">
-                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":dokkaHtml/commonMain">common</button>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
         </div>
-    </div>
-    <div class="navigation-controls">
-        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
-        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
-    </div>
-</nav>
+    </nav>
         <div id="container">
             <div class="sidebar" id="leftColumn">
-                <div class="sidebar--inner" id="sideMenu"></div>
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    alchemist
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
             </div>
             <div id="main">
-<div class="main-content" data-page-type="package" id="content" pageIds="alchemist::io.github.kevincianfarini.alchemist.type////PointingToDeclaration//788909594">
+<div class="main-content" data-page-type="package" id="content" pageIds="alchemist::io.github.kevincianfarini.alchemist.type////PointingToDeclaration//1558683979">
   <div class="breadcrumbs"><a href="../../index.html">alchemist</a><span class="delimiter">/</span><span class="current">io.github.kevincianfarini.alchemist.type</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
@@ -71,152 +114,152 @@
     <div class="tabs-section-body">
       <div data-togglable="TYPE">
         <h2 class="">Types</h2>
-        <div class="table"><a data-name="1907451784%2FClasslikes%2F788909594" anchor-label="Acceleration" id="1907451784%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+        <div class="table"><a data-name="1907451784%2FClasslikes%2F1558683979" anchor-label="Acceleration" id="1907451784%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-acceleration/index.html"><span><span>Acceleration</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1907451784%2FClasslikes%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1907451784%2FClasslikes%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-acceleration/index.html">Acceleration</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-acceleration/index.html">Acceleration</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a measure of acceleration and is capable of storing ±9.2 billion m/s² at nm/s² precision.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-acceleration/index.html">Acceleration</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-acceleration/index.html">Acceleration</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a measure of acceleration and is capable of storing ±9.2 billion m/s² at nm/s² precision.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="784624411%2FClasslikes%2F788909594" anchor-label="Area" id="784624411%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="784624411%2FClasslikes%2F1558683979" anchor-label="Area" id="784624411%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-area/index.html"><span><span>Area</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="784624411%2FClasslikes%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="784624411%2FClasslikes%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-area/index.html">Area</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-area/index.html">Area</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a measure of area and is capable of storing ±9.22 million kilometers² at millimeter² precision.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-area/index.html">Area</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-area/index.html">Area</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a measure of area and is capable of storing ±9.22 million kilometers² at millimeter² precision.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1631924288%2FClasslikes%2F788909594" anchor-label="Energy" id="-1631924288%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="-1631924288%2FClasslikes%2F1558683979" anchor-label="Energy" id="-1631924288%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-energy/index.html"><span><span>Energy</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1631924288%2FClasslikes%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1631924288%2FClasslikes%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-energy/index.html">Energy</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-energy/index.html">Energy</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents an amount of energy and is capable of storing ±9.2 petajoules or ±2.56 terawatt-hours at millijoule precision.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-energy/index.html">Energy</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-energy/index.html">Energy</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents an amount of energy and is capable of storing ±9.2 petajoules or ±2.56 terawatt-hours at millijoule precision.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1077946449%2FClasslikes%2F788909594" anchor-label="Force" id="-1077946449%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="-1077946449%2FClasslikes%2F1558683979" anchor-label="Force" id="-1077946449%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-force/index.html"><span><span>Force</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1077946449%2FClasslikes%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1077946449%2FClasslikes%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-force/index.html">Force</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-force/index.html">Force</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a measure of force and is capable of storing ±9.2 billion newtons at nanonewton precision.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-force/index.html">Force</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-force/index.html">Force</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a measure of force and is capable of storing ±9.2 billion newtons at nanonewton precision.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="260656418%2FClasslikes%2F788909594" anchor-label="Length" id="260656418%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="260656418%2FClasslikes%2F1558683979" anchor-label="Length" id="260656418%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-length/index.html"><span><span>Length</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="260656418%2FClasslikes%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="260656418%2FClasslikes%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-length/index.html">Length</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-length/index.html">Length</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a measure of length and is capable of storing ±9.2 million kilometers at nanometer precision.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-length/index.html">Length</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-length/index.html">Length</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a measure of length and is capable of storing ±9.2 million kilometers at nanometer precision.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1683515028%2FClasslikes%2F788909594" anchor-label="Mass" id="1683515028%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="1683515028%2FClasslikes%2F1558683979" anchor-label="Mass" id="1683515028%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-mass/index.html"><span><span>Mass</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1683515028%2FClasslikes%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1683515028%2FClasslikes%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-mass/index.html">Mass</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-mass/index.html">Mass</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a measure of mass and is capable of storing ±9.2 billion kilograms at microgram precision.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-mass/index.html">Mass</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-mass/index.html">Mass</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a measure of mass and is capable of storing ±9.2 billion kilograms at microgram precision.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="88017621%2FClasslikes%2F788909594" anchor-label="Power" id="88017621%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="88017621%2FClasslikes%2F1558683979" anchor-label="Power" id="88017621%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-power/index.html"><span><span>Power</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="88017621%2FClasslikes%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="88017621%2FClasslikes%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-power/index.html">Power</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-power/index.html">Power</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents an amount of power and is capable of storing ±9.22 terawatts at microwatt precision.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-power/index.html">Power</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-power/index.html">Power</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents an amount of power and is capable of storing ±9.22 terawatts at microwatt precision.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="2083057286%2FClasslikes%2F788909594" anchor-label="Temperature" id="2083057286%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="2083057286%2FClasslikes%2F1558683979" anchor-label="Temperature" id="2083057286%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-temperature/index.html"><span><span>Temperature</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2083057286%2FClasslikes%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2083057286%2FClasslikes%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-temperature/index.html">Temperature</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-temperature/index.html">Temperature</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a temperature and is capable of storing ±9.2 billion Kelvin (±9.2 billion °C, ±16.6 billion °F) at nanokelvin precision.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-temperature/index.html">Temperature</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-temperature/index.html">Temperature</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a temperature and is capable of storing ±9.2 billion Kelvin (±9.2 billion °C, ±16.6 billion °F) at nanokelvin precision.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-190892725%2FClasslikes%2F788909594" anchor-label="Velocity" id="-190892725%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="-190892725%2FClasslikes%2F1558683979" anchor-label="Velocity" id="-190892725%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-velocity/index.html"><span><span>Velocity</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-190892725%2FClasslikes%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-190892725%2FClasslikes%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-velocity/index.html">Velocity</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-velocity/index.html">Velocity</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a measure of velocity and is capable of storing ±9.2 million km/s at nm/s precision.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-velocity/index.html">Velocity</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-velocity/index.html">Velocity</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a measure of velocity and is capable of storing ±9.2 million km/s at nm/s precision.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="694879086%2FClasslikes%2F788909594" anchor-label="Volume" id="694879086%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+<a data-name="694879086%2FClasslikes%2F1558683979" anchor-label="Volume" id="694879086%2FClasslikes%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-volume/index.html"><span><span>Volume</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="694879086%2FClasslikes%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="694879086%2FClasslikes%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-volume/index.html">Volume</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-volume/index.html">Volume</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a measure of volume and is capable of storing ±9.2 trillion meters³ (±9.2 quadrillion liters) at centimeter³ (milliliter) precision.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-volume/index.html">Volume</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-comparable/index.html">Comparable</a><span class="token operator">&lt;</span><a href="-volume/index.html">Volume</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents a measure of volume and is capable of storing ±9.2 trillion meters³ (±9.2 quadrillion liters) at centimeter³ (milliliter) precision.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -225,17 +268,17 @@
       </div>
       <div data-togglable="EXTENSION_FUNCTION">
         <h2 class="">Functions</h2>
-        <div class="table"><a data-name="1288719987%2FFunctions%2F788909594" anchor-label="times" id="1288719987%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+        <div class="table"><a data-name="1288719987%2FFunctions%2F1558683979" anchor-label="times" id="1288719987%2FFunctions%2F1558683979" data-filterable-set=":/commonMain"></a>
+          <div class="table-row" data-filterable-current=":/commonMain" data-filterable-set=":/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="times.html"><span><span>times</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1288719987%2FFunctions%2F788909594"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1288719987%2FFunctions%2F1558683979"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.time/-duration/index.html">Duration</a><span class="token punctuation">.</span><a href="times.html"><span class="token function">times</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">acceleration<span class="token operator">: </span><a href="-acceleration/index.html">Acceleration</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-velocity/index.html">Velocity</a></div><div class="brief "><p class="paragraph">Returns the resulting <a href="-velocity/index.html">Velocity</a> after multiplying this duration by the specified <a href="times.html">acceleration</a>.</p></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.time/-duration/index.html">Duration</a><span class="token punctuation">.</span><a href="times.html"><span class="token function">times</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">power<span class="token operator">: </span><a href="-power/index.html">Power</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-energy/index.html">Energy</a></div><div class="brief "><p class="paragraph">Returns the resulting <a href="-energy/index.html">Energy</a> from applying the specified <a href="times.html">power</a> over this duration.</p></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.time/-duration/index.html">Duration</a><span class="token punctuation">.</span><a href="times.html"><span class="token function">times</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">velocity<span class="token operator">: </span><a href="-velocity/index.html">Velocity</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-length/index.html">Length</a></div><div class="brief "><p class="paragraph">Returns the resulting <a href="-length/index.html">Length</a> from applying the specified <a href="times.html">velocity</a> over this duration.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/commonMain"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a><span class="token punctuation">.</span><a href="times.html"><span class="token function">times</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">acceleration<span class="token operator">: </span><a href="-acceleration/index.html">Acceleration</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-velocity/index.html">Velocity</a></div><div class="brief "><p class="paragraph">Returns the resulting <a href="-velocity/index.html">Velocity</a> after multiplying this duration by the specified <a href="times.html">acceleration</a>.</p></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a><span class="token punctuation">.</span><a href="times.html"><span class="token function">times</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">power<span class="token operator">: </span><a href="-power/index.html">Power</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-energy/index.html">Energy</a></div><div class="brief "><p class="paragraph">Returns the resulting <a href="-energy/index.html">Energy</a> from applying the specified <a href="times.html">power</a> over this duration.</p></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a><span class="token punctuation">.</span><a href="times.html"><span class="token function">times</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">velocity<span class="token operator">: </span><a href="-velocity/index.html">Velocity</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-length/index.html">Length</a></div><div class="brief "><p class="paragraph">Returns the resulting <a href="-length/index.html">Length</a> from applying the specified <a href="times.html">velocity</a> over this duration.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -245,11 +288,16 @@
     </div>
   </div>
 </div>
-      <div class="footer">
-        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span
-                class="pull-right"><span>Generated by </span><a
-                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-      </div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
             </div>
         </div>
     </div>
