@@ -75,7 +75,8 @@ mavenPublishing {
 }
 
 dokka {
-    val version = project.findProperty("VERSION_NAME")
+    val versionName = project.findProperty("VERSION_NAME") as String
+    val version = if (versionName.contains("-SNAPSHOT")) "trunk" else versionName
     dokkaSourceSets.commonMain {
         includes.from("ModuleDocumentation.md")
         sourceLink {
