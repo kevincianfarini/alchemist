@@ -75,7 +75,13 @@ mavenPublishing {
 }
 
 dokka {
+    val version = project.findProperty("VERSION_NAME")
     dokkaSourceSets.commonMain {
         includes.from("ModuleDocumentation.md")
+        sourceLink {
+            localDirectory.set(projectDir.resolve("src"))
+            remoteUrl("https://github.com/kevincianfarini/alchemist/tree/${version}/src")
+            remoteLineSuffix.set("#L")
+        }
     }
 }
