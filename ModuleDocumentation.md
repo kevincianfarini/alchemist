@@ -1,8 +1,7 @@
 # Module alchemist
 
 Alchemist allows you to manage physical quanities defined in the [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units). 
-Like [kotlin.time.Duration](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/), alchemist models its 
-quanities as a value class with a single underlying `Long` value. 
+Like [Duration](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/), alchemist models its quanities as a value class with a single underlying `Long` value. 
 
 ### Type Safety
 
@@ -24,9 +23,9 @@ Physical quantities expose scalar arithmetic like the following:
 
 ```kt
 val power = 10.watts
-println(power / 2) // "5w"
-println(power * 2) // "20w"
-println(-power) // "-10w"
+println(power / 2) // "5W"
+println(power * 100) // "1kW"
+println(-power) // "-10W"
 ```
 
 and each quantity exposes typed arithmetic: 
@@ -34,9 +33,9 @@ and each quantity exposes typed arithmetic:
 ```kt
 val first = 10.wattHours
 val second = 2.wattHours
-println(first + second) // "12wH"
-println(first - second) // "8wH"
-println(second - first) // "-8wH"
+println(first + second) // "12Wh"
+println(first - second) // "8Wh"
+println(second - first) // "-8Wh"
 println(first / second) // "5.0"
 ```
 
@@ -47,10 +46,18 @@ Physical quantities expose valid physical arithmetic defined in the Internationa
 ```kt
 val energy = 10.wattHours
 val power = 10.watts
-println(energy / power) // "1h"
+val duration: Duration = energy / power
+println(duration) // "1h"
 
 val length = 10.nanometers
-println(energy / length) // "3.6TN"
+val force: Force = energy / length
+println(force) // "3.6TN"
+
+val velocity = length / 1.seconds
+println(velocity) // 10 nm/s
+
+val acceleration = velocity / 1.seconds
+println(acceleration) // 10 nm/s²
 ```
 
 ### Custom Quantity Unit Implementation 
@@ -66,8 +73,29 @@ object HorsePower : PowerUnit {
 
 val Int.horsepower: Power get() = this.toPower(HorsePower)
 
-println(1.horsepower) // "745.7w"
+println(1.horsepower) // "745.7W"
 ```
 
 Note that alchemist does not provide certain units out of the box because they're impossible to represent without losing 
 precision. In the above example, 1 horsepower is actually 745,699,871.58μW.
+
+### Infinity 
+
+While Long values can store huge numbers, sometimes they're not enough for the operations you're attempting to 
+perform. Rather than silently over or underflowing during an arithmetic operation, Alchemist will clamp your quantities 
+to a special infinite value. These special infinite values have some restrictions. 
+
+```kt
+// This would overflow. 
+val infiniteEnergy = 100.joules * Long.MAX_VALUE 
+println(infiniteEnergy) // "Infinity"
+
+// Infinite values don't behave like other values. 
+println(infiniteEnergy / Long.MAX_VALUE) // "Infinity"
+println(infiniteEnergy * 10) // "Infinity"
+println(-infiniteEnergy) // "-Infinity"
+
+// Some operations are invalid with infinite values. 
+println(infiniteEnergy / infiniteEnergy) // Oops! This throws IllegalArgumentException. 
+println(infiniteEnergy * -infiniteEnergy) // This throws, too. 
+```
