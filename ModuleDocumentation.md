@@ -60,6 +60,27 @@ val acceleration = velocity / 1.seconds
 println(acceleration) // 10 nm/s²
 ```
 
+### Integration with the Kotlin Standard Library 
+
+Kotlin provides a measure of time, called [`Duration`](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/), 
+in its standard library. Alchemist integrates with Duration for physical arithmetic rather than supplying its own 
+implementation of time. 
+
+```kt
+val time: kotlin.time.Duration = 1.hours
+val energy = time * 1.watts
+println(energy) // "1Wh"
+println(energy / time) // "1W"
+
+val velocity = 1.meters / time
+println(velocity) // "1 m/s"
+println(velocity * time) // "1m"
+
+val acceleration = velocity / time
+println(velocity) // "1 m/s²
+println(acceleration * time) // "1 m/s"
+```
+
 ### Custom Quantity Unit Implementation 
 
 Every unit alchemist exposes is an interface, thus allowing you to implement non-standard or uncommonly used units: 
