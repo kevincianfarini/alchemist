@@ -1,5 +1,6 @@
 import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.dokka)
@@ -29,7 +30,14 @@ kotlin {
             }
         }
     }
-    jvm()
+    jvm {
+        compilations.configureEach {
+            compilerOptions.options.apply {
+                jvmTarget = JvmTarget.JVM_1_8
+                freeCompilerArgs.add("-Xjvm-default=all")
+            }
+        }
+    }
     linuxArm64()
     linuxX64()
     macosArm64()
