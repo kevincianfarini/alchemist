@@ -130,5 +130,5 @@ for a year with a reasonable level of precision, but it won't help you model how
 Additionally, Alchemist values type safety over modeling arbitrary quantities derived from SI base units. 
 Introducing that functionality involves too many compromises and would be better handled by a different library with different goals.
 
-If you need to model things like how much energy your air conditioning used in a year, or how long your compact electric vehicle charged 
-with the electricity from your solar panels, great! Alchemist might be a good fit for you. We hope you like it. 
+If you need to model things like how much energy your air conditioning used in a year, or how far your compact electric vehicle charged 
+with the electricity from your solar panels can drive, great! Alchemist might be a good fit for you. We hope you like it. 
