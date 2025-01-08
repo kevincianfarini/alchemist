@@ -120,3 +120,15 @@ println(-infiniteEnergy) // "-Infinity"
 println(infiniteEnergy / infiniteEnergy) // Oops! This throws IllegalArgumentException. 
 println(infiniteEnergy * -infiniteEnergy) // This throws, too. 
 ```
+
+### We're alchemists, not physicists! 
+
+Alchemist is not built with physics engines in mind. Instead, Alchemist aims to provide type safety and reasonable levels of precision 
+that are sufficient for most business use cases. For example, Alchemist aims to help you model how much energy an entire country used 
+for a year with a reasonable level of precision, but it won't help you model how much energy the Sun produces in a day. 
+
+Additionally, Alchemist values type safety over modeling arbitrary quantities derived from SI base units. 
+Introducing that functionality involves too many compromises and would be better handled by a different library with different goals.
+
+If you need to model things like how much energy your air conditioning used in a year, or how long your compact electric vehicle charged 
+with the electricity from your solar panels, great! Alchemist might be a good fit for you. We hope you like it. 
