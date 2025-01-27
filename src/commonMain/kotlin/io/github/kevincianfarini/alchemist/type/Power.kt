@@ -8,6 +8,7 @@ import io.github.kevincianfarini.alchemist.internal.toDecimalString
 import io.github.kevincianfarini.alchemist.scalar.microwatts
 import io.github.kevincianfarini.alchemist.unit.PowerUnit
 import kotlin.jvm.JvmInline
+import kotlin.math.roundToInt
 import kotlin.time.Duration
 
 /**
@@ -126,6 +127,17 @@ public value class Power internal constructor(private val rawMicrowatts: Saturat
      * power is 0 and scale is [Long.MAX_VALUE] or [Long.MIN_VALUE].
      */
     public operator fun times(scale: Long): Power = Power(rawMicrowatts * scale)
+
+    /**
+     * Returns a power whose value is this power multiplied by the specified [scale].
+     *
+     * @throws IllegalArgumentException when this power is [infinite][isInfinite] and [scale] is 0.
+     */
+    public operator fun times(scale: Double): Power {
+        val intScale = scale.roundToInt()
+        if (intScale.toDouble() == scale) return times(intScale)
+        return Power(rawMicrowatts * scale)
+    }
 
     // endregion
 

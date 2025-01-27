@@ -12,6 +12,7 @@ import io.github.kevincianfarini.alchemist.scalar.nanometers
 import io.github.kevincianfarini.alchemist.scalar.nmPerSecond2
 import io.github.kevincianfarini.alchemist.unit.LengthUnit
 import kotlin.jvm.JvmInline
+import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 import kotlin.text.Typography.nbsp
 import kotlin.time.Duration
@@ -172,6 +173,17 @@ public value class Velocity internal constructor(
      * velocity is 0 and scale is [Long.MAX_VALUE] or [Long.MIN_VALUE].
      */
     public operator fun times(scale: Long): Velocity = Velocity(rawNanometersPerSecond * scale)
+
+    /**
+     * Returns a velocity whose value is multiplied by the specified [scale].
+     *
+     * @throws IllegalArgumentException when this velocity is [infinite][isInfinite] and [scale] is 0.
+     */
+    public operator fun times(scale: Double): Velocity {
+        val intScale = scale.roundToInt()
+        if (intScale.toDouble() == scale) return times(intScale)
+        return Velocity(rawNanometersPerSecond * scale)
+    }
 
     // endregion
 
