@@ -241,4 +241,45 @@ class SaturatingLongTest {
     fun multiplication_overflow_does_not_divide_by_zero() {
         assertEquals(0L.saturated, 0L.saturated * (Long.MAX_VALUE - 1))
     }
+
+    @Test
+    fun multiplying_by_nan_throws() {
+        assertFailsWith<IllegalArgumentException> {
+            10L.saturated * Double.NaN
+        }
+    }
+
+    @Test
+    fun multiplying_by_double_infinity_preserves_sign() {
+        assertEquals(POSITIVE_INFINITY, 10L.saturated * Double.POSITIVE_INFINITY)
+        assertEquals(NEGATIVE_INFINITY, 10L.saturated * Double.NEGATIVE_INFINITY)
+        assertEquals(NEGATIVE_INFINITY, (-10L).saturated * Double.POSITIVE_INFINITY)
+        assertEquals(POSITIVE_INFINITY, (-10L).saturated * Double.NEGATIVE_INFINITY)
+    }
+
+    @Test
+    fun multiplying_infinity_by_double_preserves_sign() {
+        assertEquals(POSITIVE_INFINITY, POSITIVE_INFINITY * 2.0)
+        assertEquals(NEGATIVE_INFINITY, NEGATIVE_INFINITY * 2.0)
+        assertEquals(NEGATIVE_INFINITY, POSITIVE_INFINITY * -2.0)
+        assertEquals(POSITIVE_INFINITY, NEGATIVE_INFINITY * -2.0)
+    }
+
+    @Test
+    fun multiplying_by_double_zero_throws_for_infinity() {
+        assertFailsWith<IllegalArgumentException> {
+            POSITIVE_INFINITY * 0.0
+        }
+        assertFailsWith<IllegalArgumentException> {
+            NEGATIVE_INFINITY * 0.0
+        }
+    }
+
+    @Test
+    fun multiplying_by_double_overflows_correctly() {
+        assertEquals(POSITIVE_INFINITY, (Long.MAX_VALUE / 2).saturated * 2.1)
+        assertEquals(NEGATIVE_INFINITY, (Long.MAX_VALUE / 2).saturated * -2.1)
+        assertEquals(NEGATIVE_INFINITY, (Long.MIN_VALUE / 2).saturated * 2.1)
+        assertEquals(POSITIVE_INFINITY, (Long.MIN_VALUE / 2).saturated * -2.1)
+    }
 }
