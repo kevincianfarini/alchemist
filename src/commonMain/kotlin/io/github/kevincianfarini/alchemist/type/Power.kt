@@ -135,8 +135,11 @@ public value class Power internal constructor(private val rawMicrowatts: Saturat
      */
     public operator fun times(scale: Double): Power {
         val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) return times(intScale)
-        return Power(rawMicrowatts * scale)
+        if (intScale.toDouble() == scale) {
+            return times(intScale)
+        } else {
+            return Power(rawMicrowatts * scale)
+        }
     }
 
     // endregion

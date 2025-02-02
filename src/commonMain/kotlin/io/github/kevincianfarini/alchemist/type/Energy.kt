@@ -195,8 +195,11 @@ public value class Energy internal constructor(private val rawMillijoules: Satur
      */
     public operator fun times(scale: Double): Energy {
         val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) return times(intScale)
-        return Energy(rawMillijoules * scale)
+        if (intScale.toDouble() == scale) {
+            return times(intScale)
+        } else {
+            return Energy(rawMillijoules * scale)
+        }
     }
 
     // endregion

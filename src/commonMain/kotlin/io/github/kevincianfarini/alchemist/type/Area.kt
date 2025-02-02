@@ -154,8 +154,11 @@ public value class Area internal constructor(internal val rawMillimetersSquared:
      */
     public operator fun times(scale: Double): Area {
         val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) return times(intScale)
-        return Area(rawMillimetersSquared * scale)
+        if (intScale.toDouble() == scale) {
+            return times(intScale)
+        } else {
+            return Area(rawMillimetersSquared * scale)
+        }
     }
 
     // endregion

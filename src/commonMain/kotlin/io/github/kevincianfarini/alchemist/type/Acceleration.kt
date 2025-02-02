@@ -159,8 +159,11 @@ public value class Acceleration internal constructor(
      */
     public operator fun times(scale: Double): Acceleration {
         val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) return times(intScale)
-        return Acceleration(rawNanometersPerSecondSquared * scale)
+        if (intScale.toDouble() == scale) {
+            return times(intScale)
+        } else {
+            return Acceleration(rawNanometersPerSecondSquared * scale)
+        }
     }
 
     // endregion

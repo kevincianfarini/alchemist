@@ -302,8 +302,11 @@ public value class Length internal constructor(internal val rawNanometers: Satur
      */
     public operator fun times(scale: Double): Length {
         val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) return times(intScale)
-        return Length(rawNanometers * scale)
+        if (intScale.toDouble() == scale) {
+            return times(intScale)
+        } else {
+            return Length(rawNanometers * scale)
+        }
     }
 
     // endregion

@@ -181,8 +181,11 @@ public value class Velocity internal constructor(
      */
     public operator fun times(scale: Double): Velocity {
         val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) return times(intScale)
-        return Velocity(rawNanometersPerSecond * scale)
+        if (intScale.toDouble() == scale) {
+            return times(intScale)
+        } else {
+            return Velocity(rawNanometersPerSecond * scale)
+        }
     }
 
     // endregion

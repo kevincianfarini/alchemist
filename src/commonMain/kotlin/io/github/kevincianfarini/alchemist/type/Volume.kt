@@ -115,8 +115,11 @@ public value class Volume internal constructor(private val rawCubicCentimeters: 
      */
     public operator fun times(scale: Double): Volume {
         val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) return times(intScale)
-        return Volume(rawCubicCentimeters * scale)
+        if (intScale.toDouble() == scale) {
+            return times(intScale)
+        } else {
+            return Volume(rawCubicCentimeters * scale)
+        }
     }
 
     // endregion

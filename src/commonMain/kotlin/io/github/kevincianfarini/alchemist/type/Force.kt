@@ -145,8 +145,11 @@ public value class Force internal constructor(private val rawNanonewtons: Satura
      */
     public operator fun times(scale: Double): Force {
         val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) return times(intScale)
-        return Force(rawNanonewtons * scale)
+        if (intScale.toDouble() == scale) {
+            return times(intScale)
+        } else {
+            return Force(rawNanonewtons * scale)
+        }
     }
 
     // endregion
