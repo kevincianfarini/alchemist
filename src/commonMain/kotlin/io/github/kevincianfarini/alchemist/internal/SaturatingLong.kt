@@ -87,20 +87,9 @@ internal value class SaturatingLong(val rawValue: Long) {
     }
 
     inline operator fun times(other: Double): SaturatingLong {
-        return when {
-            other.isNaN() -> throwIllegalArgumentException("Multiplying an value by NaN yields an undefined result.")
-            isInfinite() or other.isInfinite() -> when {
-                rawValue == 0L || other == 0.0 -> {
-                    throwIllegalArgumentException("Multiplying an infinite value by zero yields an undefined result.")
-                }
-                rawValue.sign == other.sign.roundToInt() -> POSITIVE_INFINITY
-                else -> NEGATIVE_INFINITY
-            }
-            else -> {
-                // TODO Handle overflow
-                SaturatingLong((rawValue * other).roundToLong())
-            }
-        }
+        val thisDouble = toDouble()
+        val result = thisDouble * other
+        return SaturatingLong(result.roundToLong())
     }
 
     operator fun div(other: SaturatingLong): SaturatingLong {
