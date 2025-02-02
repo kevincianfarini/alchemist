@@ -129,9 +129,11 @@ public value class Power internal constructor(private val rawMicrowatts: Saturat
     public operator fun times(scale: Long): Power = Power(rawMicrowatts * scale)
 
     /**
-     * Returns a power whose value is this power multiplied by the specified [scale].
+     * Returns a power whose value is multiplied by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
      *
-     * @throws IllegalArgumentException when this power is [infinite][isInfinite] and [scale] is 0.
+     * @throws IllegalArgumentException when this power is [infinite][isInfinite] and [scale] is 0.0 or when this power is 0
+     * and scale is [infinite][Double.isInfinite].
      */
     public operator fun times(scale: Double): Power {
         val intScale = scale.roundToInt()

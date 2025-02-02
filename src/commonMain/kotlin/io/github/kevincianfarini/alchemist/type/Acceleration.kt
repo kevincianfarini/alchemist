@@ -153,9 +153,11 @@ public value class Acceleration internal constructor(
     public operator fun times(scale: Long): Acceleration = Acceleration(rawNanometersPerSecondSquared * scale)
 
     /**
-     * Returns an acceleration whose value is multiplied by the specified [scale].
+     * Returns an acceleration whose value is multiplied by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
      *
-     * @throws IllegalArgumentException when this acceleration is [infinite][isInfinite] and [scale] is 0.
+     * @throws IllegalArgumentException when this acceleration is [infinite][isInfinite] and [scale] is 0.0 or when this acceleration is 0
+     * and scale is [infinite][Double.isInfinite].
      */
     public operator fun times(scale: Double): Acceleration {
         val intScale = scale.roundToInt()

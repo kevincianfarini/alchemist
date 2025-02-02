@@ -109,9 +109,11 @@ public value class Volume internal constructor(private val rawCubicCentimeters: 
     public operator fun times(scale: Long): Volume = Volume(rawCubicCentimeters * scale)
 
     /**
-     * Returns a volume whose value is multiplied by the specified [scale].
+     * Returns a volume whose value is multiplied by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
      *
-     * @throws IllegalArgumentException when this volume is [infinite][isInfinite] and [scale] is 0.
+     * @throws IllegalArgumentException when this volume is [infinite][isInfinite] and [scale] is 0.0 or when this volume is 0
+     * and scale is [infinite][Double.isInfinite].
      */
     public operator fun times(scale: Double): Volume {
         val intScale = scale.roundToInt()

@@ -86,9 +86,11 @@ public value class Mass internal constructor(internal val rawMicrograms: Saturat
     public operator fun times(scale: Long): Mass = Mass(rawMicrograms * scale)
 
     /**
-     * Returns a mass whose value is multiplied by the specified [scale].
+     * Returns a mass whose value is multiplied by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
      *
-     * @throws IllegalArgumentException when this mass is [infinite][isInfinite] and [scale] is 0.
+     * @throws IllegalArgumentException when this mass is [infinite][isInfinite] and [scale] is 0.0 or when this mass is 0
+     * and scale is [infinite][Double.isInfinite].
      */
     public operator fun times(scale: Double): Mass {
         val intScale = scale.roundToInt()
