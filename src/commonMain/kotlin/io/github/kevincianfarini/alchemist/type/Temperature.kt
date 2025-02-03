@@ -5,7 +5,6 @@ import io.github.kevincianfarini.alchemist.internal.toDecimalString
 import io.github.kevincianfarini.alchemist.unit.TemperatureUnit
 import io.github.kevincianfarini.alchemist.unit.convertNanokelvinsToThis
 import kotlin.jvm.JvmInline
-import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
 /**
@@ -74,22 +73,6 @@ public value class Temperature internal constructor(private val rawNanokelvin: S
      * temperature is 0 and scale is [Long.MAX_VALUE] or [Long.MIN_VALUE].
      */
     public operator fun times(scale: Long): Temperature = Temperature(rawNanokelvin * scale)
-
-    /**
-     * Returns a temperature whose value is multiplied by the specified [scale]. This operation may be rounded when the result
-     * cannot be precisely represented with a [Double] number.
-     *
-     * @throws IllegalArgumentException when this temperature is [infinite][isInfinite] and [scale] is 0.0 or when this temperature is 0
-     * and scale is [infinite][Double.isInfinite].
-     */
-    public operator fun times(scale: Double): Temperature {
-        val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) {
-            return times(intScale)
-        } else {
-            return Temperature(rawNanokelvin * scale)
-        }
-    }
 
     // endregion
 
