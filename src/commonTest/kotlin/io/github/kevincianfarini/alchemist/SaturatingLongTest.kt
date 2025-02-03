@@ -6,6 +6,7 @@ import io.github.kevincianfarini.alchemist.internal.saturated
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 class SaturatingLongTest {
@@ -281,5 +282,27 @@ class SaturatingLongTest {
         assertEquals(NEGATIVE_INFINITY, (Long.MAX_VALUE / 2).saturated * -2.1)
         assertEquals(NEGATIVE_INFINITY, (Long.MIN_VALUE / 2).saturated * 2.1)
         assertEquals(POSITIVE_INFINITY, (Long.MIN_VALUE / 2).saturated * -2.1)
+    }
+
+    @Test
+    fun multiplying_by_double_uses_integer_path_when_possible() {
+        val bigLong = 92233720368547758L
+
+        // assert that this Long is not exactly representable as a Double
+        assertNotEquals(bigLong, bigLong.toDouble().toLong())
+
+        // assert that the integer path is used
+        assertEquals((bigLong * 2L).saturated, bigLong.saturated * 2.0)
+    }
+
+    @Test
+    fun multiplying_by_double_uses_float_path_when_necessary() {
+      val bigLong = 92233720368547758L
+
+      // assert that this Long is not exactly representable as a Double
+      assertNotEquals(bigLong, bigLong.toDouble().toLong())
+
+      // assert that the float path is used
+      assertEquals((bigLong.toDouble()*0.3).toLong().saturated, bigLong.saturated * 0.3)
     }
 }
