@@ -302,14 +302,7 @@ public value class Length internal constructor(internal val rawNanometers: Satur
      * @throws IllegalArgumentException when this length is [infinite][isInfinite] and [scale] is 0.0 or when this length is 0
      * and scale is [infinite][Double.isInfinite].
      */
-    public operator fun times(scale: Double): Length {
-        val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) {
-            return times(intScale)
-        } else {
-            return Length(rawNanometers * scale)
-        }
-    }
+    public operator fun times(scale: Double): Length = Length(rawNanometers * scale)
 
     // endregion
 

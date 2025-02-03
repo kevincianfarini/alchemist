@@ -145,14 +145,7 @@ public value class Force internal constructor(private val rawNanonewtons: Satura
      * @throws IllegalArgumentException when this force is [infinite][isInfinite] and [scale] is 0.0 or when this force is 0
      * and scale is [infinite][Double.isInfinite].
      */
-    public operator fun times(scale: Double): Force {
-        val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) {
-            return times(intScale)
-        } else {
-            return Force(rawNanonewtons * scale)
-        }
-    }
+    public operator fun times(scale: Double): Force = Force(rawNanonewtons * scale)
 
     // endregion
 

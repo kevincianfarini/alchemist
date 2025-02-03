@@ -115,14 +115,7 @@ public value class Volume internal constructor(private val rawCubicCentimeters: 
      * @throws IllegalArgumentException when this volume is [infinite][isInfinite] and [scale] is 0.0 or when this volume is 0
      * and scale is [infinite][Double.isInfinite].
      */
-    public operator fun times(scale: Double): Volume {
-        val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) {
-            return times(intScale)
-        } else {
-            return Volume(rawCubicCentimeters * scale)
-        }
-    }
+    public operator fun times(scale: Double): Volume = Volume(rawCubicCentimeters * scale)
 
     // endregion
 

@@ -159,14 +159,7 @@ public value class Acceleration internal constructor(
      * @throws IllegalArgumentException when this acceleration is [infinite][isInfinite] and [scale] is 0.0 or when this acceleration is 0
      * and scale is [infinite][Double.isInfinite].
      */
-    public operator fun times(scale: Double): Acceleration {
-        val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) {
-            return times(intScale)
-        } else {
-            return Acceleration(rawNanometersPerSecondSquared * scale)
-        }
-    }
+    public operator fun times(scale: Double): Acceleration = Acceleration(rawNanometersPerSecondSquared * scale)
 
     // endregion
 

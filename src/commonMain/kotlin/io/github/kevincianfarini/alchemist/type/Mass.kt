@@ -92,14 +92,7 @@ public value class Mass internal constructor(internal val rawMicrograms: Saturat
      * @throws IllegalArgumentException when this mass is [infinite][isInfinite] and [scale] is 0.0 or when this mass is 0
      * and scale is [infinite][Double.isInfinite].
      */
-    public operator fun times(scale: Double): Mass {
-        val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) {
-            return times(intScale)
-        } else {
-            return Mass(rawMicrograms * scale)
-        }
-    }
+    public operator fun times(scale: Double): Mass = Mass(rawMicrograms * scale)
 
     // endregion
 

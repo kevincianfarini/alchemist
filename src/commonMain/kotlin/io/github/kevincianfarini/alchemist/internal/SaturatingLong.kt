@@ -87,9 +87,14 @@ internal value class SaturatingLong(val rawValue: Long) {
     }
 
     inline operator fun times(other: Double): SaturatingLong {
-        val thisDouble = toDouble()
-        val result = thisDouble * other
-        return SaturatingLong(result.roundToLong())
+        val longScale = other.roundToLong()
+        if (longScale.toDouble() == other) {
+            return times(longScale)
+        } else {
+            val thisDouble = toDouble()
+            val result = thisDouble * other
+            return SaturatingLong(result.roundToLong())
+        }
     }
 
     operator fun div(other: SaturatingLong): SaturatingLong {

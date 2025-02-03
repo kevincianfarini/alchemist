@@ -135,14 +135,7 @@ public value class Power internal constructor(private val rawMicrowatts: Saturat
      * @throws IllegalArgumentException when this power is [infinite][isInfinite] and [scale] is 0.0 or when this power is 0
      * and scale is [infinite][Double.isInfinite].
      */
-    public operator fun times(scale: Double): Power {
-        val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) {
-            return times(intScale)
-        } else {
-            return Power(rawMicrowatts * scale)
-        }
-    }
+    public operator fun times(scale: Double): Power = Power(rawMicrowatts * scale)
 
     // endregion
 

@@ -195,14 +195,7 @@ public value class Energy internal constructor(private val rawMillijoules: Satur
      * @throws IllegalArgumentException when this energy is [infinite][isInfinite] and [scale] is 0.0 or when this energy is 0
      * and scale is [infinite][Double.isInfinite].
      */
-    public operator fun times(scale: Double): Energy {
-        val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) {
-            return times(intScale)
-        } else {
-            return Energy(rawMillijoules * scale)
-        }
-    }
+    public operator fun times(scale: Double): Energy = Energy(rawMillijoules * scale)
 
     // endregion
 

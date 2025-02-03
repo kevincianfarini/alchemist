@@ -181,14 +181,7 @@ public value class Velocity internal constructor(
      * @throws IllegalArgumentException when this velocity is [infinite][isInfinite] and [scale] is 0.0 or when this velocity is 0
      * and scale is [infinite][Double.isInfinite].
      */
-    public operator fun times(scale: Double): Velocity {
-        val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) {
-            return times(intScale)
-        } else {
-            return Velocity(rawNanometersPerSecond * scale)
-        }
-    }
+    public operator fun times(scale: Double): Velocity = Velocity(rawNanometersPerSecond * scale)
 
     // endregion
 

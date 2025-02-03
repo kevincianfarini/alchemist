@@ -154,14 +154,7 @@ public value class Area internal constructor(internal val rawMillimetersSquared:
      * @throws IllegalArgumentException when this area is [infinite][isInfinite] and [scale] is 0.0 or when this area is 0
      * and scale is [infinite][Double.isInfinite].
      */
-    public operator fun times(scale: Double): Area {
-        val intScale = scale.roundToInt()
-        if (intScale.toDouble() == scale) {
-            return times(intScale)
-        } else {
-            return Area(rawMillimetersSquared * scale)
-        }
-    }
+    public operator fun times(scale: Double): Area = Area(rawMillimetersSquared * scale)
 
     // endregion
 
