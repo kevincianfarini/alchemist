@@ -118,6 +118,17 @@ internal value class SaturatingLong(val rawValue: Long) {
         return div(other.toLong())
     }
 
+    operator fun div(other: Double): SaturatingLong {
+        val longScale = other.roundToLong()
+        if (longScale.toDouble() == other) {
+            return div(longScale)
+        } else {
+            val thisDouble = toDouble()
+            val result = thisDouble / other
+            return SaturatingLong(result.roundToLong())
+        }
+    }
+
     operator fun rem(other: SaturatingLong): SaturatingLong {
         val thisInfinite = isInfinite()
         val otherInfinite = other.isInfinite()
