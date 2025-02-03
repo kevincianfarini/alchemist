@@ -304,6 +304,15 @@ public value class Length internal constructor(internal val rawNanometers: Satur
      */
     public operator fun times(scale: Double): Length = Length(rawNanometers * scale)
 
+    /**
+     * Returns a length whose value is divided by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this length is [infinite][isInfinite] and [scale] is 0.0 or when this length is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun div(scale: Double): Length = Length(rawNanometers / scale)
+
     // endregion
 
     // region Length to Scalar Conversions

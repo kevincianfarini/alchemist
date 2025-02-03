@@ -137,6 +137,15 @@ public value class Power internal constructor(private val rawMicrowatts: Saturat
      */
     public operator fun times(scale: Double): Power = Power(rawMicrowatts * scale)
 
+    /**
+     * Returns a power whose value is divided by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this power is [infinite][isInfinite] and [scale] is 0.0 or when this power is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun div(scale: Double): Power = Power(rawMicrowatts / scale)
+
     // endregion
 
     // region Power to Scalar Conversions
