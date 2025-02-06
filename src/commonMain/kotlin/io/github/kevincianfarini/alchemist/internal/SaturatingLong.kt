@@ -4,6 +4,8 @@ package io.github.kevincianfarini.alchemist.internal
 
 import kotlin.jvm.JvmInline
 import kotlin.math.absoluteValue
+import kotlin.math.roundToInt
+import kotlin.math.roundToLong
 import kotlin.math.sign
 
 /**
@@ -84,6 +86,17 @@ internal value class SaturatingLong(val rawValue: Long) {
         return times(other.toLong())
     }
 
+    inline operator fun times(other: Double): SaturatingLong {
+        val longScale = other.roundToLong()
+        if (longScale.toDouble() == other) {
+            return times(longScale)
+        } else {
+            val thisDouble = toDouble()
+            val result = thisDouble * other
+            return SaturatingLong(result.roundToLong())
+        }
+    }
+
     operator fun div(other: SaturatingLong): SaturatingLong {
         val thisInfinite = isInfinite()
         val otherInfinite = other.isInfinite()
@@ -103,6 +116,17 @@ internal value class SaturatingLong(val rawValue: Long) {
 
     operator fun div(other: Int): SaturatingLong {
         return div(other.toLong())
+    }
+
+    operator fun div(other: Double): SaturatingLong {
+        val longScale = other.roundToLong()
+        if (longScale.toDouble() == other) {
+            return div(longScale)
+        } else {
+            val thisDouble = toDouble()
+            val result = thisDouble / other
+            return SaturatingLong(result.roundToLong())
+        }
     }
 
     operator fun rem(other: SaturatingLong): SaturatingLong {

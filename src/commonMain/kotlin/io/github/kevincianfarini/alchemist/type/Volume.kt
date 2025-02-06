@@ -8,6 +8,7 @@ import io.github.kevincianfarini.alchemist.unit.LengthUnit
 import io.github.kevincianfarini.alchemist.unit.VolumeUnit
 import kotlin.jvm.JvmInline
 import kotlin.math.pow
+import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
 /**
@@ -106,6 +107,24 @@ public value class Volume internal constructor(private val rawCubicCentimeters: 
      * volume is 0 and scale is [Long.MAX_VALUE] or [Long.MIN_VALUE].
      */
     public operator fun times(scale: Long): Volume = Volume(rawCubicCentimeters * scale)
+
+    /**
+     * Returns a volume whose value is multiplied by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this volume is [infinite][isInfinite] and [scale] is 0.0 or when this volume is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun times(scale: Double): Volume = Volume(rawCubicCentimeters * scale)
+
+    /**
+     * Returns a volume whose value is divided by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this volume is [infinite][isInfinite] and [scale] is 0.0 or when this volume is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun div(scale: Double): Volume = Volume(rawCubicCentimeters / scale)
 
     // endregion
 

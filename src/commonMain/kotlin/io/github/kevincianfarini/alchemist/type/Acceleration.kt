@@ -7,6 +7,7 @@ import io.github.kevincianfarini.alchemist.internal.toDecimalString
 import io.github.kevincianfarini.alchemist.scalar.nmPerSecond
 import io.github.kevincianfarini.alchemist.unit.LengthUnit
 import kotlin.jvm.JvmInline
+import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 import kotlin.text.Typography.nbsp
 import kotlin.time.Duration
@@ -150,6 +151,24 @@ public value class Acceleration internal constructor(
      * acceleration is 0 and scale is [Long.MAX_VALUE] or [Long.MIN_VALUE].
      */
     public operator fun times(scale: Long): Acceleration = Acceleration(rawNanometersPerSecondSquared * scale)
+
+    /**
+     * Returns an acceleration whose value is multiplied by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this acceleration is [infinite][isInfinite] and [scale] is 0.0 or when this acceleration is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun times(scale: Double): Acceleration = Acceleration(rawNanometersPerSecondSquared * scale)
+
+    /**
+     * Returns an acceleration whose value is divided by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this acceleration is [infinite][isInfinite] and [scale] is 0.0 or when this acceleration is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun div(scale: Double): Acceleration = Acceleration(rawNanometersPerSecondSquared / scale)
 
     // endregion
 

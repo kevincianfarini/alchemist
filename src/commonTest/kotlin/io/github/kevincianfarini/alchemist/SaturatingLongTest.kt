@@ -6,6 +6,7 @@ import io.github.kevincianfarini.alchemist.internal.saturated
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 class SaturatingLongTest {
@@ -240,5 +241,126 @@ class SaturatingLongTest {
     @Test
     fun multiplication_overflow_does_not_divide_by_zero() {
         assertEquals(0L.saturated, 0L.saturated * (Long.MAX_VALUE - 1))
+    }
+
+    @Test
+    fun multiplying_by_nan_throws() {
+        assertFailsWith<IllegalArgumentException> {
+            10L.saturated * Double.NaN
+        }
+    }
+
+    @Test
+    fun multiplying_by_double_infinity_preserves_sign() {
+        assertEquals(POSITIVE_INFINITY, 10L.saturated * Double.POSITIVE_INFINITY)
+        assertEquals(NEGATIVE_INFINITY, 10L.saturated * Double.NEGATIVE_INFINITY)
+        assertEquals(NEGATIVE_INFINITY, (-10L).saturated * Double.POSITIVE_INFINITY)
+        assertEquals(POSITIVE_INFINITY, (-10L).saturated * Double.NEGATIVE_INFINITY)
+    }
+
+    @Test
+    fun multiplying_infinity_by_double_preserves_sign() {
+        assertEquals(POSITIVE_INFINITY, POSITIVE_INFINITY * 2.0)
+        assertEquals(NEGATIVE_INFINITY, NEGATIVE_INFINITY * 2.0)
+        assertEquals(NEGATIVE_INFINITY, POSITIVE_INFINITY * -2.0)
+        assertEquals(POSITIVE_INFINITY, NEGATIVE_INFINITY * -2.0)
+    }
+
+    @Test
+    fun multiplying_by_double_zero_throws_for_infinity() {
+        assertFailsWith<IllegalArgumentException> {
+            POSITIVE_INFINITY * 0.0
+        }
+        assertFailsWith<IllegalArgumentException> {
+            NEGATIVE_INFINITY * 0.0
+        }
+    }
+
+    @Test
+    fun multiplying_by_double_overflows_correctly() {
+        assertEquals(POSITIVE_INFINITY, (Long.MAX_VALUE / 2).saturated * 2.1)
+        assertEquals(NEGATIVE_INFINITY, (Long.MAX_VALUE / 2).saturated * -2.1)
+        assertEquals(NEGATIVE_INFINITY, (Long.MIN_VALUE / 2).saturated * 2.1)
+        assertEquals(POSITIVE_INFINITY, (Long.MIN_VALUE / 2).saturated * -2.1)
+    }
+
+    @Test
+    fun multiplying_by_double_uses_integer_path_when_possible() {
+        val bigLong = 92233720368547758L
+
+        // assert that this Long is not exactly representable as a Double
+        assertNotEquals(bigLong, bigLong.toDouble().toLong())
+
+        // assert that the integer path is used
+        assertEquals((bigLong * 2L).saturated, bigLong.saturated * 2.0)
+    }
+
+    @Test
+    fun multiplying_by_double_uses_float_path_when_necessary() {
+      val bigLong = 92233720368547758L
+
+      // assert that this Long is not exactly representable as a Double
+      assertNotEquals(bigLong, bigLong.toDouble().toLong())
+
+      // assert that the float path is used
+      assertEquals((bigLong.toDouble()*0.3).toLong().saturated, bigLong.saturated * 0.3)
+    }
+
+    @Test
+    fun dividing_by_double_nan_throws() {
+        assertFailsWith<IllegalArgumentException> {
+            10L.saturated / Double.NaN
+        }
+    }
+
+    @Test
+    fun dividing_by_double_infinity_preserves_sign() {
+        assertEquals(0L.saturated, 10L.saturated / Double.POSITIVE_INFINITY)
+        assertEquals(0L.saturated, 10L.saturated / Double.NEGATIVE_INFINITY)
+        assertEquals(0L.saturated, (-10L).saturated / Double.POSITIVE_INFINITY)
+        assertEquals(0L.saturated, (-10L).saturated / Double.NEGATIVE_INFINITY)
+    }
+
+    @Test
+    fun dividing_infinity_by_double_preserves_sign() {
+        assertEquals(POSITIVE_INFINITY, POSITIVE_INFINITY / 2.0)
+        assertEquals(NEGATIVE_INFINITY, NEGATIVE_INFINITY / 2.0)
+        assertEquals(NEGATIVE_INFINITY, POSITIVE_INFINITY / -2.0)
+        assertEquals(POSITIVE_INFINITY, NEGATIVE_INFINITY / -2.0)
+    }
+
+    @Test
+    fun dividing_by_double_zero_throws() {
+        assertFailsWith<Exception> { // ArithmeticException on most platforms; Exception on JS
+            10L.saturated / 0.0
+        }
+        assertFailsWith<IllegalArgumentException> {
+            POSITIVE_INFINITY / 0.0
+        }
+        assertFailsWith<IllegalArgumentException> {
+            NEGATIVE_INFINITY / 0.0
+        }
+    }
+
+    @Test
+    fun dividing_by_double_uses_integer_path_when_possible() {
+        val bigLong = 92233720368547758L
+
+        // assert that this Long is not exactly representable as a Double
+        assertNotEquals(bigLong, bigLong.toDouble().toLong())
+
+        // assert that the integer path is used
+        assertEquals((bigLong / 2L).saturated, bigLong.saturated / 2.0)
+    }
+
+    @Test
+    fun dividing_by_double_uses_float_path_when_necessary() {
+        val bigLong = 92233720368547758L
+
+        // assert that this Long is not exactly representable as a Double
+        assertNotEquals(bigLong, bigLong.toDouble().toLong())
+
+        // assert that the float path is used
+        assertEquals((bigLong.toDouble() / 0.3).toLong().saturated, bigLong.saturated / 0.3)
     }
 }

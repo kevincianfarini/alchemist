@@ -4,6 +4,7 @@ import io.github.kevincianfarini.alchemist.internal.SaturatingLong
 import io.github.kevincianfarini.alchemist.internal.toDecimalString
 import io.github.kevincianfarini.alchemist.unit.MassUnit
 import kotlin.jvm.JvmInline
+import kotlin.math.roundToInt
 import kotlin.text.Typography.nbsp
 
 /**
@@ -83,6 +84,24 @@ public value class Mass internal constructor(internal val rawMicrograms: Saturat
      * mass is 0 and scale is [Long.MAX_VALUE] or [Long.MIN_VALUE].
      */
     public operator fun times(scale: Long): Mass = Mass(rawMicrograms * scale)
+
+    /**
+     * Returns a mass whose value is multiplied by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this mass is [infinite][isInfinite] and [scale] is 0.0 or when this mass is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun times(scale: Double): Mass = Mass(rawMicrograms * scale)
+
+    /**
+     * Returns a mass whose value is divided by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this mass is [infinite][isInfinite] and [scale] is 0.0 or when this mass is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun div(scale: Double): Mass = Mass(rawMicrograms / scale)
 
     // endregion
 

@@ -14,6 +14,7 @@ import io.github.kevincianfarini.alchemist.scalar.milliwatts
 import io.github.kevincianfarini.alchemist.scalar.watts
 import io.github.kevincianfarini.alchemist.unit.EnergyUnit
 import kotlin.jvm.JvmInline
+import kotlin.math.roundToInt
 import kotlin.time.Duration
 
 /**
@@ -186,6 +187,24 @@ public value class Energy internal constructor(private val rawMillijoules: Satur
     public operator fun times(scale: Long): Energy {
         return Energy(rawMillijoules * scale)
     }
+
+    /**
+     * Returns an energy whose value is multiplied by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this energy is [infinite][isInfinite] and [scale] is 0.0 or when this energy is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun times(scale: Double): Energy = Energy(rawMillijoules * scale)
+
+    /**
+     * Returns an energy whose value is divided by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this energy is [infinite][isInfinite] and [scale] is 0.0 or when this energy is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun div(scale: Double): Energy = Energy(rawMillijoules / scale)
 
     // endregion
 

@@ -5,6 +5,7 @@ import io.github.kevincianfarini.alchemist.internal.toDecimalString
 import io.github.kevincianfarini.alchemist.scalar.nmPerSecond2
 import io.github.kevincianfarini.alchemist.unit.ForceUnit
 import kotlin.jvm.JvmInline
+import kotlin.math.roundToInt
 
 /**
  * Represents a measure of force and is capable of storing ±9.2 billion newtons at nanonewton precision.
@@ -136,6 +137,24 @@ public value class Force internal constructor(private val rawNanonewtons: Satura
      * force is 0 and scale is [Long.MAX_VALUE] or [Long.MIN_VALUE].
      */
     public operator fun times(scale: Long): Force = Force(rawNanonewtons * scale)
+
+    /**
+     * Returns a force whose value is multiplied by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this force is [infinite][isInfinite] and [scale] is 0.0 or when this force is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun times(scale: Double): Force = Force(rawNanonewtons * scale)
+
+    /**
+     * Returns a force whose value is divided by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this force is [infinite][isInfinite] and [scale] is 0.0 or when this force is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun div(scale: Double): Force = Force(rawNanonewtons / scale)
 
     // endregion
 
