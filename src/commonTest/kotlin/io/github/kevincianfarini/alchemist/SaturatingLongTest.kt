@@ -5,6 +5,7 @@ import io.github.kevincianfarini.alchemist.internal.POSITIVE_INFINITY
 import io.github.kevincianfarini.alchemist.internal.saturated
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFails
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
@@ -287,23 +288,13 @@ class SaturatingLongTest {
     @Test
     fun multiplying_by_double_uses_integer_path_when_possible() {
         val bigLong = 92233720368547758L
-
-        // assert that this Long is not exactly representable as a Double
-        assertNotEquals(bigLong, bigLong.toDouble().toLong())
-
-        // assert that the integer path is used
         assertEquals((bigLong * 2L).saturated, bigLong.saturated * 2.0)
     }
 
     @Test
     fun multiplying_by_double_uses_float_path_when_necessary() {
       val bigLong = 92233720368547758L
-
-      // assert that this Long is not exactly representable as a Double
-      assertNotEquals(bigLong, bigLong.toDouble().toLong())
-
-      // assert that the float path is used
-      assertEquals((bigLong.toDouble()*0.3).toLong().saturated, bigLong.saturated * 0.3)
+      assertEquals((bigLong.toDouble() * 0.3).toLong().saturated, bigLong.saturated * 0.3)
     }
 
     @Test
@@ -330,8 +321,13 @@ class SaturatingLongTest {
     }
 
     @Test
+    @WasmWasiIgnore @WasmJsIgnore // See: https://youtrack.jetbrains.com/issue/KT-66081.
     fun dividing_by_double_zero_throws() {
-        assertFailsWith<Exception> { // ArithmeticException on most platforms; Exception on JS
+        assertFails {
+            // Kotlin/JS doesn't throw ArithmeticException for Long.div(0). Don't try to assert against a specific
+            // exception type here.
+            //
+            // See: https://github.com/JetBrains/kotlin/blob/62cfeef19de48b908e8abbd835422cdb1192576c/libraries/stdlib/js/runtime/longJs.kt#L217.
             10L.saturated / 0.0
         }
         assertFailsWith<IllegalArgumentException> {
@@ -345,22 +341,12 @@ class SaturatingLongTest {
     @Test
     fun dividing_by_double_uses_integer_path_when_possible() {
         val bigLong = 92233720368547758L
-
-        // assert that this Long is not exactly representable as a Double
-        assertNotEquals(bigLong, bigLong.toDouble().toLong())
-
-        // assert that the integer path is used
         assertEquals((bigLong / 2L).saturated, bigLong.saturated / 2.0)
     }
 
     @Test
     fun dividing_by_double_uses_float_path_when_necessary() {
         val bigLong = 92233720368547758L
-
-        // assert that this Long is not exactly representable as a Double
-        assertNotEquals(bigLong, bigLong.toDouble().toLong())
-
-        // assert that the float path is used
         assertEquals((bigLong.toDouble() / 0.3).toLong().saturated, bigLong.saturated / 0.3)
     }
 }
