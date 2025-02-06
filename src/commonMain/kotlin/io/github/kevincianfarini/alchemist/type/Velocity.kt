@@ -173,6 +173,24 @@ public value class Velocity internal constructor(
      */
     public operator fun times(scale: Long): Velocity = Velocity(rawNanometersPerSecond * scale)
 
+    /**
+     * Returns a velocity whose value is multiplied by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this velocity is [infinite][isInfinite] and [scale] is 0.0 or when this velocity is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun times(scale: Double): Velocity = Velocity(rawNanometersPerSecond * scale)
+
+    /**
+     * Returns a velocity whose value is divided by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this velocity is [infinite][isInfinite] and [scale] is 0.0 or when this velocity is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun div(scale: Double): Velocity = Velocity(rawNanometersPerSecond / scale)
+
     // endregion
 
     // region Velocity to Scalar Conversions

@@ -10,6 +10,7 @@ import io.github.kevincianfarini.alchemist.internal.toDecimalString
 import io.github.kevincianfarini.alchemist.scalar.nanometers
 import io.github.kevincianfarini.alchemist.scalar.nmPerSecond
 import io.github.kevincianfarini.alchemist.unit.LengthUnit
+import io.github.kevincianfarini.alchemist.unit.LengthUnit.International.Nanometer
 import kotlin.jvm.JvmInline
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.microseconds
@@ -291,6 +292,24 @@ public value class Length internal constructor(internal val rawNanometers: Satur
         return Length(rawNanometers * scale)
     }
 
+    /**
+     * Returns a length whose value is multiplied by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this length is [infinite][isInfinite] and [scale] is 0.0 or when this length is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun times(scale: Double): Length = Length(rawNanometers * scale)
+
+    /**
+     * Returns a length whose value is divided by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this length is [infinite][isInfinite] and [scale] is 0.0 or when this length is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun div(scale: Double): Length = Length(rawNanometers / scale)
+
     // endregion
 
     // region Length to Scalar Conversions
@@ -412,7 +431,7 @@ public value class Length internal constructor(internal val rawNanometers: Satur
         val largestUnit = LengthUnit.International.entries.asReversed().firstOrNull { unit ->
             rawNanometers.absoluteValue / unit.nanometerScale > 0
         }
-        return toString(largestUnit ?: LengthUnit.International.Nanometer, decimals = 2)
+        return toString(largestUnit ?: Nanometer, decimals = 2)
     }
 
     // endregion

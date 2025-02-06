@@ -8,7 +8,6 @@ import io.github.kevincianfarini.alchemist.unit.AreaUnit
 import io.github.kevincianfarini.alchemist.unit.LengthUnit
 import kotlin.jvm.JvmInline
 import kotlin.math.pow
-import kotlin.math.roundToLong
 
 /**
  * Represents a measure of area and is capable of storing ±9.22 million kilometers² at millimeter² precision.
@@ -145,6 +144,24 @@ public value class Area internal constructor(internal val rawMillimetersSquared:
      * area is 0 and scale is [Long.MAX_VALUE] or [Long.MIN_VALUE].
      */
     public operator fun times(scale: Long): Area = Area(rawMillimetersSquared * scale)
+
+    /**
+     * Returns an area whose value is multiplied by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this area is [infinite][isInfinite] and [scale] is 0.0 or when this area is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun times(scale: Double): Area = Area(rawMillimetersSquared * scale)
+
+    /**
+     * Returns an area whose value is divided by the specified [scale]. This operation may be rounded when the result
+     * cannot be precisely represented with a [Double] number.
+     *
+     * @throws IllegalArgumentException when this area is [infinite][isInfinite] and [scale] is 0.0 or when this area is 0
+     * and scale is [infinite][Double.isInfinite].
+     */
+    public operator fun div(scale: Double): Area = Area(rawMillimetersSquared / scale)
 
     // endregion
 
