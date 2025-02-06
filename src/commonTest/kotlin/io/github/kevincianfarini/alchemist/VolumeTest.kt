@@ -11,6 +11,7 @@ import kotlin.text.Typography.nbsp
 class VolumeTest {
 
     @Test
+    @WasmWasiIgnore // See: https://youtrack.jetbrains.com/issue/KT-60964.
     fun to_string_simple() {
         assertEquals(
             expected = "10.00m³",

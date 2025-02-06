@@ -64,7 +64,7 @@ alchemist = { module = "io.github.kevincianfarini.alchemist:alchemist", version.
 | tvosSimulatorArm64   | ✅        | ✅                                                                                                  |
 | tvosX64              | ✅        | ✅                                                                                                  |
 | wasmJs               | ✅        | ✅                                                                                                  |
-| wasmWasi             | ✅        | ❌ (Prohibited by [KT-60964](https://youtrack.jetbrains.com/issue/KT-60964).)                       |
+| wasmWasi             | ✅        | ⚠️ (Some tests don't run because of [KT-60964](https://youtrack.jetbrains.com/issue/KT-60964).)    |
 | watchosArm32         | ✅        | ❌                                                                                                  |
 | watchosArm64         | ✅        | ❌                                                                                                  |
 | watchosDeviceArm64   | ✅        | ❌                                                                                                  |

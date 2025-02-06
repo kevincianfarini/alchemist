@@ -21,6 +21,7 @@ class TemperatureTest {
     }
 
     @Test
+    @WasmWasiIgnore // See: https://youtrack.jetbrains.com/issue/KT-60964.
     fun to_string_with_unit_works_properly() {
         assertEquals("0.00°F", 0.fahrenheit.toString(TemperatureUnit.Fahrenheit, decimals = 2))
         assertEquals("0.00°C", 0.celsius.toString(TemperatureUnit.International.Celsius, decimals = 2))
@@ -29,6 +30,7 @@ class TemperatureTest {
     }
 
     @Test
+    @WasmWasiIgnore // See: https://youtrack.jetbrains.com/issue/KT-60964.
     fun to_string_without_unit_picks_proper_unit() {
         assertEquals("0.00${nbsp}nK", 0.nanokelvins.toString())
         assertEquals("1.00${nbsp}nK", 1.nanokelvins.toString())
