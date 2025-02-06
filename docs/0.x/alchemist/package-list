@@ -229,6 +229,7 @@ $dokka.location:io.github.kevincianfarini.alchemist.type//times/kotlin.time.Dura
 $dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration///PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-acceleration/index.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration/compareTo/#io.github.kevincianfarini.alchemist.type.Acceleration/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-acceleration/compare-to.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration/div/#io.github.kevincianfarini.alchemist.type.Acceleration/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-acceleration/div.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration/div/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-acceleration/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration/div/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-acceleration/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration/div/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-acceleration/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration/isFinite/#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-acceleration/is-finite.html
@@ -236,6 +237,7 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration/isInfinite
 $dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration/minus/#io.github.kevincianfarini.alchemist.type.Acceleration/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-acceleration/minus.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration/plus/#io.github.kevincianfarini.alchemist.type.Acceleration/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-acceleration/plus.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration/times/#io.github.kevincianfarini.alchemist.type.Mass/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-acceleration/times.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration/times/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-acceleration/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration/times/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-acceleration/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration/times/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-acceleration/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Acceleration/times/#kotlin.time.Duration/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-acceleration/times.html
@@ -248,6 +250,7 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Area///PointingToDeclar
 $dokka.location:io.github.kevincianfarini.alchemist.type/Area/compareTo/#io.github.kevincianfarini.alchemist.type.Area/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-area/compare-to.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Area/div/#io.github.kevincianfarini.alchemist.type.Area/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-area/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Area/div/#io.github.kevincianfarini.alchemist.type.Length/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-area/div.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Area/div/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-area/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Area/div/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-area/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Area/div/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-area/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Area/isFinite/#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-area/is-finite.html
@@ -255,6 +258,7 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Area/isInfinite/#/Point
 $dokka.location:io.github.kevincianfarini.alchemist.type/Area/minus/#io.github.kevincianfarini.alchemist.type.Area/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-area/minus.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Area/plus/#io.github.kevincianfarini.alchemist.type.Area/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-area/plus.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Area/times/#io.github.kevincianfarini.alchemist.type.Length/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-area/times.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Area/times/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-area/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Area/times/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-area/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Area/times/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-area/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Area/toDouble/#io.github.kevincianfarini.alchemist.unit.AreaUnit/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-area/to-double.html
@@ -270,6 +274,7 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Energy///PointingToDecl
 $dokka.location:io.github.kevincianfarini.alchemist.type/Energy/compareTo/#io.github.kevincianfarini.alchemist.type.Energy/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-energy/compare-to.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Energy/div/#io.github.kevincianfarini.alchemist.type.Energy/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-energy/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Energy/div/#io.github.kevincianfarini.alchemist.type.Length/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-energy/div.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Energy/div/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-energy/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Energy/div/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-energy/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Energy/div/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-energy/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Energy/div/#kotlin.time.Duration/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-energy/div.html
@@ -277,6 +282,7 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Energy/isFinite/#/Point
 $dokka.location:io.github.kevincianfarini.alchemist.type/Energy/isInfinite/#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-energy/is-infinite.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Energy/minus/#io.github.kevincianfarini.alchemist.type.Energy/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-energy/minus.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Energy/plus/#io.github.kevincianfarini.alchemist.type.Energy/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-energy/plus.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Energy/times/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-energy/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Energy/times/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-energy/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Energy/times/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-energy/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Energy/toDouble/#io.github.kevincianfarini.alchemist.unit.EnergyUnit/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-energy/to-double.html
@@ -290,6 +296,7 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Force///PointingToDecla
 $dokka.location:io.github.kevincianfarini.alchemist.type/Force/compareTo/#io.github.kevincianfarini.alchemist.type.Force/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-force/compare-to.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Force/div/#io.github.kevincianfarini.alchemist.type.Force/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-force/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Force/div/#io.github.kevincianfarini.alchemist.type.Mass/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-force/div.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Force/div/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-force/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Force/div/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-force/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Force/div/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-force/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Force/isFinite/#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-force/is-finite.html
@@ -297,6 +304,7 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Force/isInfinite/#/Poin
 $dokka.location:io.github.kevincianfarini.alchemist.type/Force/minus/#io.github.kevincianfarini.alchemist.type.Force/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-force/minus.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Force/plus/#io.github.kevincianfarini.alchemist.type.Force/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-force/plus.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Force/times/#io.github.kevincianfarini.alchemist.type.Length/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-force/times.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Force/times/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-force/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Force/times/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-force/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Force/times/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-force/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Force/toDouble/#io.github.kevincianfarini.alchemist.unit.ForceUnit/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-force/to-double.html
@@ -309,6 +317,7 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Length/compareTo/#io.gi
 $dokka.location:io.github.kevincianfarini.alchemist.type/Length/cubed/#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-length/cubed.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Length/div/#io.github.kevincianfarini.alchemist.type.Length/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-length/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Length/div/#io.github.kevincianfarini.alchemist.type.Velocity/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-length/div.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Length/div/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-length/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Length/div/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-length/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Length/div/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-length/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Length/div/#kotlin.time.Duration/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-length/div.html
@@ -320,6 +329,7 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Length/squared/#/Pointi
 $dokka.location:io.github.kevincianfarini.alchemist.type/Length/times/#io.github.kevincianfarini.alchemist.type.Area/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-length/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Length/times/#io.github.kevincianfarini.alchemist.type.Force/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-length/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Length/times/#io.github.kevincianfarini.alchemist.type.Length/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-length/times.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Length/times/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-length/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Length/times/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-length/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Length/times/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-length/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Length/toDouble/#io.github.kevincianfarini.alchemist.unit.LengthUnit/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-length/to-double.html
@@ -332,6 +342,7 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Length/unaryMinus/#/Poi
 $dokka.location:io.github.kevincianfarini.alchemist.type/Mass///PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-mass/index.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Mass/compareTo/#io.github.kevincianfarini.alchemist.type.Mass/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-mass/compare-to.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Mass/div/#io.github.kevincianfarini.alchemist.type.Mass/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-mass/div.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Mass/div/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-mass/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Mass/div/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-mass/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Mass/div/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-mass/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Mass/isFinite/#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-mass/is-finite.html
@@ -339,6 +350,7 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Mass/isInfinite/#/Point
 $dokka.location:io.github.kevincianfarini.alchemist.type/Mass/minus/#io.github.kevincianfarini.alchemist.type.Mass/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-mass/minus.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Mass/plus/#io.github.kevincianfarini.alchemist.type.Mass/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-mass/plus.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Mass/times/#io.github.kevincianfarini.alchemist.type.Acceleration/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-mass/times.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Mass/times/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-mass/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Mass/times/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-mass/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Mass/times/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-mass/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Mass/toDouble/#io.github.kevincianfarini.alchemist.unit.MassUnit/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-mass/to-double.html
@@ -350,12 +362,14 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Mass/unaryMinus/#/Point
 $dokka.location:io.github.kevincianfarini.alchemist.type/Power///PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-power/index.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Power/compareTo/#io.github.kevincianfarini.alchemist.type.Power/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-power/compare-to.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Power/div/#io.github.kevincianfarini.alchemist.type.Power/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-power/div.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Power/div/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-power/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Power/div/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-power/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Power/div/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-power/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Power/isFinite/#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-power/is-finite.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Power/isInfinite/#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-power/is-infinite.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Power/minus/#io.github.kevincianfarini.alchemist.type.Power/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-power/minus.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Power/plus/#io.github.kevincianfarini.alchemist.type.Power/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-power/plus.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Power/times/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-power/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Power/times/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-power/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Power/times/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-power/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Power/times/#kotlin.time.Duration/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-power/times.html
@@ -383,6 +397,7 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Temperature/unaryMinus/
 $dokka.location:io.github.kevincianfarini.alchemist.type/Velocity///PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-velocity/index.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Velocity/compareTo/#io.github.kevincianfarini.alchemist.type.Velocity/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-velocity/compare-to.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Velocity/div/#io.github.kevincianfarini.alchemist.type.Velocity/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-velocity/div.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Velocity/div/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-velocity/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Velocity/div/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-velocity/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Velocity/div/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-velocity/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Velocity/div/#kotlin.time.Duration/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-velocity/div.html
@@ -390,6 +405,7 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Velocity/isFinite/#/Poi
 $dokka.location:io.github.kevincianfarini.alchemist.type/Velocity/isInfinite/#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-velocity/is-infinite.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Velocity/minus/#io.github.kevincianfarini.alchemist.type.Velocity/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-velocity/minus.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Velocity/plus/#io.github.kevincianfarini.alchemist.type.Velocity/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-velocity/plus.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Velocity/times/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-velocity/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Velocity/times/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-velocity/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Velocity/times/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-velocity/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Velocity/times/#kotlin.time.Duration/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-velocity/times.html
@@ -403,12 +419,14 @@ $dokka.location:io.github.kevincianfarini.alchemist.type/Volume/compareTo/#io.gi
 $dokka.location:io.github.kevincianfarini.alchemist.type/Volume/div/#io.github.kevincianfarini.alchemist.type.Area/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-volume/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Volume/div/#io.github.kevincianfarini.alchemist.type.Length/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-volume/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Volume/div/#io.github.kevincianfarini.alchemist.type.Volume/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-volume/div.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Volume/div/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-volume/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Volume/div/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-volume/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Volume/div/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-volume/div.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Volume/isFinite/#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-volume/is-finite.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Volume/isInfinite/#/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-volume/is-infinite.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Volume/minus/#io.github.kevincianfarini.alchemist.type.Volume/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-volume/minus.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Volume/plus/#io.github.kevincianfarini.alchemist.type.Volume/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-volume/plus.html
+$dokka.location:io.github.kevincianfarini.alchemist.type/Volume/times/#kotlin.Double/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-volume/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Volume/times/#kotlin.Int/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-volume/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Volume/times/#kotlin.Long/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-volume/times.html
 $dokka.location:io.github.kevincianfarini.alchemist.type/Volume/toDouble/#io.github.kevincianfarini.alchemist.unit.LengthUnit/PointingToDeclaration/alchemist/io.github.kevincianfarini.alchemist.type/-volume/to-double.html
