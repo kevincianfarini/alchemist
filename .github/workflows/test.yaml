@@ -20,7 +20,7 @@ jobs:
           - os: windows-latest
             job: mingwX64Test
           - os: ubuntu-latest
-            job: jsTest jvmTest linuxX64Test wasmJsTest
+            job: jsTest jvmTest linuxX64Test wasmJsTest wasmWasiTest
 
     runs-on: ${{matrix.os}}
     steps:

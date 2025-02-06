@@ -7,6 +7,7 @@ import kotlin.test.Test
 class DoubleTest {
 
     @Test
+    @WasmWasiIgnore // See: https://youtrack.jetbrains.com/issue/KT-60964.
     fun exact_omits_decimal_point() {
         assertEquals(
             expected = "0",
@@ -23,6 +24,7 @@ class DoubleTest {
     }
 
     @Test
+    @WasmWasiIgnore // See: https://youtrack.jetbrains.com/issue/KT-60964.
     fun pads_with_zeros() {
         assertEquals(
             expected = "123.4565000000",

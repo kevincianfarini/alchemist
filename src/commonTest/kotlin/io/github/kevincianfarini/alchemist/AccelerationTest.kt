@@ -14,6 +14,7 @@ import kotlin.time.DurationUnit
 class AccelerationTest {
 
     @Test
+    @WasmWasiIgnore // See: https://youtrack.jetbrains.com/issue/KT-60964.
     fun simple() {
         assertEquals(
             expected = "1.00${nbsp}m/s²",

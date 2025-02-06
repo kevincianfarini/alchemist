@@ -39,6 +39,7 @@ class VelocityTest {
     }
 
     @Test
+    @WasmWasiIgnore // See: https://youtrack.jetbrains.com/issue/KT-60964.
     fun default_to_string_simple_works() {
         assertEquals(
             expected = "1.00${nbsp}m/s",

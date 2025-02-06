@@ -102,6 +102,7 @@ class LengthTest {
     }
 
     @Test
+    @WasmWasiIgnore // See: https://youtrack.jetbrains.com/issue/KT-60964.
     fun default_to_string_renders_into_metric_components() {
         val length = 10_000.meters
         assertEquals(

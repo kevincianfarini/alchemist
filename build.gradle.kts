@@ -63,6 +63,15 @@ kotlin {
     watchosX64()
 
     sourceSets {
+
+        configureEach {
+            if (name.endsWith("Test")) {
+                compilerOptions {
+                    freeCompilerArgs.add("-Xexpect-actual-classes")
+                }
+            }
+        }
+
         commonTest.dependencies {
             implementation(libs.kotlin.test.core)
         }

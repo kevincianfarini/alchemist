@@ -163,6 +163,7 @@ class AreaTest {
     }
 
     @Test
+    @WasmWasiIgnore // See: https://youtrack.jetbrains.com/issue/KT-60964.
     fun to_string_override_works() {
         assertEquals("0.00mm²", 0.mm2.toString())
         assertEquals("1.00mm²", 1.mm2.toString())
