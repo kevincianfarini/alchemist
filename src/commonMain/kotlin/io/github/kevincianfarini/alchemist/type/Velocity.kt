@@ -12,7 +12,6 @@ import io.github.kevincianfarini.alchemist.scalar.nanometers
 import io.github.kevincianfarini.alchemist.scalar.nmPerSecond2
 import io.github.kevincianfarini.alchemist.unit.LengthUnit
 import kotlin.jvm.JvmInline
-import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 import kotlin.text.Typography.nbsp
 import kotlin.time.Duration

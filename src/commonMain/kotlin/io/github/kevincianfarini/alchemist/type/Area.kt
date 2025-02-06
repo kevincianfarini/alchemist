@@ -8,8 +8,6 @@ import io.github.kevincianfarini.alchemist.unit.AreaUnit
 import io.github.kevincianfarini.alchemist.unit.LengthUnit
 import kotlin.jvm.JvmInline
 import kotlin.math.pow
-import kotlin.math.roundToInt
-import kotlin.math.roundToLong
 
 /**
  * Represents a measure of area and is capable of storing ±9.22 million kilometers² at millimeter² precision.

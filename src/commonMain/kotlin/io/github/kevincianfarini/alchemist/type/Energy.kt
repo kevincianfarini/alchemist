@@ -14,7 +14,6 @@ import io.github.kevincianfarini.alchemist.scalar.milliwatts
 import io.github.kevincianfarini.alchemist.scalar.watts
 import io.github.kevincianfarini.alchemist.unit.EnergyUnit
 import kotlin.jvm.JvmInline
-import kotlin.math.roundToInt
 import kotlin.time.Duration
 
 /**

@@ -4,7 +4,6 @@ import io.github.kevincianfarini.alchemist.internal.SaturatingLong
 import io.github.kevincianfarini.alchemist.internal.toDecimalString
 import io.github.kevincianfarini.alchemist.unit.MassUnit
 import kotlin.jvm.JvmInline
-import kotlin.math.roundToInt
 import kotlin.text.Typography.nbsp
 
 /**

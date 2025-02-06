@@ -12,14 +12,11 @@ import io.github.kevincianfarini.alchemist.scalar.nmPerSecond
 import io.github.kevincianfarini.alchemist.unit.LengthUnit
 import io.github.kevincianfarini.alchemist.unit.LengthUnit.International.Nanometer
 import kotlin.jvm.JvmInline
-import kotlin.math.roundToInt
-import kotlin.math.roundToLong
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.microseconds
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.Duration.Companion.seconds
-import kotlin.time.toDuration
 
 /**
  * Represents a measure of length and is capable of storing ±9.2 million kilometers at nanometer precision.

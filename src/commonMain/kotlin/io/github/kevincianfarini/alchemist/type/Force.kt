@@ -5,7 +5,6 @@ import io.github.kevincianfarini.alchemist.internal.toDecimalString
 import io.github.kevincianfarini.alchemist.scalar.nmPerSecond2
 import io.github.kevincianfarini.alchemist.unit.ForceUnit
 import kotlin.jvm.JvmInline
-import kotlin.math.roundToInt
 
 /**
  * Represents a measure of force and is capable of storing ±9.2 billion newtons at nanonewton precision.

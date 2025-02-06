@@ -4,7 +4,6 @@ package io.github.kevincianfarini.alchemist.internal
 
 import kotlin.jvm.JvmInline
 import kotlin.math.absoluteValue
-import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 import kotlin.math.sign
 

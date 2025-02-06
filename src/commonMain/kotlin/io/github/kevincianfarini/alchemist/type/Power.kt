@@ -8,7 +8,6 @@ import io.github.kevincianfarini.alchemist.internal.toDecimalString
 import io.github.kevincianfarini.alchemist.scalar.microwatts
 import io.github.kevincianfarini.alchemist.unit.PowerUnit
 import kotlin.jvm.JvmInline
-import kotlin.math.roundToInt
 import kotlin.time.Duration
 
 /**
