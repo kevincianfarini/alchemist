@@ -20,7 +20,7 @@ val volume: Volume = length * length * length
 
 ```toml
 [versions]
-alchemist = "0.1.1"
+alchemist = "0.2.0"
 
 [libraries]
 alchemist = { module = "io.github.kevincianfarini.alchemist:alchemist", version.ref = "alchemist" }
