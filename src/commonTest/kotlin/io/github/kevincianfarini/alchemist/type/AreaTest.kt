@@ -1,10 +1,9 @@
-package io.github.kevincianfarini.alchemist
+package io.github.kevincianfarini.alchemist.type
 
+import io.github.kevincianfarini.alchemist.WasmWasiIgnore
 import io.github.kevincianfarini.alchemist.internal.NEGATIVE_INFINITY
 import io.github.kevincianfarini.alchemist.internal.POSITIVE_INFINITY
 import io.github.kevincianfarini.alchemist.scalar.kilometers
-import io.github.kevincianfarini.alchemist.scalar.liters
-import io.github.kevincianfarini.alchemist.scalar.meters
 import io.github.kevincianfarini.alchemist.scalar.milliliters
 import io.github.kevincianfarini.alchemist.scalar.millimeters
 import io.github.kevincianfarini.alchemist.scalar.mm2

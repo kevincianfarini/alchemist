@@ -1,5 +1,6 @@
-package io.github.kevincianfarini.alchemist
+package io.github.kevincianfarini.alchemist.type
 
+import io.github.kevincianfarini.alchemist.WasmWasiIgnore
 import io.github.kevincianfarini.alchemist.scalar.grams
 import io.github.kevincianfarini.alchemist.scalar.nanonewtons
 import io.github.kevincianfarini.alchemist.scalar.nmPerSecond
