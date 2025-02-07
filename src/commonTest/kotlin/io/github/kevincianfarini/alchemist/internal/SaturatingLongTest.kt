@@ -1,13 +1,11 @@
-package io.github.kevincianfarini.alchemist
+package io.github.kevincianfarini.alchemist.internal
 
-import io.github.kevincianfarini.alchemist.internal.NEGATIVE_INFINITY
-import io.github.kevincianfarini.alchemist.internal.POSITIVE_INFINITY
-import io.github.kevincianfarini.alchemist.internal.saturated
+import io.github.kevincianfarini.alchemist.WasmJsIgnore
+import io.github.kevincianfarini.alchemist.WasmWasiIgnore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
 import kotlin.test.assertFailsWith
-import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 class SaturatingLongTest {
@@ -321,7 +319,8 @@ class SaturatingLongTest {
     }
 
     @Test
-    @WasmWasiIgnore @WasmJsIgnore // See: https://youtrack.jetbrains.com/issue/KT-66081.
+    @WasmWasiIgnore
+    @WasmJsIgnore // See: https://youtrack.jetbrains.com/issue/KT-66081.
     fun dividing_by_double_zero_throws() {
         assertFails {
             // Kotlin/JS doesn't throw ArithmeticException for Long.div(0). Don't try to assert against a specific

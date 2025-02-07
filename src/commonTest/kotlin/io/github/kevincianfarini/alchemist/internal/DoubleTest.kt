@@ -1,6 +1,6 @@
-package io.github.kevincianfarini.alchemist
+package io.github.kevincianfarini.alchemist.internal
 
-import io.github.kevincianfarini.alchemist.internal.toDecimalString
+import io.github.kevincianfarini.alchemist.WasmWasiIgnore
 import kotlin.test.assertEquals
 import kotlin.test.Test
 

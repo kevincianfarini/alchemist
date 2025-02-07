@@ -1,5 +1,6 @@
-package io.github.kevincianfarini.alchemist
+package io.github.kevincianfarini.alchemist.type
 
+import io.github.kevincianfarini.alchemist.WasmWasiIgnore
 import io.github.kevincianfarini.alchemist.internal.NEGATIVE_INFINITY
 import io.github.kevincianfarini.alchemist.internal.POSITIVE_INFINITY
 import io.github.kevincianfarini.alchemist.scalar.centimeters
