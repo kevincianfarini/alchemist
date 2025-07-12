@@ -10,9 +10,9 @@ import kotlin.text.Typography.nbsp
  */
 @RequiresOptIn(
     message = """
-        Implementing TemperatureUnit requires detecting integer overflow detection, which normal Long values don't 
-        expose. Implementors should exercise caution when converting between their custom temperature units and 
-        nanokelvins. 
+        Implementing TemperatureUnit requires detecting integer overflow detection, which normal Long values don't
+        expose. Implementors should exercise caution when converting between their custom temperature units and
+        nanokelvins.
     """,
     level = RequiresOptIn.Level.ERROR,
 )
@@ -48,16 +48,19 @@ public interface TemperatureUnit {
     /**
      * An International System of Units standard representation of temperature.
      */
-    public enum class International(override val symbol: String) : TemperatureUnit {
-        Nanokelvin("${nbsp}nK") {
+    public object International {
+        public val Nanokelvin: TemperatureUnit = object : TemperatureUnit {
+            override val symbol: String = "${nbsp}nK"
             override fun convertToNanokelvin(degrees: Long): Long = degrees
             override fun convertToNanokelvin(degrees: Double): Long {
                 require(!degrees.isNaN()) { "Temperature value cannot be NaN." }
                 return degrees.roundToLong()
             }
             override fun convertNanokelvinsToThis(nanokelvins: Long): Double = nanokelvins.toDouble()
-        },
-        Microkelvin("${nbsp}μK") {
+        }
+
+        public val Microkelvin: TemperatureUnit = object : TemperatureUnit {
+            override val symbol: String = "${nbsp}μK"
             override fun convertToNanokelvin(degrees: Long): Long = (degrees.saturated * 1_000).rawValue
             override fun convertToNanokelvin(degrees: Double): Long {
                 val ret = degrees * 1_000
@@ -65,8 +68,10 @@ public interface TemperatureUnit {
                 return ret.roundToLong()
             }
             override fun convertNanokelvinsToThis(nanokelvins: Long): Double = nanokelvins.saturated.toDouble() / 1_000
-        },
-        Millikelvin("${nbsp}mK") {
+        }
+
+        public val Millikelvin: TemperatureUnit = object : TemperatureUnit {
+            override val symbol: String = "${nbsp}mK"
             override fun convertToNanokelvin(degrees: Long): Long = (degrees.saturated * 1_000_000).rawValue
             override fun convertToNanokelvin(degrees: Double): Long {
                 val ret = degrees * 1_000_000
@@ -74,8 +79,10 @@ public interface TemperatureUnit {
                 return ret.roundToLong()
             }
             override fun convertNanokelvinsToThis(nanokelvins: Long): Double = nanokelvins.saturated.toDouble() / 1_000_000
-        },
-        Kelvin("${nbsp}K") {
+        }
+
+        public val Kelvin: TemperatureUnit = object : TemperatureUnit {
+            override val symbol: String = "${nbsp}K"
             override fun convertToNanokelvin(degrees: Long): Long = (degrees.saturated * 1_000_000_000).rawValue
             override fun convertToNanokelvin(degrees: Double): Long {
                 val ret = degrees * 1_000_000_000
@@ -83,8 +90,10 @@ public interface TemperatureUnit {
                 return ret.roundToLong()
             }
             override fun convertNanokelvinsToThis(nanokelvins: Long): Double = nanokelvins.saturated.toDouble() / 1_000_000_000
-        },
-        Kilokelvin("${nbsp}kK") {
+        }
+
+        public val Kilokelvin: TemperatureUnit = object : TemperatureUnit {
+            override val symbol: String = "${nbsp}kK"
             override fun convertToNanokelvin(degrees: Long): Long = (degrees.saturated * 1_000_000_000_000).rawValue
             override fun convertToNanokelvin(degrees: Double): Long {
                 val ret = degrees * 1_000_000_000_000
@@ -92,8 +101,10 @@ public interface TemperatureUnit {
                 return ret.roundToLong()
             }
             override fun convertNanokelvinsToThis(nanokelvins: Long): Double = nanokelvins.saturated.toDouble() / 1_000_000_000_000
-        },
-        Megakelvin("${nbsp}MK") {
+        }
+
+        public val Megakelvin: TemperatureUnit = object : TemperatureUnit {
+            override val symbol: String = "${nbsp}MK"
             override fun convertToNanokelvin(degrees: Long): Long = (degrees.saturated * 1_000_000_000_000_000).rawValue
             override fun convertToNanokelvin(degrees: Double): Long {
                 val ret = degrees * 1_000_000_000_000_000
@@ -101,8 +112,10 @@ public interface TemperatureUnit {
                 return ret.roundToLong()
             }
             override fun convertNanokelvinsToThis(nanokelvins: Long): Double = nanokelvins.saturated.toDouble() / 1_000_000_000_000_000
-        },
-        Gigakelvin("${nbsp}GK") {
+        }
+
+        public val Gigakelvin: TemperatureUnit = object : TemperatureUnit {
+            override val symbol: String = "${nbsp}GK"
             override fun convertToNanokelvin(degrees: Long): Long = (degrees.saturated * 1_000_000_000_000_000_000).rawValue
             override fun convertToNanokelvin(degrees: Double): Long {
                 val ret = degrees * 1_000_000_000_000_000_000
@@ -110,8 +123,10 @@ public interface TemperatureUnit {
                 return ret.roundToLong()
             }
             override fun convertNanokelvinsToThis(nanokelvins: Long): Double = nanokelvins.saturated.toDouble() / 1_000_000_000_000_000_000
-        },
-        Celsius("°C") {
+        }
+
+        public val Celsius: TemperatureUnit = object : TemperatureUnit {
+            override val symbol: String = "°C"
             override fun convertToNanokelvin(degrees: Long): Long {
                 return ((degrees.saturated * 1_000_000_000) + 273_150_000_000).rawValue
             }
@@ -123,7 +138,17 @@ public interface TemperatureUnit {
             override fun convertNanokelvinsToThis(nanokelvins: Long): Double {
                 return (nanokelvins.saturated.toDouble() - 273_150_000_000) / 1_000_000_000
             }
-        },
+        }
+
+        public val entries: List<TemperatureUnit> = listOf(
+            Nanokelvin,
+            Microkelvin,
+            Millikelvin,
+            Kelvin,
+            Kilokelvin,
+            Megakelvin,
+            Gigakelvin,
+        )
     }
 
     /**

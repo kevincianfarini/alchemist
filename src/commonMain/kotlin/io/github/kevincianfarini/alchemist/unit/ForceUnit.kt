@@ -19,13 +19,35 @@ public interface ForceUnit {
     /**
      * An International System of Units standard representation of force.
      */
-    public enum class International(override val symbol: String, override val nanonewtonScale: Long) : ForceUnit {
-        Nanonewton("nN", 1),
-        Micronewton("μN", 1_000),
-        Millinewton("mN", 1_000_000),
-        Newton("N", 1_000_000_000),
-        Kilonewton("kN", 1_000_000_000_000),
-        Meganewton("MN", 1_000_000_000_000_000),
-        Giganewton("GN", 1_000_000_000_000_000_000)
+    public object International {
+        public val Nanonewton: ForceUnit = object : ForceUnit {
+            override val symbol: String = "nN"
+            override val nanonewtonScale: Long = 1
+        }
+        public val Micronewton: ForceUnit = object : ForceUnit {
+            override val symbol: String = "μN"
+            override val nanonewtonScale: Long = 1_000
+        }
+        public val Millinewton: ForceUnit = object : ForceUnit {
+            override val symbol: String = "mN"
+            override val nanonewtonScale: Long = 1_000_000
+        }
+        public val Newton: ForceUnit = object : ForceUnit {
+            override val symbol: String = "N"
+            override val nanonewtonScale: Long = 1_000_000_000
+        }
+        public val Kilonewton: ForceUnit = object : ForceUnit {
+            override val symbol: String = "kN"
+            override val nanonewtonScale: Long = 1_000_000_000_000
+        }
+        public val Meganewton: ForceUnit = object : ForceUnit {
+            override val symbol: String = "MN"
+            override val nanonewtonScale: Long = 1_000_000_000_000_000
+        }
+        public val Giganewton: ForceUnit = object : ForceUnit {
+            override val symbol: String = "GN"
+            override val nanonewtonScale: Long = 1_000_000_000_000_000_000
+        }
+        public val entries: List<ForceUnit> = listOf(Nanonewton, Micronewton, Millinewton, Newton, Kilonewton, Meganewton, Giganewton)
     }
 }

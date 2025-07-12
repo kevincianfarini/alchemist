@@ -19,13 +19,35 @@ public interface MassUnit {
     /**
      * An International System of Units standard representation of mass.
      */
-    public enum class International(override val microgramScale: Long, override val symbol: String): MassUnit {
-        Microgram(1, "μg"),
-        Milligram(1_000, "mg"),
-        Gram(1_000_000, "g"),
-        Kilogram(1_000_000_000, "kg"),
-        Megagram(1_000_000_000_000, "Mg"),
-        Gigagram(1_000_000_000_000_000, "Gg"),
-        Teragram(1_000_000_000_000_000_000, "Tg"),
+    public object International {
+        public val Microgram: MassUnit = object : MassUnit {
+            override val microgramScale: Long = 1
+            override val symbol: String = "μg"
+        }
+        public val Milligram: MassUnit = object : MassUnit {
+            override val microgramScale: Long = 1_000
+            override val symbol: String = "mg"
+        }
+        public val Gram: MassUnit = object : MassUnit {
+            override val microgramScale: Long = 1_000_000
+            override val symbol: String = "g"
+        }
+        public val Kilogram: MassUnit = object : MassUnit {
+            override val microgramScale: Long = 1_000_000_000
+            override val symbol: String = "kg"
+        }
+        public val Megagram: MassUnit = object : MassUnit {
+            override val microgramScale: Long = 1_000_000_000_000
+            override val symbol: String = "Mg"
+        }
+        public val Gigagram: MassUnit = object : MassUnit {
+            override val microgramScale: Long = 1_000_000_000_000_000
+            override val symbol: String = "Gg"
+        }
+        public val Teragram: MassUnit = object : MassUnit {
+            override val microgramScale: Long = 1_000_000_000_000_000_000
+            override val symbol: String = "Tg"
+        }
+        public val entries: List<MassUnit> = listOf(Microgram, Milligram, Gram, Kilogram, Megagram, Gigagram, Teragram)
     }
 }
