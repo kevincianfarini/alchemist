@@ -28,7 +28,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: 19
+          java-version-file: .github/.java-version
 
       - run: ./gradlew ${{matrix.job}}
 
@@ -39,5 +39,5 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: 19
+          java-version-file: .github/.java-version
       - run: ./gradlew kmpMissingTargets
