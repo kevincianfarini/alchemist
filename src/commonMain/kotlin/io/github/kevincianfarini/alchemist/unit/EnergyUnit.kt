@@ -3,7 +3,7 @@ package io.github.kevincianfarini.alchemist.unit
 /**
  * A unit of energy precise to the millijoule.
  */
-public interface EnergyUnit {
+public interface EnergyUnit : Comparable<EnergyUnit> {
 
     /**
      * The amount of millijoules in this unit. Implementations of [EnergyUnit] should be perfectly divisible by a
@@ -16,34 +16,71 @@ public interface EnergyUnit {
      */
     public val symbol: String
 
+    override fun compareTo(other: EnergyUnit): Int = millijouleScale.compareTo(other.millijouleScale)
+
     /**
      * An International System of Units standard representation of energy.
      */
-    public enum class International(
-        override val millijouleScale: Long,
-        override val symbol: String,
-    ) : EnergyUnit {
-        Millijoule(1, "mJ"),
-        Joule(1_000, "J"),
-        Kilojoule(1_000_000, "kJ"),
-        Megajoule(1_000_000_000, "MJ"),
-        Gigajoule(1_000_000_000_000, "GJ"),
-        Tetrajoule(1_000_000_000_000_000, "TJ"),
-        Petajoule(1_000_000_000_000_000_000, "PJ"),
+    public object International {
+        public val Millijoule: EnergyUnit = object : EnergyUnit {
+            override val millijouleScale: Long = 1
+            override val symbol: String = "mJ"
+        }
+        public val Joule: EnergyUnit = object : EnergyUnit {
+            override val millijouleScale: Long = 1_000
+            override val symbol: String = "J"
+        }
+        public val Kilojoule: EnergyUnit = object : EnergyUnit {
+            override val millijouleScale: Long = 1_000_000
+            override val symbol: String = "kJ"
+        }
+        public val Megajoule: EnergyUnit = object : EnergyUnit {
+            override val millijouleScale: Long = 1_000_000_000
+            override val symbol: String = "MJ"
+        }
+        public val Gigajoule: EnergyUnit = object : EnergyUnit {
+            override val millijouleScale: Long = 1_000_000_000_000
+            override val symbol: String = "GJ"
+        }
+        public val Tetrajoule: EnergyUnit = object : EnergyUnit {
+            override val millijouleScale: Long = 1_000_000_000_000_000
+            override val symbol: String = "TJ"
+        }
+        public val Petajoule: EnergyUnit = object : EnergyUnit {
+            override val millijouleScale: Long = 1_000_000_000_000_000_000
+            override val symbol: String = "PJ"
+        }
+        public val entries: List<EnergyUnit> = listOf(Millijoule, Joule, Kilojoule, Megajoule, Gigajoule, Tetrajoule, Petajoule)
     }
 
     /**
      * A non-standard representation of energy commonly used to measure electrical energy.
      */
-    public enum class Electricity(
-        override val millijouleScale: Long,
-        override val symbol: String,
-    ) : EnergyUnit {
-        MilliwattHour(3_600, "mWh"),
-        WattHour(3_600_000, "Wh"),
-        KilowattHour(3_600_000_000, "kWh"),
-        MegawattHour(3_600_000_000_000, "MWh"),
-        GigawattHour(3_600_000_000_000_000, "GWh"),
-        TerawattHour(3_600_000_000_000_000_000, "TWh"),
+    public object Electricity {
+        public val MilliwattHour: EnergyUnit = object : EnergyUnit {
+            override val millijouleScale: Long = 3_600
+            override val symbol: String = "mWh"
+        }
+        public val WattHour: EnergyUnit = object : EnergyUnit {
+            override val millijouleScale: Long = 3_600_000
+            override val symbol: String = "Wh"
+        }
+        public val KilowattHour: EnergyUnit = object : EnergyUnit {
+            override val millijouleScale: Long = 3_600_000_000
+            override val symbol: String = "kWh"
+        }
+        public val MegawattHour: EnergyUnit = object : EnergyUnit {
+            override val millijouleScale: Long = 3_600_000_000_000
+            override val symbol: String = "MWh"
+        }
+        public val GigawattHour: EnergyUnit = object : EnergyUnit {
+            override val millijouleScale: Long = 3_600_000_000_000_000
+            override val symbol: String = "GWh"
+        }
+        public val TerawattHour: EnergyUnit = object : EnergyUnit {
+            override val millijouleScale: Long = 3_600_000_000_000_000_000
+            override val symbol: String = "TWh"
+        }
+        public val entries: List<EnergyUnit> = listOf(MilliwattHour, WattHour, KilowattHour, MegawattHour, GigawattHour, TerawattHour)
     }
 }

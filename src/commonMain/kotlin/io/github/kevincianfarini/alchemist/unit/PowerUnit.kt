@@ -3,7 +3,7 @@ package io.github.kevincianfarini.alchemist.unit
 /**
  * A unit of power precise to the microwatt.
  */
-public interface PowerUnit {
+public interface PowerUnit : Comparable<PowerUnit> {
 
     /**
      * The amount of microwatts in this unit. Implementations of [PowerUnit] should be perfectly divisible by a
@@ -16,19 +16,40 @@ public interface PowerUnit {
      */
     public val symbol: String
 
+    override fun compareTo(other: PowerUnit): Int = microwattScale.compareTo(other.microwattScale)
+
     /**
      * An International System of Units standard representation of power.
      */
-    public enum class International(
-        override val microwattScale: Long,
-        override val symbol: String,
-    ) : PowerUnit {
-        Microwatt(1, "μW"),
-        Milliwatt(1_000, "mW"),
-        Watt(1_000_000, "W"),
-        Kilowatt(1_000_000_000, "kW"),
-        Megawatt(1_000_000_000_000, "MW"),
-        Gigawatt(1_000_000_000_000_000, "GW"),
-        Terawatt(1_000_000_000_000_000_000, "TW"),
+    public object International {
+        public val Microwatt: PowerUnit = object : PowerUnit {
+            override val microwattScale: Long = 1
+            override val symbol: String = "μW"
+        }
+        public val Milliwatt: PowerUnit = object : PowerUnit {
+            override val microwattScale: Long = 1_000
+            override val symbol: String = "mW"
+        }
+        public val Watt: PowerUnit = object : PowerUnit {
+            override val microwattScale: Long = 1_000_000
+            override val symbol: String = "W"
+        }
+        public val Kilowatt: PowerUnit = object : PowerUnit {
+            override val microwattScale: Long = 1_000_000_000
+            override val symbol: String = "kW"
+        }
+        public val Megawatt: PowerUnit = object : PowerUnit {
+            override val microwattScale: Long = 1_000_000_000_000
+            override val symbol: String = "MW"
+        }
+        public val Gigawatt: PowerUnit = object : PowerUnit {
+            override val microwattScale: Long = 1_000_000_000_000_000
+            override val symbol: String = "GW"
+        }
+        public val Terawatt: PowerUnit = object : PowerUnit {
+            override val microwattScale: Long = 1_000_000_000_000_000_000
+            override val symbol: String = "TW"
+        }
+        public val entries: List<PowerUnit> = listOf(Microwatt, Milliwatt, Watt, Kilowatt, Megawatt, Gigawatt, Terawatt)
     }
 }

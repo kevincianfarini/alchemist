@@ -3,7 +3,7 @@ package io.github.kevincianfarini.alchemist.unit
 /**
  * A unit of length precise to the nanometer.
  */
-public interface LengthUnit {
+public interface LengthUnit : Comparable<LengthUnit> {
 
     /**
      * The amount of nanometers in this unit. Implementations of [LengthUnit] should be perfectly divisible by a
@@ -16,33 +16,66 @@ public interface LengthUnit {
      */
     public val symbol: String
 
+    override fun compareTo(other: LengthUnit): Int = nanometerScale.compareTo(other.nanometerScale)
+
     /**
      * An International System of Units standard representation of length.
      */
-    public enum class International(
-        override val nanometerScale: Long,
-        override val symbol: String,
-    ) : LengthUnit {
-        Nanometer(1, "nm"),
-        Micrometer(1_000, "μm"),
-        Millimeter(1_000_000, "mm"),
-        Centimeter(10_000_000, "cm"),
-        Meter(1_000_000_000, "m"),
-        Kilometer(1_000_000_000_000, "km"),
-        Megameter(1_000_000_000_000_000, "Mm"),
-        Gigameter(1_000_000_000_000_000_000, "Gm"),
+    public object International {
+        public val Nanometer: LengthUnit = object : LengthUnit {
+            override val nanometerScale: Long = 1
+            override val symbol: String = "nm"
+        }
+        public val Micrometer: LengthUnit = object : LengthUnit {
+            override val nanometerScale: Long = 1_000
+            override val symbol: String = "μm"
+        }
+        public val Millimeter: LengthUnit = object : LengthUnit {
+            override val nanometerScale: Long = 1_000_000
+            override val symbol: String = "mm"
+        }
+        public val Centimeter: LengthUnit = object : LengthUnit {
+            override val nanometerScale: Long = 10_000_000
+            override val symbol: String = "cm"
+        }
+        public val Meter: LengthUnit = object : LengthUnit {
+            override val nanometerScale: Long = 1_000_000_000
+            override val symbol: String = "m"
+        }
+        public val Kilometer: LengthUnit = object : LengthUnit {
+            override val nanometerScale: Long = 1_000_000_000_000
+            override val symbol: String = "km"
+        }
+        public val Megameter: LengthUnit = object : LengthUnit {
+            override val nanometerScale: Long = 1_000_000_000_000_000
+            override val symbol: String = "Mm"
+        }
+        public val Gigameter: LengthUnit = object : LengthUnit {
+            override val nanometerScale: Long = 1_000_000_000_000_000_000
+            override val symbol: String = "Gm"
+        }
+        public val entries: List<LengthUnit> = listOf(Nanometer, Micrometer, Millimeter, Centimeter, Meter, Kilometer, Megameter, Gigameter)
     }
 
     /**
      * A non-standard representation of length commonly used in the United States.
      */
-    public enum class UnitedStatesCustomary(
-        override val nanometerScale: Long,
-        override val symbol: String,
-    ) : LengthUnit {
-        Inch(25_400_000, "in"),
-        Foot(304_800_000, "ft"),
-        Yard(914_400_000, "yd"),
-        Mile(1_609_344_000_000, "mi"),
+    public object UnitedStatesCustomary {
+        public val Inch: LengthUnit = object : LengthUnit {
+            override val nanometerScale: Long = 25_400_000
+            override val symbol: String = "in"
+        }
+        public val Foot: LengthUnit = object : LengthUnit {
+            override val nanometerScale: Long = 304_800_000
+            override val symbol: String = "ft"
+        }
+        public val Yard: LengthUnit = object : LengthUnit {
+            override val nanometerScale: Long = 914_400_000
+            override val symbol: String = "yd"
+        }
+        public val Mile: LengthUnit = object : LengthUnit {
+            override val nanometerScale: Long = 1_609_344_000_000
+            override val symbol: String = "mi"
+        }
     }
 }

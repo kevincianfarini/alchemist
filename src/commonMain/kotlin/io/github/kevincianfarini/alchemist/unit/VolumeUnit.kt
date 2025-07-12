@@ -5,7 +5,7 @@ import kotlin.text.Typography.nbsp
 /**
  * A unit of volume precise to the centimeter³.
  */
-public interface VolumeUnit {
+public interface VolumeUnit : Comparable<VolumeUnit> {
 
     /**
      * The symbol of this unit.
@@ -18,16 +18,40 @@ public interface VolumeUnit {
      */
     public val cubicCentimetersScale: Long
 
+    override fun compareTo(other: VolumeUnit): Int = cubicCentimetersScale.compareTo(other.cubicCentimetersScale)
+
     /**
      * A non-standard representation of volume commonly used as part of the metric system.
      */
-    public enum class Metric(override val symbol: String, override val cubicCentimetersScale: Long) : VolumeUnit {
-        Milliliter("${nbsp}mL", 1),
-        Liter("${nbsp}L", 1_000),
-        Kiloliter("${nbsp}kL", 1_000_000),
-        Megaliter("${nbsp}ML", 1_000_000_000),
-        Gigaliter("${nbsp}GL", 1_000_000_000_000),
-        Teraliter("${nbsp}TL", 1_000_000_000_000_000),
-        Petaliter("${nbsp}PL", 1_000_000_000_000_000_000),
+    public object Metric {
+        public val Milliliter: VolumeUnit = object : VolumeUnit {
+            override val symbol: String = "${nbsp}mL"
+            override val cubicCentimetersScale: Long = 1
+        }
+        public val Liter: VolumeUnit = object : VolumeUnit {
+            override val symbol: String = "${nbsp}L"
+            override val cubicCentimetersScale: Long = 1_000
+        }
+        public val Kiloliter: VolumeUnit = object : VolumeUnit {
+            override val symbol: String = "${nbsp}kL"
+            override val cubicCentimetersScale: Long = 1_000_000
+        }
+        public val Megaliter: VolumeUnit = object : VolumeUnit {
+            override val symbol: String = "${nbsp}ML"
+            override val cubicCentimetersScale: Long = 1_000_000_000
+        }
+        public val Gigaliter: VolumeUnit = object : VolumeUnit {
+            override val symbol: String = "${nbsp}GL"
+            override val cubicCentimetersScale: Long = 1_000_000_000_000
+        }
+        public val Teraliter: VolumeUnit = object : VolumeUnit {
+            override val symbol: String = "${nbsp}TL"
+            override val cubicCentimetersScale: Long = 1_000_000_000_000_000
+        }
+        public val Petaliter: VolumeUnit = object : VolumeUnit {
+            override val symbol: String = "${nbsp}PL"
+            override val cubicCentimetersScale: Long = 1_000_000_000_000_000_000
+        }
+        public val entries: List<VolumeUnit> = listOf(Milliliter, Liter, Kiloliter, Megaliter, Gigaliter, Teraliter, Petaliter)
     }
 }
