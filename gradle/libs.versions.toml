@@ -1,5 +1,5 @@
 [versions]
-dokka = "2.0.0"
+dokka = "2.2.0"
 kmpmt = "0.1.1"
 kotlin = "2.1.21"
 publish = "0.30.0"
